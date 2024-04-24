@@ -18,6 +18,10 @@ public class MemberController {
         this.memberService = memberService;
     }
 
+    @GetMapping("/")
+    public String home(){
+        return "home";
+    }
 
 
     @GetMapping("/signup")
@@ -25,9 +29,9 @@ public class MemberController {
         return "signup";
     }
 
-    @PostMapping("/login")
-    public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password){
+    @GetMapping("/login")
+    public String login(){
 
-        return "signup";
+        return "login";
     }
 }
