@@ -15,6 +15,5 @@ public class MemberService {
     }
 
     public void login(String email, String password) {
-        memberMapper.login(email, password);
     }
 }

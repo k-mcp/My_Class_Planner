@@ -28,7 +28,6 @@ public class MemberController {
     @PostMapping("/login")
     public String login(Model model, @RequestParam("email") String email, @RequestParam("password") String password){
 
-        memberService.login(email, password);
-
+        return "signup";
     }
 }
