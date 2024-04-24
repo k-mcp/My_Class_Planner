@@ -23,11 +23,11 @@
 
 | 이름    | 역할         | 깃허브 주소                   |
 |---------|--------------|-------------------------------|
-| 박준혁  | DB 관리, Web | [박준혁의 깃허브](https://github.com/junhyeok-dev) |
-| 유정우  | 팀장, Server | [유정우의 깃허브](https://github.com/jeongwoo-yu) |
-| 이은숙  | 업무관리, DB 관리, 테스트관리 | [이은숙의 깃허브](https://github.com/eunsuk-lee) |
-| 이혜진  | 문서관리, DB 관리 | [이혜진의 깃허브](https://github.com/hyejin-lee) |
-| 정고은  | Server, UI   | [정고은의 깃허브](https://github.com/goeunjeong-dev) |
+| 유정우  | 팀장, Server | [유정우의 깃허브](https://github.com/Jungwoo-Ryu) |
+| 박준혁  | DB 관리, Web | [박준혁의 깃허브]() |
+| 이은숙  | 업무관리, DB 관리, 테스트관리 | [이은숙의 깃허브](https://github.com/Leeeunsookl) |
+| 이혜진  | 문서관리, DB 관리 | [이혜진의 깃허브](https://github.com/tesla1220) |
+| 정고은  | Server, UI   | [정고은의 깃허브](https://github.com/GonY0624) |
 
 
 
