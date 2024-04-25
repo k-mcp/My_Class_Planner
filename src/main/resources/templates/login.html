@@ -27,7 +27,7 @@
         </div>
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="#!">
+            <form action="#!" method="post">
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
                         <div class="text-black">Username</div>
@@ -45,14 +45,14 @@
                             </label>
                         </div>
                     </div>
-                    <br><br><br><br>
+
                     <div class="col-12">
                         <div class="d-grid">
-                            <button type="button" class="btn btn-success" onclick="goToHome()">Sign in</button>
+                            <button type="button" class="btn btn-success" onclick="location.href='/home'">Sign in</button>
                         </div>
 
                         <p class="text-center small mt-2">Don't have an account yet?
-                            <button type="button" class="btn btn-link" onclick="goToSignUp()">Sign up</button>
+                            <button type="button" class="btn btn-link" onclick="location.href='/signup'">Sign up</button>
                         </p>
                     </div>
                 </div>
@@ -62,15 +62,7 @@
 
 </div>
 
-<script>
-    function goToHome() {
-        window.location.href = "sidebar.html";
-    }
 
-    function goToSignUp() {
-        window.location.href = "signUp.html";
-    }
-</script>
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
