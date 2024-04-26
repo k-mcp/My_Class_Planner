@@ -6,18 +6,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import mcp.myclassplanner.model.service.MemberService;
 
 @Controller
-public class MemberController {
+public class HomeController {
 
     private final MemberService memberService;
 
     @Autowired
-    public MemberController(MemberService memberService){
+    public HomeController(MemberService memberService){
         this.memberService = memberService;
     }
 
     @GetMapping("/")
     public String welcome(){
-        return "welcome";
+        return "home/welcome";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home/home";
+    }
+    @GetMapping("/course")
+    public String course() {
+        return "course/course";
     }
 
 
