@@ -1,9 +1,9 @@
-package thefirstgroup.myclassplanner.configuration;
+package mcp.myclassplanner.configuration;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackages = "thefirstgroup.myclassplanner")
+@ComponentScan(basePackages = "mcp.myclassplanner")
 public class ContextConfiguration {
 }

@@ -1,4 +1,4 @@
-package thefirstgroup.myclassplanner.model.dao;
+package mcp.myclassplanner.model.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 

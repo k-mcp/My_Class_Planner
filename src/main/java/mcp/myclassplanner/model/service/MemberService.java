@@ -1,8 +1,8 @@
-package thefirstgroup.myclassplanner.model.service;
+package mcp.myclassplanner.model.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import thefirstgroup.myclassplanner.model.dao.MemberMapper;
+import mcp.myclassplanner.model.dao.MemberMapper;
 
 @Service
 public class MemberService {
