@@ -19,7 +19,7 @@
     <div class="row">
         <div class="col-12 mb-1">
             <div class="d-flex justify-content-center">
-                <img src="/img/logo_letter.png" alt="Logo" class="mb-5" style="width: 50%; height: auto;">
+                <img onclick="location.href='/'" src="/img/logo_letter.png" alt="Logo" class="mb-5" style="width: 50%; height: auto;">
             </div>
         </div>
         <div class="col-3"></div>
@@ -44,11 +44,11 @@
                     </div>
                     <div class="col-12">
                         <div class="d-grid">
-                            <button type="button" class="btn btn-success" onclick="goToEmailVerification()">Sign up</button>
+                            <button type="button" class="btn btn-success" onclick="goToLogin()">Sign up</button>
                         </div>
 
                         <p class="text-center small mt-2">Already have your account?
-                            <button type="button" class="btn btn-link" onclick="goToLogin()">Sign in</button>
+                            <button type="button" class="btn btn-link" onclick="location.href='/auth/signin'">Sign in</button>
                         </p>
                     </div>
                 </div>
@@ -88,13 +88,10 @@
         }
 
         document.getElementById("passwordForm").submit(); // 비밀번호가 일치하면 폼 제출
-
-    }
-
-    function goToEmailVerification(){
         alert("Email verification code has been sent! please check your Email!");
         location.href = "/auth/login";
     }
+
 </script>
 
 </body>
