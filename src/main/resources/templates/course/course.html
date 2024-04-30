@@ -12,8 +12,8 @@
         <div th:replace="/common/sidebar.html"></div>
 
         <div class="container mt-4">
-            <h2>Course Sections</h2>
-            <form id="plansForm" action="/generate" method="POST">
+            <h2>My Course</h2>
+            <form id="plansForm" action="/course" method="POST">
                 <div class="accordion" id="accordionExample">
                     <!-- Loop through courses -->
                     <!-- Dummy Data for Courses and Sections -->
@@ -105,7 +105,8 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Generate Plans</button>
+                <button type="submit" class="btn btn-primary mt-3">Modify</button>
+                <a href="/course" class="btn btn-danger mt-3">Cancel</input>
             </form>
         </div>
     </div>
