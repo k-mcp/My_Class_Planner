@@ -13,4 +13,6 @@ public interface MemberMapper {
     void signUp(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
+
+    MemberDTO signUpErrorByUsername(MemberDTO memberDTO);
 }

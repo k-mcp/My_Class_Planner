@@ -6,16 +6,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.Objects;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/auth")
-public class MemberContoller {
+public class MemberController {
 
     private final MemberService memberService;
 
-    public MemberContoller(MemberService memberService) {
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
 
@@ -23,7 +22,7 @@ public class MemberContoller {
     public String login(){
         return "auth/signin";
     }
-    @PostMapping("/signIn")
+    @PostMapping("/signin")
     public String signInCheck(String username, String password){
         int result = memberService.signIn(username,password);
         return "home";
@@ -35,13 +34,23 @@ public class MemberContoller {
         return "auth/signup";
     }
     @PostMapping("/signup")
-    public String singupPro(MemberDTO memberDTO){
-        MemberDTO member = memberService.signUpErrorByEmail(memberDTO);
-        if(!Objects.isNull(member)) {
-            System.out.println("email duplicated");
+    public ModelAndView signupPro(MemberDTO memberDTO, ModelAndView mv){
+        String message = "";
+        int error = memberService.signUpError(memberDTO);
+        if(error == 1){ // username exists
+            message = "username already exists";
+            mv.addObject("message", message);
+            return mv;
+        } else if(error == 2){ // email exists
+            message = "email has already taken. please sign in with your id";
+            mv.addObject("message", message);
+            return mv;
         }
 
         memberService.signUp(memberDTO);
-        return "redirect:/signIn";
+        message ="We sent a verification link to your email. Please verify your email and sign in!";
+        mv.addObject("message", message);
+        return mv;
+
     }
 }

@@ -3,6 +3,7 @@ package mcp.myclassplanner.model.service;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,10 +16,12 @@ import java.util.Objects;
 public class MemberService {
 
     private final MemberMapper memberMapper;
+    private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public MemberService(MemberMapper memberMapper){
+    public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder){
         this.memberMapper = memberMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public int signIn(String username, String password) {
@@ -48,7 +51,7 @@ public class MemberService {
         }
         memberDTO.setAuthCode(sb.toString());
         memberDTO.setAuthStatus(0);
-
+        memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
         System.out.println("memberDTO = " + memberDTO.toString());
 
         memberMapper.signUp(memberDTO);
@@ -56,10 +59,15 @@ public class MemberService {
     }
 
 
-    public MemberDTO signUpErrorByEmail(MemberDTO memberDTO) {
-        MemberDTO member = memberMapper.signUpErrorByEmail(memberDTO);
+    public int signUpError(MemberDTO memberDTO) {
+        MemberDTO member = memberMapper.signUpErrorByUsername(memberDTO);
         if(!Objects.isNull(member)){
-            return member;
-        } else return null;
+            return 1; // username already exist
+        }
+        member = memberMapper.signUpErrorByEmail(memberDTO);
+        if(!Objects.isNull(member)){
+            return 2; // email already exist
+        }
+        return 0;
     }
 }

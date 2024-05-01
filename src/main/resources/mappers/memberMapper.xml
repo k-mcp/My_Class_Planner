@@ -17,15 +17,16 @@
 <!--        where username = #{username} AND password = #{password};-->
 <!--    </select>-->
 
-    <select id="signUpErrorByUsername" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
-        select *
-        from tbl_member
-        where username = #{username}
-    </select>
     <select id="signUpErrorByEmail" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
         select *
         from tbl_member
         where email = #{email}
+    </select>
+
+    <select id="signUpErrorByUsername" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
+        select *
+        from tbl_member
+        where username = #{username}
     </select>
 
     <insert id="signUp" parameterType="mcp.myclassplanner.model.dto.MemberDTO"

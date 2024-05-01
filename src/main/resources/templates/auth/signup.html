@@ -14,7 +14,15 @@
     </style>
 </head>
 <body>
-
+<script>
+        const message = `[[${message}]]`;
+        if (message) {
+        alert(message);
+        if(message.charAt(0) == 'W'){
+            window.location.href= "/auth/signin";
+        }
+    }
+</script>
 <section class="container">
     <div class="row">
         <div class="col-12 mb-1">
