@@ -43,17 +43,25 @@
 //        return true;
 //    }
 //
-//    public static void simulator(String start, String end, int index){
-//        List<SectionDTO> list = timetable.get(index);
+//public static void simulator(int start, int end, int index) {
+//    List<SectionDTO> list = timetable.get(index);
 //
-//        boolean crash = false;
-//        for(SectionDTO section : list){
-//            if(section.getDays()[index]){
+//    for (SectionDTO section : list) {
+//        //첫 번째 조건: 새로운 일정이 기존 일정의 시작 시간보다 작거나 같고, 끝나는 시간보다 작은 조건 + 새로운일정의 끝나는 시간이 기존 일종의 시작시간보다 커야함
+//        if ((section.getStart() < start && section.getEnd() < end && section.getEnd() > start) ||
+//                // 1100 <= 900
+//                //두 번째 조건: 새로운 일정이 기존 일정의 시작 시간보다 크거나 같고, 끝나는 시간보다 크거나 같은 조건
+//                (section.getStart() > start && section.getEnd() > end && section.getStart() < end) ||
 //
-//            }
+//                //세 번째 조건: 새로운 일정이 기존 일정의 시작 시간보다 크거나 같고, 끝나는 시간보다 작거나 같은 조건
+//                (section.getStart() >= start && section.getEnd() <= end) ||
 //
+//                //마지막 조건: 새로운 일정이 기존 일정의 시작 시간보다 작거나 같고, 끝나는 시간보다 작은 조건입
+//                (section.getStart() <= start && section.getEnd() >= end)) {
 //
+//            return;
 //        }
 //    }
+//}
 //
 //}
