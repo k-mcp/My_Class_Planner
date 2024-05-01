@@ -3,17 +3,17 @@ package mcp.myclassplanner.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import mcp.myclassplanner.model.service.MemberService;
+//import mcp.myclassplanner.model.service.MemberService;
 
 @Controller
 public class HomeController {
-
-    private final MemberService memberService;
-
-    @Autowired
-    public HomeController(MemberService memberService){
-        this.memberService = memberService;
-    }
+//
+//    private final MemberService memberService;
+//
+//    @Autowired
+//    public HomeController(MemberService memberService){
+//        this.memberService = memberService;
+//    }
 
     @GetMapping("/")
     public String welcome(){
