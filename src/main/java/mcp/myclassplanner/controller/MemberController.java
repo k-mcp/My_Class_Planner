@@ -48,8 +48,10 @@ public class MemberController {
         }
 
         memberService.signUp(memberDTO);
+
         message ="We sent a verification link to your email. Please verify your email and sign in!";
         mv.addObject("message", message);
+        mv.addObject("email", memberDTO.getEmail());
         return mv;
 
     }

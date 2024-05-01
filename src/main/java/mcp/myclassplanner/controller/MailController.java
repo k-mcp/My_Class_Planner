@@ -4,25 +4,29 @@ package mcp.myclassplanner.controller;
 import jakarta.mail.internet.MimeMessage;
 import mcp.myclassplanner.model.dto.MailTO;
 import mcp.myclassplanner.model.service.MailService;
+import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/mail")
 public class MailController {
     private final MailService mailService;
-
+    private final MemberService memberService;
     @Autowired
-    public MailController(MailService mailService){
+    public MailController(MailService mailService, MemberService memberService){
 
         this.mailService = mailService;
+        this.memberService = memberService;
     }
     @GetMapping("/send")
-    public MailTO sendTestMail(String email) {
+    public ModelAndView sendTestMail(String email, ModelAndView mv) {
 
+        int key = memberService.getAuthCode(email);
         MailTO mailTO = new MailTO();
 
         mailTO.setAddress(email);
@@ -32,13 +36,13 @@ public class MailController {
                 .append("<a href='http://localhost:9080/member/signUpConfirm?email=")
                 .append(email)
                 .append("&authKey=")
-                .append("1234")
+                .append(key)
                 .append("' target='_blenk'>이메일 인증 확인</a>")
                 .toString());
 
         mailService.sendMail(mailTO);
-
-        return mailTO;
+        mv.setViewName("redirect:/auth/signin");
+        return mv;
     }
 
 }

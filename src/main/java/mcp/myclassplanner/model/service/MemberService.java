@@ -46,7 +46,7 @@ public class MemberService {
 
     public void signUp(MemberDTO memberDTO){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 14; i++){
+        for(int i = 0; i < 8; i++){
             sb.append((int)(Math.random()*10));
         }
         memberDTO.setAuthCode(sb.toString());
@@ -69,5 +69,9 @@ public class MemberService {
             return 2; // email already exist
         }
         return 0;
+    }
+
+    public int getAuthCode(String email) {
+        return memberMapper.getAuthCode(email);
     }
 }

@@ -29,6 +29,11 @@
         where username = #{username}
     </select>
 
+    <select id="getAuthCode" parameterType="String" resultType="int">
+        select auth_code
+        where email = #{email};
+    </select>
+
     <insert id="signUp" parameterType="mcp.myclassplanner.model.dto.MemberDTO"
             useGeneratedKeys="true" keyProperty="memberCode">
         INSERT INTO tbl_member

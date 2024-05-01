@@ -15,4 +15,8 @@ public interface MemberMapper {
     MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByUsername(MemberDTO memberDTO);
+
+    void sendAuthCode(MemberDTO memberDTO);
+
+    int getAuthCode(String email);
 }
