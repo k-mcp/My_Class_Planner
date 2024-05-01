@@ -1,7 +1,7 @@
 package mcp.myclassplanner.model.dto;
 
 public class MemberDTO {
-    private int memberNo; // pk
+    private int memberCode; // pk
     private String email; //
     private String username;
     private String password;
@@ -11,7 +11,7 @@ public class MemberDTO {
     @Override
     public String toString() {
         return "MemberDTO{" +
-                "memberNo=" + memberNo +
+                "memberCode=" + memberCode +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
@@ -20,8 +20,8 @@ public class MemberDTO {
                 '}';
     }
 
-    public MemberDTO(int memberNo, String email, String username, String password, String authCode, int authStatus) {
-        this.memberNo = memberNo;
+    public MemberDTO(int memberCode, String email, String username, String password, String authCode, int authStatus) {
+        this.memberCode = memberCode;
         this.email = email;
         this.username = username;
         this.password = password;
@@ -33,11 +33,11 @@ public class MemberDTO {
     }
 
     public int getMemberNo() {
-        return memberNo;
+        return memberCode;
     }
 
     public void setMemberNo(int memberNo) {
-        this.memberNo = memberNo;
+        this.memberCode = memberNo;
     }
 
     public String getEmail() {

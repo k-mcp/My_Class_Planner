@@ -2,6 +2,7 @@ package mcp.myclassplanner.model.service;
 
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -47,9 +48,18 @@ public class MemberService {
         }
         memberDTO.setAuthCode(sb.toString());
         memberDTO.setAuthStatus(0);
+
+        System.out.println("memberDTO = " + memberDTO.toString());
+
         memberMapper.signUp(memberDTO);
 
     }
 
 
+    public MemberDTO signUpErrorByEmail(MemberDTO memberDTO) {
+        MemberDTO member = memberMapper.signUpErrorByEmail(memberDTO);
+        if(!Objects.isNull(member)){
+            return member;
+        } else return null;
+    }
 }

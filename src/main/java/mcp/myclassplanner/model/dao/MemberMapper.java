@@ -11,4 +11,6 @@ public interface MemberMapper {
     String signIn(Map<String, String> map);
 
     void signUp(MemberDTO memberDTO);
+
+    MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
 }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mcp.myclassplanner.model.dao.MemberMapper">
+    <resultMap id="memberDTO" type="mcp.myclassplanner.model.dto.MemberDTO">
+        <id property="memberCode" column="member_code"/>
+        <result property="email" column="email"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="authCode" column="auth_code"/>
+        <result property="authStatus" column="auth_status"/>
+    </resultMap>
+<!--    <select id="singIn" parameterMap="map">-->
+<!--        select email-->
+<!--        from tbl_member-->
+<!--        where username = #{username} AND password = #{password};-->
+<!--    </select>-->
+
+    <select id="signUpErrorByUsername" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
+        select *
+        from tbl_member
+        where username = #{username}
+    </select>
+    <select id="signUpErrorByEmail" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
+        select *
+        from tbl_member
+        where email = #{email}
+    </select>
+
+    <insert id="signUp" parameterType="mcp.myclassplanner.model.dto.MemberDTO"
+            useGeneratedKeys="true" keyProperty="memberCode">
+        INSERT INTO tbl_member
+        (
+            username,
+            password,
+            email,
+            auth_code,
+            auth_status
+        )
+        VALUES
+        (
+            #{username},
+            #{password},
+            #{email},
+            #{authCode},
+            0
+        )
+    </insert>
+</mapper>

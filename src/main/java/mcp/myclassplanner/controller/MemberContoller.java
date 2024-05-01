@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/auth")
 public class MemberContoller {
@@ -34,7 +36,12 @@ public class MemberContoller {
     }
     @PostMapping("/signup")
     public String singupPro(MemberDTO memberDTO){
+        MemberDTO member = memberService.signUpErrorByEmail(memberDTO);
+        if(!Objects.isNull(member)) {
+            System.out.println("email duplicated");
+        }
+
         memberService.signUp(memberDTO);
-        return "redirect:/signin";
+        return "redirect:/signIn";
     }
 }

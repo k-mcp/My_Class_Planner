@@ -44,7 +44,8 @@
                     </div>
                     <div class="col-12">
                         <div class="d-grid">
-                            <button type="button" class="btn btn-success" onclick="goToLogin()">Sign up</button>
+                            <input type="submit" class="btn btn-success" value="Sign up">
+<!--                            <button type="button" class="btn btn-success" onclick="goToLogin()">Sign up</button>-->
                         </div>
 
                         <p class="text-center small mt-2">Already have your account?
@@ -87,7 +88,7 @@
             return;
         }
 
-        document.getElementById("passwordForm").submit(); // 비밀번호가 일치하면 폼 제출
+        document.getElementById("singupForm").submit(); // 비밀번호가 일치하면 폼 제출
         alert("Email verification code has been sent! please check your Email!");
         location.href = "/auth/login";
     }
