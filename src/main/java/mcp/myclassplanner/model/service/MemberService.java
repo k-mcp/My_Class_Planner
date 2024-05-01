@@ -31,16 +31,6 @@ public class MemberService {
         String email = memberMapper.signIn(map);
         System.out.println("email = " + email);
         return 1;
-//        if(!Objects.isNull(email)) // if username and password match
-//        {
-//            int auth = memberMapper.auth(email);
-//            if(auth == 0) // if email is not verified
-//            {
-//
-//            } else if(auth == 1){ // email is verified
-//                // Session 방식으로 로그인 정보 저장
-//            }
-//        }
 
     }
 
