@@ -1,5 +1,6 @@
 package mcp.myclassplanner.model.dao;
 
+import mcp.myclassplanner.model.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Map;
@@ -9,4 +10,5 @@ public interface MemberMapper {
 
     String signIn(Map<String, String> map);
 
+    void signUp(MemberDTO memberDTO);
 }

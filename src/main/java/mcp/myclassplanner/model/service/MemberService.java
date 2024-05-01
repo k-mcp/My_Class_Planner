@@ -40,8 +40,14 @@ public class MemberService {
 
     }
 
-    public void signUp(@ModelAttribute MemberDTO memberDTO){
-//        int result = memberMapper.signUp(memberDTO);
+    public void signUp(MemberDTO memberDTO){
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 14; i++){
+            sb.append((int)(Math.random()*10));
+        }
+        memberDTO.setAuthCode(sb.toString());
+        memberDTO.setAuthStatus(0);
+        memberMapper.signUp(memberDTO);
 
     }
 

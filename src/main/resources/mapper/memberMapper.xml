@@ -8,4 +8,12 @@
         from tbl_member
         where username = #{username} AND password = #{password};
     </select>
+
+
+    <insert id="singUp">
+        INSERT INTO tbl_member
+        (username, password, email, auth_code, auth_status)
+        VALUES
+        (#{username}, #{password}, #{email}, #{authCode}, 0)
+    </insert>
 </mapper>

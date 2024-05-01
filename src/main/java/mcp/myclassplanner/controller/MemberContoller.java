@@ -1,5 +1,6 @@
 package mcp.myclassplanner.controller;
 
+import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,5 +31,10 @@ public class MemberContoller {
     @GetMapping("/signup")
     public String signup(){
         return "auth/signup";
+    }
+    @PostMapping("/signup")
+    public String singupPro(MemberDTO memberDTO){
+        memberService.signUp(memberDTO);
+        return "redirect:/signin";
     }
 }
