@@ -62,4 +62,7 @@ public class MemberService {
     public String getAuthCode(String email) {
         return memberMapper.getAuthCode(email);
     }
+
+    public int authorize(Map<String, String> map) {
+    }
 }
