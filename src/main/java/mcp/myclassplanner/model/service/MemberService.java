@@ -2,11 +2,9 @@ package mcp.myclassplanner.model.service;
 
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -61,7 +59,7 @@ public class MemberService {
         return 0;
     }
 
-    public int getAuthCode(String email) {
+    public String getAuthCode(String email) {
         return memberMapper.getAuthCode(email);
     }
 }

@@ -18,5 +18,5 @@ public interface MemberMapper {
 
     void sendAuthCode(MemberDTO memberDTO);
 
-    int getAuthCode(String email);
+    String getAuthCode(String email);
 }

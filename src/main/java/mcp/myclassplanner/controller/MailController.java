@@ -26,14 +26,15 @@ public class MailController {
     @GetMapping("/send")
     public ModelAndView sendTestMail(String email, ModelAndView mv) {
 
-        int key = memberService.getAuthCode(email);
+        String key = memberService.getAuthCode(email);
+        System.out.println("key = " + key);
         MailTO mailTO = new MailTO();
 
         mailTO.setAddress(email);
         mailTO.setTitle("My Class Planner confirmation email");
         mailTO.setMessage(new StringBuffer().append("<h1>[이메일 인증]</h1>")
                 .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-                .append("<a href='http://localhost:9080/member/signUpConfirm?email=")
+                .append("<a href='http://localhost:8080/auth/signUpConfirm?email=")
                 .append(email)
                 .append("&authKey=")
                 .append(key)

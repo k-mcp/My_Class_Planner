@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/auth")
 public class MemberController {
@@ -55,4 +58,22 @@ public class MemberController {
         return mv;
 
     }
+    @GetMapping("/signUpConfirm")
+    public String signupConfirm(String email, String authKey) {
+        Map<String, String> map = new HashMap<>();
+        map.put("email", email);
+        map.put("authKey", authKey);
+
+        int auth = memberService.authorize(map);
+        if(auth == 0){ // if error occurs
+            return "failVerifying";
+        }
+        else { // if succeed
+            return "verified";
+
+        }
+
+
+    }
+
 }
