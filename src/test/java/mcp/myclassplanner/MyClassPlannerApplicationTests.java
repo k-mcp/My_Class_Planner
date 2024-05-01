@@ -8,6 +8,7 @@ class MyClassPlannerApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

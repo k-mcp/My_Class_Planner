@@ -27,6 +27,7 @@ public class MemberController {
     }
     @PostMapping("/signin")
     public String signInCheck(String username, String password){
+
         int result = memberService.signIn(username,password);
         return "home";
 

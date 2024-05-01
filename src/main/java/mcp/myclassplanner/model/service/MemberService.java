@@ -23,11 +23,10 @@ public class MemberService {
     }
 
     public int signIn(String username, String password) {
-        Map<String, String> map = new HashMap<>();
-        map.put("username", username);
-        map.put("password", password);
-        String email = memberMapper.signIn(map);
-        System.out.println("email = " + email);
+
+        String encodedPassword = memberMapper.signIn(username);
+        boolean match = passwordEncoder.matches(password, encodedPassword);
+        System.out.println("match = " + match);
         return 1;
 
     }

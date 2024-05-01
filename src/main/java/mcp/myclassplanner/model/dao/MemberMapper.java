@@ -8,7 +8,7 @@ import java.util.Map;
 @Mapper
 public interface MemberMapper {
 
-    String signIn(Map<String, String> map);
+    String signIn(String username);
 
     void signUp(MemberDTO memberDTO);
 

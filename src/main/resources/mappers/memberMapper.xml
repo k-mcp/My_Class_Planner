@@ -11,11 +11,12 @@
         <result property="authCode" column="auth_code"/>
         <result property="authStatus" column="auth_status"/>
     </resultMap>
-<!--    <select id="singIn" parameterMap="Hashmap">-->
-<!--        select email-->
-<!--        from tbl_member-->
-<!--        where username = #{username} AND password = #{password};-->
-<!--    </select>-->
+
+    <select id="signIn" parameterType="string" resultType="string">
+        select password
+        from tbl_member
+        where username = #{username};
+    </select>
 
     <select id="signUpErrorByEmail" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
         select *
