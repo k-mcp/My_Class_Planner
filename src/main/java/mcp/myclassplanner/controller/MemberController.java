@@ -66,10 +66,10 @@ public class MemberController {
 
         int auth = memberService.authorize(map);
         if(auth == 0){ // if error occurs
-            return "failVerifying";
+            return "auth/fail";
         }
         else { // if succeed
-            return "verified";
+            return "auth/verified";
 
         }
 

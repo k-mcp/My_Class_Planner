@@ -64,5 +64,14 @@ public class MemberService {
     }
 
     public int authorize(Map<String, String> map) {
+        System.out.println("map.get(\"email\") = " + map.get("email"));
+        System.out.println("map.get(\"authKey\") = " + map.get("authKey"));
+        MemberDTO member = memberMapper.authorize(map);
+        if(!Objects.isNull(member)){
+            memberMapper.authStatus(map);
+            return 1; // succeed
+        } else {
+            return 0; // fail
+        }
     }
 }

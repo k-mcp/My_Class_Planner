@@ -34,7 +34,11 @@
         from tbl_member
         where email = #{email};
     </select>
-
+    <select id="authorize" parameterType="hashmap" resultMap="memberDTO">
+        select * from tbl_member
+        where email = #{email}
+        AND auth_code = #{authKey};
+    </select>
     <insert id="signUp" parameterType="mcp.myclassplanner.model.dto.MemberDTO"
             useGeneratedKeys="true" keyProperty="memberCode">
         INSERT INTO tbl_member
@@ -54,4 +58,8 @@
             0
         )
     </insert>
+    <update id="authStatus" parameterType="hashmap">
+        update tbl_member set auth_status = 1
+        where email = #{email};
+    </update>
 </mapper>

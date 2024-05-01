@@ -19,4 +19,8 @@ public interface MemberMapper {
     void sendAuthCode(MemberDTO memberDTO);
 
     String getAuthCode(String email);
+
+    MemberDTO authorize(Map<String, String> map);
+
+    void authStatus(Map<String, String> map);
 }
