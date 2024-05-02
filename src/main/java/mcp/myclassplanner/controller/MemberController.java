@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
@@ -22,15 +23,37 @@ public class MemberController {
     }
 
     @GetMapping("/signin")
-    public String login(){
-        return "auth/signin";
+    public void login(){
     }
     @PostMapping("/signin")
-    public String signInCheck(String username, String password){
 
+   
+    public String signInCheck(@RequestParam String username, @RequestParam String password){
+       System.out.println("username = " + username);
+       System.out.println("password = " + password);  
+      
         int result = memberService.signIn(username,password);
-        return "home";
+        System.out.println("result = " + result);
+        int check = memberService.check(username);
+        System.out.println("check = " + check);
+        if(result == 1 && check == 1){
+            return "/home/home";
+        } else {
+            return "/auth/signin";
+        }
 
+    }
+
+    @PostMapping("/signinWithAuth")
+    public String signInCheckWithAuth(String username, String password){
+        int result = memberService.signInWithAuth(username, password);
+        if(result == 1) {
+            // 로그인 성공 시 home 페이지로 이동
+            return "home";
+        } else {
+            // 로그인 실패 시 다시 로그인 페이지로 리턴
+            return "auth/signin";
+        }
     }
 
     @GetMapping("/signup")
