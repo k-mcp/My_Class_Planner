@@ -6,13 +6,18 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberMapper {
 
+
     
+
+    String signIn(String username);
+
 
     void signUp(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByUsername(MemberDTO memberDTO);
+
 
     int getAuthCodeByEmail(String email);
 
@@ -22,4 +27,13 @@ public interface MemberMapper {
     Integer check(String username);
 
     int signIn(String username, String pass1);
+
+    void sendAuthCode(MemberDTO memberDTO);
+
+    String getAuthCode(String email);
+
+    MemberDTO authorize(Map<String, String> map);
+
+    void authStatus(Map<String, String> map);
+
 }

@@ -16,11 +16,12 @@
 <body>
 <script>
         const message = `[[${message}]]`;
+        const email = `[[${email}]]`;
         if (message) {
-        alert(message);
-        if(message.charAt(0) == 'W'){
-            window.location.href= "/auth/signin";
-        }
+            alert(message);
+            if(message.charAt(0) == 'W'){
+                window.location.href= "/mail/send?email="+email;
+            }
     }
 </script>
 <section class="container">

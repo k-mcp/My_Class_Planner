@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/auth")
 public class MemberController {
@@ -23,9 +26,12 @@ public class MemberController {
     public void login(){
     }
     @PostMapping("/signin")
-    public String signInCheck(@RequestParam String username,@RequestParam String password){
-        System.out.println("username = " + username);
-        System.out.println("password = " + password);
+
+   
+    public String signInCheck(@RequestParam String username, @RequestParam String password){
+       System.out.println("username = " + username);
+       System.out.println("password = " + password);  
+      
         int result = memberService.signIn(username,password);
         System.out.println("result = " + result);
         int check = memberService.check(username);
@@ -69,9 +75,29 @@ public class MemberController {
         }
 
         memberService.signUp(memberDTO);
+
         message ="We sent a verification link to your email. Please verify your email and sign in!";
         mv.addObject("message", message);
+        mv.addObject("email", memberDTO.getEmail());
         return mv;
 
     }
+    @GetMapping("/signUpConfirm")
+    public String signupConfirm(String email, String authKey) {
+        Map<String, String> map = new HashMap<>();
+        map.put("email", email);
+        map.put("authKey", authKey);
+
+        int auth = memberService.authorize(map);
+        if(auth == 0){ // if error occurs
+            return "auth/fail";
+        }
+        else { // if succeed
+            return "auth/verified";
+
+        }
+
+
+    }
+
 }

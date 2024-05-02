@@ -28,10 +28,11 @@ public class MailService {
             helper.setTo(mail.getAddress());
             helper.setSubject(mail.getTitle());
             helper.setText(mail.getMessage(), true); // 두 번째 인자인 true는 HTML 형식임을 나타냅니다.
-
+            System.out.println("mail.getAddress() = " + mail.getAddress());
         } catch (MessagingException e) {
             throw new RuntimeException("메일 전송 실패", e);
         }
+        System.out.println("message = " + message);
         mailSender.send(message);
     }
 }

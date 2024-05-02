@@ -2,11 +2,9 @@ package mcp.myclassplanner.model.service;
 
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import java.util.Base64;
 import java.util.HashMap;
@@ -26,6 +24,13 @@ public class MemberService {
     }
 
     public int signIn(String username, String password) {
+
+
+        String encodedPassword = memberMapper.signIn(username);
+        boolean match = passwordEncoder.matches(password, encodedPassword);
+        System.out.println("match = " + match);
+        return 1;
+
 
         String pass1 = passwordEncoder.encode(password);
         System.out.println("pass1 = " + pass1);
@@ -73,7 +78,7 @@ public class MemberService {
 
     public void signUp(MemberDTO memberDTO){
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 14; i++){
+        for(int i = 0; i < 8; i++){
             sb.append((int)(Math.random()*10));
         }
         memberDTO.setAuthCode(sb.toString());
@@ -99,9 +104,26 @@ public class MemberService {
     }
 
 
+
     public int check(String username) {
         Integer check = memberMapper.check(username);
         System.out.println("check123 = " + check);
         return check;
+
+    public String getAuthCode(String email) {
+        return memberMapper.getAuthCode(email);
+    }
+
+    public int authorize(Map<String, String> map) {
+        System.out.println("map.get(\"email\") = " + map.get("email"));
+        System.out.println("map.get(\"authKey\") = " + map.get("authKey"));
+        MemberDTO member = memberMapper.authorize(map);
+        if(!Objects.isNull(member)){
+            memberMapper.authStatus(map);
+            return 1; // succeed
+        } else {
+            return 0; // fail
+        }
+
     }
 }
