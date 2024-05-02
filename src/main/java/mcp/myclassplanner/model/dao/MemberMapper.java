@@ -40,4 +40,6 @@ public interface MemberMapper {
     int checkAuthStatus(String username);
 
     String getEmail(String username);
+
+    MemberDTO getMemberByUsername(String username);
 }

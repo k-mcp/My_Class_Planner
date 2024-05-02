@@ -1,5 +1,7 @@
 package mcp.myclassplanner.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -26,8 +28,9 @@ public class MemberController {
     public void signIn(){
 
     }
+
     @PostMapping("/signin")
-    public ModelAndView signInCheck(String username, String password, ModelAndView mv) {
+    public ModelAndView signInCheck(String username, String password, ModelAndView mv, HttpSession httpSession) {
         String message = "";
         System.out.println("username = " + username);
         System.out.println("password = " + password);
@@ -51,14 +54,25 @@ public class MemberController {
                     mv.setViewName("redirect:/mail/send?email="+ memberService.getEmail(username));
                     return mv;
                 }
-                mv.setViewName("home");
+                // 세션에 사용자 정보 저장
+                httpSession.setAttribute("loginid",username);
+
+                mv.setViewName("redirect:/home");
                 return mv;
-
-
         }
+
         mv.addObject("message", message);
         mv.setViewName("/auth/signin");
         return mv;
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        if (httpSession != null) {
+            httpSession.removeAttribute("loginid");
+            httpSession.invalidate();
+        }
+        return "redirect:/auth/signin";
     }
 
     @GetMapping("/signup")
