@@ -26,11 +26,8 @@ public interface MemberMapper {
     String signInWithAuth(String username, String password);
     
 
-    Integer check(String username);
 
-    int signIn(String username, String pass1);
 
-    void sendAuthCode(MemberDTO memberDTO);
 
     String getAuthCode(String email);
 
@@ -38,4 +35,9 @@ public interface MemberMapper {
 
     void authStatus(Map<String, String> map);
 
+    String getEncodedPassword(String username);
+
+    int checkAuthStatus(String username);
+
+    String getEmail(String username);
 }

@@ -27,35 +27,38 @@ public class MemberController {
 
     }
     @PostMapping("/signin")
-    public String signInCheck(String username, String password){
-       System.out.println("username = " + username);
-       System.out.println("password = " + password);  
-       Map<String,String> map = new HashMap<>();
-       map.put("username", username);
-       map.put("password", password);
+    public ModelAndView signInCheck(String username, String password, ModelAndView mv) {
+        String message = "";
+        System.out.println("username = " + username);
+        System.out.println("password = " + password);
+        Map<String, String> map = new HashMap<>();
+        map.put("username", username);
+        map.put("password", password);
 
-        int result = memberService.signIn(username,password);
-        System.out.println("result = " + result);
-        int check = memberService.check(username);
-        System.out.println("check = " + check);
-        if(result == 1 && check == 1){
-            return "/home/home";
-        } else {
-            return "/auth/signin";
+        int result = memberService.signIn(map); // 0 = success 1= username not exist 2= password incorrect
+        switch (result) {
+            case 1: // username does not exist
+                message = "username does not exist";
+                break;
+            case 2: // password incorrect
+                message = "password is incorrect";
+                break;
+            case 0: // success
+                int check = memberService.checkAuthStatus(username);
+                if (check == 0) { // when the email is not authorized
+                    message = "You have to verified your email first. We've sent another verification link to your email now";
+                    // email verification
+                    mv.setViewName("redirect:/mail/send?email="+ memberService.getEmail(username));
+                    return mv;
+                }
+                mv.setViewName("home");
+                return mv;
+
+
         }
-
-    }
-
-    @PostMapping("/signinWithAuth")
-    public String signInCheckWithAuth(String username, String password){
-        int result = memberService.signInWithAuth(username, password);
-        if(result == 1) {
-            // 로그인 성공 시 home 페이지로 이동
-            return "home";
-        } else {
-            // 로그인 실패 시 다시 로그인 페이지로 리턴
-            return "auth/signin";
-        }
+        mv.addObject("message", message);
+        mv.setViewName("/auth/signin");
+        return mv;
     }
 
     @GetMapping("/signup")
