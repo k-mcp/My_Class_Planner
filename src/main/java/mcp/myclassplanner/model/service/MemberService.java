@@ -6,8 +6,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 
-import java.util.Base64;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -23,32 +21,19 @@ public class MemberService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public int signIn(String username, String password) {
+    public int signIn(Map<String,String> map) {
 
 
-        String encodedPassword = memberMapper.signIn(username);
-        boolean match = passwordEncoder.matches(password, encodedPassword);
-        System.out.println("match = " + match);
-        return 1;
+        String encodedPassword = memberMapper.getEncodedPassword(map.get("username"));
+        if(Objects.isNull(encodedPassword)){ // if such data doesn't exist
+            return 1; // username doesn't exist
+        }
+        boolean match = passwordEncoder.matches(map.get("password"), encodedPassword);
+        if(!match) { // if password does not match
+            return 2; // password incorrect
+        }
 
-
-//        String pass1 = passwordEncoder.encode(password);
-//        System.out.println("pass1 = " + pass1);
-//        int result = memberMapper.signIn(username,pass1);
-//        System.out.println("resul123213t = " + result);
-        
-        // 맵을 사용하여 MemberMapper의 signIn 메서드를 호출하여 이메일을 가져오고,
-//        String email = memberMapper.signIn(map);
-
-        // 이메일을 출력하여 확인
-//        System.out.println("email = " + email);
-
-//        // 조회된 이메일이 없으면 로그인 실패
-//        if (Objects.isNull(email)) {
-//            return 0; // 조회된 이메일이 없을 경우
-//        }
-
-//        return result;
+        return 0; // success
 
     }
 
@@ -105,11 +90,10 @@ public class MemberService {
 
 
 
-    public int check(String username) {
-        Integer check = memberMapper.check(username);
-        System.out.println("check123 = " + check);
-        return check;
+    public int checkAuthStatus(String username) {
+        return memberMapper.checkAuthStatus(username);
     }
+
     public String getAuthCode(String email) {
         return memberMapper.getAuthCode(email);
     }
@@ -127,4 +111,7 @@ public class MemberService {
 
     }
 
+    public String getEmail(String username) {
+        return memberMapper.getEmail(username);
+    }
 }

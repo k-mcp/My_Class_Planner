@@ -12,20 +12,20 @@
         <result property="authStatus" column="auth_status"/>
     </resultMap>
 
-
-<!--    <select id="signIn" parameterType="java.lang.String" resultType="java.lang.Integer">-->
-<!--        select count(*)-->
-<!--        from tbl_member-->
-<!--        where username = #{username} AND password = #{pass1};-->
-<!--    </select>-->
-
+    <select id="getEncodedPassword" parameterType="string" resultType="string">
+        select password
+        from tbl_member
+        where username = #{username};
+    </select>
 
 
-<!--    <select id="check" parameterType="java.lang.String" resultType="java.lang.Integer">-->
-<!--        select count(*)-->
-<!--        from tbl_member-->
-<!--        where auth_status = 1 AND username = #{username}-->
-<!--    </select>-->
+
+
+    <select id="checkAuthStatus" parameterType="string" resultType="int">
+        select auth_status
+        from tbl_member
+        where username = #{username}
+    </select>
 
 
 
@@ -42,7 +42,11 @@
 
 <!--    </select>-->
 
-
+    <select id="getEmail">
+        select email
+        from tbl_member
+        where username = #{username}
+    </select>
 
     <select id="signUpErrorByEmail" parameterType="mcp.myclassplanner.model.dto.MemberDTO" resultMap="memberDTO">
         select *
