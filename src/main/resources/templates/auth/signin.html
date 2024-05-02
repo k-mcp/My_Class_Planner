@@ -18,10 +18,14 @@
 </head>
 <body>
 <script>
-    const message = `[[${message}]]`;
-    if (message) {
-        alert(message);
-        window.location.href= "/auth/signin";
+    function validateLoginForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (username === "" || password === "") {
+            alert("Please enter username and password.");
+            return false;
+        }
+        return true;
     }
 </script>
 <div class="container">
@@ -33,7 +37,7 @@
         </div>
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="/singin" method="post">
+            <form action="/auth/signin" method="post"> <!-- 수정 -->
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
                         <div class="text-black">Username</div>
@@ -41,7 +45,7 @@
                     </div>
                     <div class="col-12">
                         <div class="text-black">Password</div>
-                        <input type="text" class="form-control" name="password" id="password" value="" placeholder="Password" required>
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password" required> <!-- 수정 -->
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -54,7 +58,7 @@
 
                     <div class="col-12">
                         <div class="d-grid">
-                            <button type="button" class="btn btn-success" onclick="location.href='/home'">Sign in</button>
+                            <button type="submit" class="btn btn-success">Sign in</button> <!-- 수정 -->
                         </div>
 
                         <p class="text-center small mt-2">Don't have an account yet?
@@ -63,13 +67,13 @@
                     </div>
                 </div>
             </form>
+
+
         </div>
     </div>
 
 </div>
 
-
-
-</body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
