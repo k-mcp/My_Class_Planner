@@ -23,15 +23,17 @@ public class MemberController {
     }
 
     @GetMapping("/signin")
-    public void login(){
+    public void signIn(){
+
     }
     @PostMapping("/signin")
-
-   
-    public String signInCheck(@RequestParam String username, @RequestParam String password){
+    public String signInCheck(String username, String password){
        System.out.println("username = " + username);
        System.out.println("password = " + password);  
-      
+       Map<String,String> map = new HashMap<>();
+       map.put("username", username);
+       map.put("password", password);
+
         int result = memberService.signIn(username,password);
         System.out.println("result = " + result);
         int check = memberService.check(username);
