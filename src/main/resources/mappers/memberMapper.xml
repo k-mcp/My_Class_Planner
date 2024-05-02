@@ -13,34 +13,34 @@
     </resultMap>
 
 
-    <select id="signIn" parameterType="java.lang.String" resultType="java.lang.Integer">
-        select count(*)
-        from tbl_member
-        where username = #{username} AND password = #{pass1};
-    </select>
+<!--    <select id="signIn" parameterType="java.lang.String" resultType="java.lang.Integer">-->
+<!--        select count(*)-->
+<!--        from tbl_member-->
+<!--        where username = #{username} AND password = #{pass1};-->
+<!--    </select>-->
 
 
 
-    <select id="check" parameterType="java.lang.String" resultType="java.lang.Integer">
-        select count(*)
-        from tbl_member
-        where auth_status = 1 AND username = #{username}
-    </select>
+<!--    <select id="check" parameterType="java.lang.String" resultType="java.lang.Integer">-->
+<!--        select count(*)-->
+<!--        from tbl_member-->
+<!--        where auth_status = 1 AND username = #{username}-->
+<!--    </select>-->
 
 
 
 
-    <select id="signInWithAuth" parameterType="map" resultType="string">
-        select email
-        from tbl_member
-        where username = #{username} AND password = #{password} AND authCode = 1
+<!--    <select id="signInWithAuth" parameterType="map" resultType="string">-->
+<!--        select email-->
+<!--        from tbl_member-->
+<!--        where username = #{username} AND password = #{password} AND authCode = 1-->
 
-    <select id="signIn" parameterType="string" resultType="string">
-        select password
-        from tbl_member
-        where username = #{username};
+<!--    <select id="signIn" parameterType="string" resultType="string">-->
+<!--        select password-->
+<!--        from tbl_member-->
+<!--        where username = #{username};-->
 
-    </select>
+<!--    </select>-->
 
 
 

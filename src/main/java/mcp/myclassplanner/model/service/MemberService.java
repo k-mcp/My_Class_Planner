@@ -32,10 +32,10 @@ public class MemberService {
         return 1;
 
 
-        String pass1 = passwordEncoder.encode(password);
-        System.out.println("pass1 = " + pass1);
-        int result = memberMapper.signIn(username,pass1);
-        System.out.println("resul123213t = " + result);
+//        String pass1 = passwordEncoder.encode(password);
+//        System.out.println("pass1 = " + pass1);
+//        int result = memberMapper.signIn(username,pass1);
+//        System.out.println("resul123213t = " + result);
         
         // 맵을 사용하여 MemberMapper의 signIn 메서드를 호출하여 이메일을 가져오고,
 //        String email = memberMapper.signIn(map);
@@ -48,7 +48,7 @@ public class MemberService {
 //            return 0; // 조회된 이메일이 없을 경우
 //        }
 
-        return result;
+//        return result;
 
     }
 
@@ -84,7 +84,7 @@ public class MemberService {
         memberDTO.setAuthCode(sb.toString());
         memberDTO.setAuthStatus(0);
         memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
-        System.out.println("memberDTO = " + memberDTO.toString());
+        System.out.println("memberDTO = " + memberDTO);
 
         memberMapper.signUp(memberDTO);
 
@@ -109,7 +109,7 @@ public class MemberService {
         Integer check = memberMapper.check(username);
         System.out.println("check123 = " + check);
         return check;
-
+    }
     public String getAuthCode(String email) {
         return memberMapper.getAuthCode(email);
     }
@@ -126,4 +126,5 @@ public class MemberService {
         }
 
     }
+
 }

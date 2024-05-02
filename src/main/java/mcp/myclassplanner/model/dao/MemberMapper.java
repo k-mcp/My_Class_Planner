@@ -3,6 +3,8 @@ package mcp.myclassplanner.model.dao;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Map;
+
 @Mapper
 public interface MemberMapper {
 

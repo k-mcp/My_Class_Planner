@@ -14,7 +14,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: myclassplanner01@gmail.com
-    password: iqbiifywgwurpwdg
+    password: iqdzklizxsfnabqj
     properties:
       mail:
         smtp:
@@ -24,4 +24,4 @@ spring:
 
 # mybatis ????
 mybatis:
-  mapper-locations: mappers/**/*.xml
+  mapper-locations: mappers/*.xml
