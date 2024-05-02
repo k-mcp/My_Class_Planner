@@ -8,6 +8,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ public class MailService {
         this.mailSender = mailSender;
     }
 
+    @Async
     public void sendMail(MailTO mail){
         MimeMessage message = mailSender.createMimeMessage();
         try {

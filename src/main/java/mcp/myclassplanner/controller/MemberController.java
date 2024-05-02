@@ -1,15 +1,15 @@
 package mcp.myclassplanner.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,6 +26,15 @@ public class MemberController {
     public void signIn(){
 
     }
+
+    @GetMapping("/signin2")
+    public ModelAndView signIn(String message, ModelAndView mv){
+        message = message.replace('-', ' ');
+        mv.addObject("message", message);
+        mv.setViewName("/auth/signin");
+        return mv;
+    }
+
     @PostMapping("/signin")
     public ModelAndView signInCheck(String username, String password, ModelAndView mv) {
         String message = "";
@@ -48,10 +57,11 @@ public class MemberController {
                 if (check == 0) { // when the email is not authorized
                     message = "You have to verified your email first. We've sent another verification link to your email now";
                     // email verification
+                    mv.addObject("message", message);
                     mv.setViewName("redirect:/mail/send?email="+ memberService.getEmail(username));
                     return mv;
                 }
-                mv.setViewName("home");
+                mv.setViewName("redirect:/home");
                 return mv;
 
 
@@ -67,23 +77,9 @@ public class MemberController {
     }
     @PostMapping("/signup")
     public ModelAndView signupPro(MemberDTO memberDTO, ModelAndView mv){
-        String message = "";
-        int error = memberService.signUpError(memberDTO);
-        if(error == 1){ // username exists
-            message = "username already exists";
-            mv.addObject("message", message);
-            return mv;
-        } else if(error == 2){ // email exists
-            message = "email has already taken. please sign in with your id";
-            mv.addObject("message", message);
-            return mv;
-        }
 
         memberService.signUp(memberDTO);
-
-        message ="We sent a verification link to your email. Please verify your email and sign in!";
-        mv.addObject("message", message);
-        mv.addObject("email", memberDTO.getEmail());
+        mv.setViewName("redirect:/mail/send?email=" + memberDTO.getEmail());
         return mv;
 
     }
@@ -101,8 +97,16 @@ public class MemberController {
             return "auth/verified";
 
         }
+    }
 
+    @GetMapping(value="getAllMembers", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String memberExist() throws JsonProcessingException {
+        List<MemberDTO> memberDTOList = memberService.getAllMembers();
 
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.writeValueAsString(memberDTOList);
     }
 
 }

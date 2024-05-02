@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -113,5 +114,9 @@ public class MemberService {
 
     public String getEmail(String username) {
         return memberMapper.getEmail(username);
+    }
+
+    public List<MemberDTO> getAllMembers() {
+        return memberMapper.getAllMembers();
     }
 }

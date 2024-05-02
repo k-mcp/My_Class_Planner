@@ -42,7 +42,7 @@ public class MailController {
                 .toString());
 
         mailService.sendMail(mailTO);
-        mv.setViewName("redirect:/auth/signin");
+        mv.setViewName("redirect:/loading");
         return mv;
     }
 

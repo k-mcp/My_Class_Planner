@@ -18,7 +18,10 @@
         where username = #{username};
     </select>
 
-
+    <select id="getAllMembers" resultMap="memberDTO">
+        select *
+        from tbl_member
+    </select>
 
 
     <select id="checkAuthStatus" parameterType="string" resultType="int">

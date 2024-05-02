@@ -28,6 +28,9 @@ public class HomeController {
     public String course() {
         return "course/course";
     }
-
+    @GetMapping("/loading")
+    public String loading() {
+        return "common/loading";
+    }
 
 }

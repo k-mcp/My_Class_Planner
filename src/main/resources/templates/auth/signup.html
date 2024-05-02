@@ -33,15 +33,18 @@
         </div>
         <div class="col-3"></div>
         <div class="col-6">
-            <form action="/auth/signup" method="POST" id="singupForm">
+            <form action="/auth/signup" method="POST" id="signupForm" onsubmit="return validateLoginForm()">
                 <div class="row gy-3 gy-md-4 overflow-hidden">
                     <div class="col-12">
                         <div class="text-black">Username</div>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+                        <input type="text" onchange="resetUsername()" class="form-control" name="username" id="username" placeholder="Username" required>
+
+                        <button type="button" onclick="checkUsernameDup()">dup</button>
                     </div>
                     <div class="col-12">
                         <div class="text-black">Email Address</div>
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required>
+                        <input type="email" onchange="resetEmail()" class="form-control" name="email" id="email" placeholder="Email Address" required>
+                        <button type="button" onclick="checkEmailDup()">dup</button>
                     </div>
                     <div class="col-12">
                         <div class="text-black">Choose password</div>
@@ -53,7 +56,7 @@
                     </div>
                     <div class="col-12">
                         <div class="d-grid">
-                            <input type="submit" class="btn btn-success" value="Sign up">
+                            <input type="submit" class="btn btn-success" value="Sign up" id="submit">
 <!--                            <button type="button" class="btn btn-success" onclick="goToLogin()">Sign up</button>-->
                         </div>
 
@@ -68,40 +71,95 @@
 </section>
 
 <!-- 비밀번호 중복확인 로직구현 -->
-<script>
 
-    function goToLogin() {
-        var name = document.getElementById("name").value;
+<script>
+    var emailConfirm = false;
+    var usernameConfirm = false;
+    function resetUsername(){
+        usernameConfirm = false;
+    }
+    function resetEmail(){
+        emailConfirm = false;
+    }
+    function validateLoginForm() {
+        if(!usernameConfirm){
+            alert("You have to confirm the username first!");
+            return false;
+        }
+        if (!emailConfirm){
+            alert("You have to confirm the email first!");
+            return false;
+        }
         var email = document.getElementById("email").value;
         var password = document.getElementById("password").value;
         var confirm_password = document.getElementById("confirm_password").value;
 
-        if (name === "" || email === "" || password === "" || confirm_password === "") {
+        if (email === "" || password === "" || confirm_password === "") {
             alert("Please fill in all fields.");
-            return;
+            return false;
         }
 
         if (password !== confirm_password) {
             alert("Passwords do not match!");
-            return;
-        }
-        if(password.length < 6){
-            alert("Password must be longer 6 letters");
-            return;
+            return false;
         }
 
-        // 이메일 형식 검증
+        if (password.length < 6) {
+            alert("Password must be at least 6 characters long.");
+            return false;
+        }
+
         var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(email)) {
             alert("Please enter a valid email address.");
-            return;
+            return false;
         }
+        console.log(123);
 
-        document.getElementById("singupForm").submit(); // 비밀번호가 일치하면 폼 제출
-        alert("Email verification code has been sent! please check your Email!");
-        location.href = "/auth/login";
+        // 모든 검증을 통과했다면 true를 반환하여 폼 제출을 허용
+
+        return true;
     }
+    function checkUsernameDup(){
+        let usernameTaken = false;
+        const username = document.getElementById("username").value;
+        fetch("/auth/getAllMembers")
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(member => {
+                console.log(member.username + " " + member.email);
+                if (username === member.username){
+                    alert("username is already taken.");
+                    usernameTaken = true;
+                }
+            });
+            if(!usernameTaken){
+                alert("available username!");
+                usernameConfirm = true;
+            }
+        })
+    }
+    function checkEmailDup(){
+        let emailTaken = false;
+        const email = document.getElementById("email").value;
+        fetch("/auth/getAllMembers")
+            .then(res => res.json())
+            .then(data => {
+                data.forEach(member => {
+                    console.log(member.username + " " + member.email);
+                    if (email === member.email){
+                        alert("Email is already signed up.");
+                        emailTaken = true;
+                    }
+                });
+                if(!emailTaken){
+                    alert("available email!");
+                    emailConfirm = true;
+                }
+            })
 
+
+    }
 </script>
 
 </body>
