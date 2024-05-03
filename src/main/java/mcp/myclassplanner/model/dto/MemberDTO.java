@@ -32,7 +32,7 @@ public class MemberDTO {
     public MemberDTO() {
     }
 
-    public int getMemberNo() {
+    public int getMemberCode() {
         return memberCode;
     }
 

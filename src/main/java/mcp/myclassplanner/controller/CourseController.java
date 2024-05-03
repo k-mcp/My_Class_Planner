@@ -3,22 +3,27 @@ package mcp.myclassplanner.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.CourseDTO;
-import mcp.myclassplanner.model.dto.CourseHTMLDTO;
+import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.dto.SectionDTO;
+import mcp.myclassplanner.model.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/course")
 public class CourseController {
+
+    private final CourseService courseService;
+
+    @Autowired
+    public CourseController(CourseService courseService){
+        this.courseService = courseService;
+    }
 
     @GetMapping("/add")
     public String addCourse() {
@@ -71,6 +76,12 @@ public class CourseController {
         }
         sectionDTOList.add(sectionDTO); // 마지막 데이터 삽임
         courseDTO.setSectionDTOList(sectionDTOList);// courseDTO 에 값 담기
+        Map<String,Object> map = new HashMap<>();
+        map.put("courseDTO", courseDTO);
+
+        MemberDTO member = (MemberDTO) httpSession.getAttribute("memberDTO");
+//        String memberCode = member.getMemberCode();
+
 
         int result = courseService.addCourse(courseDTO);
 

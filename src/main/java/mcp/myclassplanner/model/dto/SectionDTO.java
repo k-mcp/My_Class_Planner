@@ -45,5 +45,13 @@ public class SectionDTO {
                 '}';
     }
 
+    public SectionDTO() {
+    }
+
+    public SectionDTO(int startTime, int endTime, String days) {
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.days = days;
+    }
     // getters and setters
 }
