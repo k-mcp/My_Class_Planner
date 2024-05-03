@@ -1,31 +1,49 @@
 package mcp.myclassplanner.model.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.sql.Time;
+import java.util.List;
+import java.util.Timer;
+
 public class SectionDTO {
-    private String start;
-    private String end;
-    private boolean[] days = new boolean[5]; // [0]
+    private int startTime;
+    private int endTime;
+    private String days = "";
 
-    public String getStart() {
-        return start;
+    public int getStartTime() {
+        return startTime;
     }
 
-    public void setStart(String start) {
-        this.start = start;
+    public void setStartTime(int startTime) {
+        this.startTime = startTime;
     }
 
-    public String getEnd() {
-        return end;
-    }
-
-    public void setEnd(String end) {
-        this.end = end;
-    }
-
-    public boolean[] getDays() {
+    public String getDays() {
         return days;
     }
 
-    public void setDays(boolean[] days) {
+    public void setDays(String days) {
         this.days = days;
     }
+
+    public int getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(int endTime) {
+        this.endTime = endTime;
+    }
+
+    @Override
+    public String toString() {
+        return "SectionDTO{" +
+                "startTime='" + startTime + '\'' +
+                ", endTime='" + endTime + '\'' +
+                ", days=" + days +
+                '}';
+    }
+
+    // getters and setters
 }
