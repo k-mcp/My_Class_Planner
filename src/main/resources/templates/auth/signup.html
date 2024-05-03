@@ -31,35 +31,31 @@
                 <img onclick="location.href='/'" src="/img/logo_letter.png" alt="Logo" class="mb-5" style="width: 50%; height: auto;">
             </div>
         </div>
-        <div class="col-3"></div>
-        <div class="col-6">
+        <div class="col-md-6 offset-md-3">
             <form action="/auth/signup" method="POST" id="signupForm" onsubmit="return validateLoginForm()">
-                <div class="row gy-3 gy-md-4 overflow-hidden">
+                <div class="row gy-3 gy-md-4">
                     <div class="col-12">
-                        <div class="text-black">Username</div>
-                        <input type="text" onchange="resetUsername()" class="form-control" name="username" id="username" placeholder="Username" required>
-
-                        <button type="button" onclick="checkUsernameDup()">dup</button>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required onchange="resetUsername()">
+                            <button type="button" class="btn btn-outline-secondary" onclick="checkUsernameDup()">Check</button>
+                        </div>
                     </div>
                     <div class="col-12">
-                        <div class="text-black">Email Address</div>
-                        <input type="email" onchange="resetEmail()" class="form-control" name="email" id="email" placeholder="Email Address" required>
-                        <button type="button" onclick="checkEmailDup()">dup</button>
+                        <div class="input-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Email Address" required onchange="resetEmail()">
+                            <button type="button" class="btn btn-outline-secondary" onclick="checkEmailDup()">Check</button>
+                        </div>
                     </div>
                     <div class="col-12">
-                        <div class="text-black">Choose password</div>
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
                     </div>
                     <div class="col-12">
-                        <div class="text-black">Confirm password</div>
                         <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required>
                     </div>
                     <div class="col-12">
                         <div class="d-grid">
-                            <input type="submit" class="btn btn-success" value="Sign up" id="submit">
-<!--                            <button type="button" class="btn btn-success" onclick="goToLogin()">Sign up</button>-->
+                            <input type="submit" class="btn btn-success" value="Sign up">
                         </div>
-
                         <p class="text-center small mt-2">Already have your account?
                             <button type="button" class="btn btn-link" onclick="location.href='/auth/signin'">Sign in</button>
                         </p>

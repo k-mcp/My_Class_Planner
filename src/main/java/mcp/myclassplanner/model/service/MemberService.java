@@ -119,7 +119,7 @@ public class MemberService {
     public List<MemberDTO> getAllMembers() {
         return memberMapper.getAllMembers();
     }
-}
+
 
     public MemberDTO getMemberByUsername(String username) {
         // 회원의 정보를 회원명(username)을 기반으로 조회
@@ -128,4 +128,4 @@ public class MemberService {
 
 
 //    public String getMemberByUsername(String username) {}
-    }
+}
