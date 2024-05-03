@@ -43,4 +43,6 @@ public interface MemberMapper {
     String getEmail(String username);
 
     List<MemberDTO> getAllMembers();
+
+    MemberDTO getMemberByUsername(String username);
 }

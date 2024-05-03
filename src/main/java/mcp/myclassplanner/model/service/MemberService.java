@@ -120,3 +120,12 @@ public class MemberService {
         return memberMapper.getAllMembers();
     }
 }
+
+    public MemberDTO getMemberByUsername(String username) {
+        // 회원의 정보를 회원명(username)을 기반으로 조회
+        return memberMapper.getMemberByUsername(username);
+    }
+
+
+//    public String getMemberByUsername(String username) {}
+    }
