@@ -15,6 +15,11 @@ public class MemberService {
 
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
+    private static int guestNo = 1111;
+
+    public int getGuestNo(){
+        return guestNo++;
+    }
 
     @Autowired
     public MemberService(MemberMapper memberMapper, PasswordEncoder passwordEncoder){
@@ -62,7 +67,7 @@ public class MemberService {
 
 
 
-    public void signUp(MemberDTO memberDTO){
+    public int signUp(MemberDTO memberDTO){
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < 8; i++){
             sb.append((int)(Math.random()*10));
@@ -72,7 +77,7 @@ public class MemberService {
         memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
         System.out.println("memberDTO = " + memberDTO);
 
-        memberMapper.signUp(memberDTO);
+        return memberMapper.signUp(memberDTO);
 
     }
 
@@ -124,6 +129,10 @@ public class MemberService {
     public MemberDTO getMemberByUsername(String username) {
         // 회원의 정보를 회원명(username)을 기반으로 조회
         return memberMapper.getMemberByUsername(username);
+    }
+
+    public int signInAsGuest(MemberDTO member) {
+        return memberMapper.signUp(member);
     }
 
 

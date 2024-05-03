@@ -15,7 +15,7 @@ public interface MemberMapper {
     String signIn(String username);
 
 
-    void signUp(MemberDTO memberDTO);
+    int signUp(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
 
@@ -45,4 +45,5 @@ public interface MemberMapper {
     List<MemberDTO> getAllMembers();
 
     MemberDTO getMemberByUsername(String username);
+
 }

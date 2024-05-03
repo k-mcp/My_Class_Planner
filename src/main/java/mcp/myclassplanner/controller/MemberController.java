@@ -1,11 +1,8 @@
 package mcp.myclassplanner.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -15,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Controller
 @RequestMapping("/auth")
@@ -66,8 +64,8 @@ public class MemberController {
                     return mv;
                 }
                 // 세션에 사용자 정보 저장
-                httpSession.setAttribute("loginid",username);
-
+                httpSession.setAttribute("username",username);
+                httpSession.setAttribute("memberDTO", memberService.getMemberByUsername(username));
                 mv.setViewName("redirect:/home");
                 return mv;
 
@@ -81,10 +79,11 @@ public class MemberController {
     @GetMapping("/logout")
     public String logout(HttpSession httpSession) {
         if (httpSession != null) {
-            httpSession.removeAttribute("loginid");
+            httpSession.removeAttribute("username");
+            httpSession.removeAttribute("memberDTO");
             httpSession.invalidate();
         }
-        return "redirect:/auth/signin";
+        return "redirect:/";
     }
 
     @GetMapping("/signup")
@@ -94,8 +93,8 @@ public class MemberController {
     @PostMapping("/signup")
     public ModelAndView signupPro(MemberDTO memberDTO, ModelAndView mv){
 
-        memberService.signUp(memberDTO);
-        mv.setViewName("redirect:/mail/send?email=" + memberDTO.getEmail());
+        int result = memberService.signUp(memberDTO);
+        if(result == 1) mv.setViewName("redirect:/mail/send?email=" + memberDTO.getEmail());
         return mv;
 
     }
@@ -124,5 +123,27 @@ public class MemberController {
 
         return mapper.writeValueAsString(memberDTOList);
     }
+    @GetMapping("/guestSignin")
+    public String guestSignin(HttpSession httpSession){
 
+        MemberDTO member = new MemberDTO();
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < 8; i++){
+            sb.append((int)(Math.random()*100));
+        }
+        member.setUsername("Guest" + sb);
+        member.setPassword(member.getUsername());
+        member.setEmail(member.getUsername()+ "@gmail.com");
+        member.setAuthCode("1111");
+        member.setAuthStatus(1);
+        int result = memberService.signInAsGuest(member);
+        if(result == 1){
+            String username = member.getUsername();
+            httpSession.setAttribute("memberDTO", member);
+            httpSession.setAttribute("username", member.getUsername().substring(0,5));
+            return "redirect:/home";
+        }
+//        httpSession.setAttribute();
+        return "redirect:/";
+    }
 }

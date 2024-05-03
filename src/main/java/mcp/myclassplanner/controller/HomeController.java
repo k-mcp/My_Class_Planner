@@ -24,7 +24,8 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
-        model.addAttribute("username",session.getAttribute("loginid"));
+        model.addAttribute("username",session.getAttribute("username"));
+        model.addAttribute("memberDTO", session.getAttribute("memberDTO"));
         return "home/home";
     }
     @GetMapping("/course")

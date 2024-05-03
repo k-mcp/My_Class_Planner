@@ -89,11 +89,16 @@
             #{password},
             #{email},
             #{authCode},
-            0
+            #{authStatus}
         )
     </insert>
     <update id="authStatus" parameterType="hashmap">
         update tbl_member set auth_status = 1
         where email = #{email};
     </update>
+    <select id="getMemberByUsername" parameterType="string">
+        select *
+        from tbl_member
+        where username = #{username};
+    </select>
 </mapper>
