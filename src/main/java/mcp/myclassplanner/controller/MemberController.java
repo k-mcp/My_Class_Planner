@@ -138,7 +138,6 @@ public class MemberController {
         member.setAuthStatus(1);
         int result = memberService.signInAsGuest(member);
         if(result == 1){
-            String username = member.getUsername();
             httpSession.setAttribute("memberDTO", member);
             httpSession.setAttribute("username", member.getUsername().substring(0,5));
             return "redirect:/home";
