@@ -44,6 +44,7 @@ public class CourseService {
             sectionDTO = new SectionDTO();
             sectionDTO.setStartTime(course.getStartTime());
             sectionDTO.setEndTime(course.getEndTime());
+            if(course.getDays().contains("X")) course.setDays(course.getDays().replace("X", "Th"));
             sectionDTO.setDays(course.getDays());
             if(courseDTO.getCourseName().equals(course.getCourseName())){
                 // 만약 coursename 이 같으면

@@ -1,12 +1,5 @@
 package mcp.myclassplanner.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import java.sql.Time;
-import java.util.List;
-import java.util.Timer;
-
 public class SectionDTO {
     private int startTime;
     private int endTime;

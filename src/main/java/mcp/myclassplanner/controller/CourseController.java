@@ -92,7 +92,9 @@ public class CourseController {
 
     @GetMapping("/course")
     public ModelAndView viewCourse(HttpSession session, ModelAndView mv) {
-        mv.addObject("username",session.getAttribute("username"));
+        int memberCode = (int) session.getAttribute("memberCode");
+        List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
+        mv.addObject("courseDTOList", courseDTOList);
         mv.setViewName("/course/course");
         return mv;
     }
