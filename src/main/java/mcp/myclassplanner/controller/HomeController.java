@@ -24,13 +24,11 @@ public class HomeController {
 
     @GetMapping("/home")
     public String home(HttpSession session, Model model) {
+        session.getAttributeNames();
+//        session.setAttribute("memberCode");
         model.addAttribute("username",session.getAttribute("username"));
-        model.addAttribute("memberDTO", session.getAttribute("memberDTO"));
+        model.addAttribute("memberCode", session.getAttribute("memberCode"));
         return "home/home";
-    }
-    @GetMapping("/course")
-    public String course() {
-        return "course/course";
     }
     @GetMapping("/loading")
     public String loading() {

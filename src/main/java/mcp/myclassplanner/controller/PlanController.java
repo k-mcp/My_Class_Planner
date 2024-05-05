@@ -2,39 +2,31 @@ package mcp.myclassplanner.controller;
 
 //import mcp.myclassplanner.model.service.PlanService;
 import jakarta.servlet.http.HttpSession;
+import mcp.myclassplanner.model.dto.CourseDTO;
+import mcp.myclassplanner.model.service.CourseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class PlanController {
 
-//    private final PlanService planService;
+    private final CourseService courseService;
 
-//    public PlanController(PlanService planService){
-//        this.planService = planService;
-//    }
-
-    @GetMapping("/plan")
-    public String plan(HttpSession httpSession){
-        // 세션에 사용자 정보 저장
-        String username = (String) httpSession.getAttribute("loginid");
-        if (username != null) {
-            return "redirect:/home";
-        } else {
-            return "redirect:/auth/signin";
-        }
-
+    @Autowired
+    public PlanController(CourseService courseService) {
+        this.courseService = courseService;
     }
+
     @GetMapping("/generate")
-    public String generate(HttpSession httpSession){
+    public String plan(HttpSession session){
         // 세션에 사용자 정보 저장
-        String username = (String) httpSession.getAttribute("loginid");
-        if (username != null) {
-            return "redirect:/home";
-        } else {
-            return "redirect:/auth/signin";
-        }
+        int memberCode = (int) session.getAttribute("memberCode");
+        List<CourseDTO> courseDTO = courseService.viewAllCourse(memberCode);
+        return "plan/plan";
 
     }
     @PostMapping("/generate")

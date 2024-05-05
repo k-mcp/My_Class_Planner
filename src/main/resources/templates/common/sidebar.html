@@ -91,7 +91,6 @@
     </ul>
 
 <!--    if not signed in -->
-    <div th:if="${username}">
         <ul class="nav nav-pills flex-column mb-3">
             <li class="nav-item">
                 <a href="/auth/logout" class="nav-link text-white">
@@ -104,24 +103,8 @@
                 </a>
             </li>
         </ul>
-    </div>
 
 <!--    if signed in -->
-    <div th:unless="${username}">
-        <ul class="nav nav-pills flex-column mb-3">
-            <li class="nav-item">
-                <a href="/auth/signin" class="nav-link text-white">
-
-                    <i class="bi bi-box-arrow-left">
-                        <span class="ms-2 fs-6">
-                            Sign in
-                        </span>
-
-                    </i>
-                </a>
-            </li>
-        </ul>
-    </div>
 
 
 </div>

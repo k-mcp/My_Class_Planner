@@ -36,8 +36,8 @@ public class MemberDTO {
         return memberCode;
     }
 
-    public void setMemberNo(int memberNo) {
-        this.memberCode = memberNo;
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
     }
 
     public String getEmail() {

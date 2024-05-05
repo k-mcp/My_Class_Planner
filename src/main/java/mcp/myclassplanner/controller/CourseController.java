@@ -6,11 +6,13 @@ import mcp.myclassplanner.model.dto.CourseDTO;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.dto.SectionDTO;
 import mcp.myclassplanner.model.service.CourseService;
+import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
 
@@ -19,16 +21,20 @@ import java.util.*;
 public class CourseController {
 
     private final CourseService courseService;
+    private final MemberService memberService;
 
     @Autowired
-    public CourseController(CourseService courseService){
+    public CourseController(CourseService courseService, MemberService memberService){
         this.courseService = courseService;
+        this.memberService = memberService;
     }
 
     @GetMapping("/add")
-    public String addCourse() {
+    public ModelAndView addCourse(HttpSession session, ModelAndView mv) {
+        mv.addObject("username", session.getAttribute("username"));
         // 세션에 사용자 정보 저장
-        return "/course/add";
+        mv.setViewName("/course/add");
+        return mv;
     }
     @PostMapping("/add")
     public String addCourse(String courseName,HttpSession httpSession, HttpServletRequest request){
@@ -76,26 +82,18 @@ public class CourseController {
         }
         sectionDTOList.add(sectionDTO); // 마지막 데이터 삽임
         courseDTO.setSectionDTOList(sectionDTOList);// courseDTO 에 값 담기
-        Map<String,Object> map = new HashMap<>();
-        map.put("courseDTO", courseDTO);
+        int memberCode = (int) httpSession.getAttribute("memberCode");
+        courseDTO.setMemberCode(memberCode);
 
-        MemberDTO member = (MemberDTO) httpSession.getAttribute("memberDTO");
-//        String memberCode = member.getMemberCode();
+        courseService.addCourse(courseDTO);
 
-
-        int result = courseService.addCourse(courseDTO);
-
-        return "/course/add";
+        return "/course/course";
     }
 
     @GetMapping("/course")
-    public String viewCourse(HttpSession httpSession) {
-        // 세션에 사용자 정보 저장
-        String username = (String) httpSession.getAttribute("loginid");
-        if (username != null) {
-            return "redirect:/home";
-        } else {
-            return "redirect:/auth/signin";
-        }
+    public ModelAndView viewCourse(HttpSession session, ModelAndView mv) {
+        mv.addObject("username",session.getAttribute("username"));
+        mv.setViewName("/course/course");
+        return mv;
     }
 }

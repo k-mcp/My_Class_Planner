@@ -8,27 +8,15 @@ import java.util.Map;
 
 @Mapper
 public interface MemberMapper {
-
-
-    
-
-    String signIn(String username);
-
-
     int signUp(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByEmail(MemberDTO memberDTO);
 
     MemberDTO signUpErrorByUsername(MemberDTO memberDTO);
 
-
     int getAuthCodeByEmail(String email);
 
     String signInWithAuth(String username, String password);
-    
-
-
-
 
     String getAuthCode(String email);
 
@@ -44,6 +32,5 @@ public interface MemberMapper {
 
     List<MemberDTO> getAllMembers();
 
-    MemberDTO getMemberByUsername(String username);
-
+    int getMemberCodeByEmail(String email);
 }

@@ -65,7 +65,7 @@ public class MemberController {
                 }
                 // 세션에 사용자 정보 저장
                 httpSession.setAttribute("username",username);
-                httpSession.setAttribute("memberDTO", memberService.getMemberByUsername(username));
+                httpSession.setAttribute("memberCode", memberService.getMemberCodeByEmail(memberService.getEmail(username)));
                 mv.setViewName("redirect:/home");
                 return mv;
 
@@ -80,7 +80,7 @@ public class MemberController {
     public String logout(HttpSession httpSession) {
         if (httpSession != null) {
             httpSession.removeAttribute("username");
-            httpSession.removeAttribute("memberDTO");
+            httpSession.removeAttribute("memberCode");
             httpSession.invalidate();
         }
         return "redirect:/";
@@ -138,7 +138,9 @@ public class MemberController {
         member.setAuthStatus(1);
         int result = memberService.signInAsGuest(member);
         if(result == 1){
-            httpSession.setAttribute("memberDTO", member);
+            int memberCode = memberService.getMemberCodeByEmail(member.getEmail());
+            member.setMemberCode(memberCode);
+            httpSession.setAttribute("memberCode", memberCode);
             httpSession.setAttribute("username", member.getUsername().substring(0,5));
             return "redirect:/home";
         }

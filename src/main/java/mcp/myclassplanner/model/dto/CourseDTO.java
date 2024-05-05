@@ -4,15 +4,34 @@ import java.util.List;
 
 
 public class CourseDTO {
+    private int memberCode;
     private String courseName;
     private List<SectionDTO> sectionDTOList;
 
     public CourseDTO() {
     }
 
-    public CourseDTO(String courseName, List<SectionDTO> sectionDTOList) {
+    public CourseDTO(int memberCode, String courseName, List<SectionDTO> sectionDTOList) {
+        this.memberCode = memberCode;
         this.courseName = courseName;
         this.sectionDTOList = sectionDTOList;
+    }
+
+    @Override
+    public String toString() {
+        return "CourseDTO{" +
+                "memberCode=" + memberCode +
+                ", courseName='" + courseName + '\'' +
+                ", sectionDTOList=" + sectionDTOList +
+                '}';
+    }
+
+    public int getMemberCode() {
+        return memberCode;
+    }
+
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
     }
 
     public String getCourseName() {
@@ -25,14 +44,6 @@ public class CourseDTO {
 
     public List<SectionDTO> getSectionDTOList() {
         return sectionDTOList;
-    }
-
-    @Override
-    public String toString() {
-        return "CourseDTO{" +
-                "courseName='" + courseName + '\'' +
-                ", sectionDTOList=" + sectionDTOList +
-                '}';
     }
 
     public void setSectionDTOList(List<SectionDTO> sectionDTOList) {

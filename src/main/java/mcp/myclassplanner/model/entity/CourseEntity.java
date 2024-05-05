@@ -2,9 +2,18 @@ package mcp.myclassplanner.model.entity;
 
 public class CourseEntity {
     private int courseNo;
+    private int memberCode;
+    private String courseName;
+    private int startTime;
+    private int endTime;
+    private String days;
 
-    public CourseEntity(int courseNo, String courseName, int startTime, int endTime, String days) {
+    public CourseEntity() {
+    }
+
+    public CourseEntity(int courseNo, int memberCode, String courseName, int startTime, int endTime, String days) {
         this.courseNo = courseNo;
+        this.memberCode = memberCode;
         this.courseName = courseName;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -15,6 +24,7 @@ public class CourseEntity {
     public String toString() {
         return "CourseEntity{" +
                 "courseNo=" + courseNo +
+                ", memberCode=" + memberCode +
                 ", courseName='" + courseName + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
@@ -30,12 +40,12 @@ public class CourseEntity {
         this.courseNo = courseNo;
     }
 
-    private String courseName;
-    private int startTime;
-    private int endTime;
-    private String days;
+    public int getMemberCode() {
+        return memberCode;
+    }
 
-    public CourseEntity() {
+    public void setMemberCode(int memberCode) {
+        this.memberCode = memberCode;
     }
 
     public String getCourseName() {

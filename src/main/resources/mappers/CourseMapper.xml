@@ -3,8 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mcp.myclassplanner.model.dao.CourseMapper">
-    <insert id="addCourse" parameterType="mcp.myclassplanner.model.entity.CourseEntity"
-       useGeneratedKeys="true" keyProperty="courseNo">
+        <insert id="addCourse" parameterType="mcp.myclassplanner.model.entity.CourseEntity" useGeneratedKeys="true" keyProperty="courseNo">
             insert into tbl_course
             (
             member_code,
@@ -15,12 +14,32 @@
             )
             VALUES
             (
-            1,
+            #{memberCode},
             #{courseName},
             #{startTime},
             #{endTime},
             #{days}
             )
+        </insert>
 
-    </insert>
+        <select id="getMemberCodeByEmail" parameterType="string" resultType="string">
+                select member_code from
+                tbl_member where
+                email = #{email};
+        </select>
+
+        <resultMap id="courseEntity" type="mcp.myclassplanner.model.entity.CourseEntity">
+                <id property="courseNo" column="course_no"/>
+                <result property="memberCode" column="member_code"/>
+                <result property="courseName" column="course_name"/>
+                <result property="startTime" column="section_start"/>
+                <result property="endTime" column="section_end"/>
+                <result property="days" column="section_days"/>
+        </resultMap>
+
+        <select id="viewAllCourse" parameterType="int" resultMap="courseEntity">
+                select * from tbl_course
+                where member_code = #{memberCode};
+        </select>
+
 </mapper>

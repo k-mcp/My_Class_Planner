@@ -96,9 +96,9 @@
         update tbl_member set auth_status = 1
         where email = #{email};
     </update>
-    <select id="getMemberByUsername" parameterType="string">
-        select *
+    <select id="getMemberCodeByEmail" parameterType="string" resultType="int">
+        select member_code
         from tbl_member
-        where username = #{username};
+        where email = #{email}
     </select>
 </mapper>
