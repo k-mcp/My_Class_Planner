@@ -36,6 +36,7 @@ public class CourseService {
     public List<CourseDTO> viewAllCourse(int memberCode) {
         List<CourseDTO> courseDTOList = new ArrayList<>();
         CourseDTO courseDTO = new CourseDTO(); // courseDTO init
+        courseDTO.setCourseName(" ");
         List<SectionDTO> sectionDTOList = new ArrayList<>(); // sectionDTO init
         SectionDTO sectionDTO;
         List<CourseEntity> courses = courseMapper.viewAllCourse(memberCode);
@@ -48,11 +49,22 @@ public class CourseService {
                 // 만약 coursename 이 같으면
                 sectionDTOList.add(sectionDTO);
             } else{
+                if(courseDTO.getCourseName().equals(" ")){ // 첫번쨰
+                    courseDTO.setCourseName(course.getCourseName());
+                    sectionDTOList.add(sectionDTO);
+                    continue;
+                }
+                courseDTO.setSectionDTOList(sectionDTOList);
+                sectionDTOList = new ArrayList<>();
+                sectionDTOList.add(sectionDTO);
                 courseDTOList.add(courseDTO);
                 courseDTO = new CourseDTO();
                 courseDTO.setCourseName(course.getCourseName());
+
             }
         }
-        return null;
+        courseDTO.setSectionDTOList(sectionDTOList);
+        courseDTOList.add(courseDTO);
+        return courseDTOList;
     }
 }

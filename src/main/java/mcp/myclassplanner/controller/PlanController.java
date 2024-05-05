@@ -26,6 +26,7 @@ public class PlanController {
         // 세션에 사용자 정보 저장
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTO = courseService.viewAllCourse(memberCode);
+        // mv 추가
         return "plan/plan";
 
     }
