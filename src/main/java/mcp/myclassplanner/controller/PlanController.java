@@ -68,7 +68,7 @@ public class PlanController {
         }
         int memberCode = (int) session.getAttribute("memberCode");
         planService.generatePro(courses,memberCode);
-        return "redirect:/generatePro";
+        return "redirect:/generate";
     }
     @GetMapping("generatePro")
     public String generatePro(HttpServletRequest request){

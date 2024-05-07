@@ -8,5 +8,9 @@ import java.util.List;
 @Mapper
 public interface PlanMapper {
 
-    void generatePro(List<ScheduleDTO> possible);
+    void generatePro(ScheduleDTO possible);
+
+    List<ScheduleDTO> viewAll();
+
+    void truncate();
 }

@@ -147,8 +147,11 @@ public class PlanService {
             timetable[i] = new TimetableDTO();
         }
         generate(courses, 0, memberCode);
+        planMapper.truncate();
+        for(ScheduleDTO scheduleDTO : possible){
+            planMapper.generatePro(scheduleDTO);
+        }
 
-        planMapper.generatePro(possible);
 
     }
 }

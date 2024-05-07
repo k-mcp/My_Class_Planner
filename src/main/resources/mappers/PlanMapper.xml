@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mcp.myclassplanner.model.dao.PlanMapper">
+    <resultMap id="ScheduleDTO" type="mcp.myclassplanner.model.dto.ScheduleDTO">
+        <id property="scheduleNo" column="Schedule_no"/>
+        <result property="memberCode" column="member_code"/>
+        <result property="caseNo" column="case_no"/>
+        <result property="courseName" column="course_name"/>
+        <result property="start" column="section_start"/>
+        <result property="end" column="section_end"/>
+        <result property="days" column="section_days"/>
+    </resultMap>
+
+    <delete id="truncate">
+        truncate tbl_schedule;
+    </delete>
+    <insert id="generatePro" parameterType="mcp.myclassplanner.model.dto.ScheduleDTO"
+            useGeneratedKeys="true" keyProperty="scheduleNo">
+        insert into tbl_schedule
+        (
+            member_code,
+            case_no,
+            course_name,
+            section_start,
+            section_end,
+            section_days
+        )
+        values
+        (
+            #{memberCode},
+            #{caseNo},
+            #{courseName},
+            #{start},
+            #{end},
+            #{days}
+        )
+    </insert>
+</mapper>
