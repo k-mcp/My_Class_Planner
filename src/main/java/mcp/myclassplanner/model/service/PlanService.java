@@ -154,6 +154,14 @@ public class PlanService {
 
 
     }
+
+    public List<ScheduleDTO> viewResult() {
+        return planMapper.viewResult();
+    }
+
+    public void addNewPlan(String s) {
+        planMapper.addNewPlan(s);
+    }
 }
 
 

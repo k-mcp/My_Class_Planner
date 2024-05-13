@@ -13,4 +13,8 @@ public interface PlanMapper {
     List<ScheduleDTO> viewAll();
 
     void truncate();
+
+    List<ScheduleDTO> viewResult();
+
+    void addNewPlan(String s);
 }

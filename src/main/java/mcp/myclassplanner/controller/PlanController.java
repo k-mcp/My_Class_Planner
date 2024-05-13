@@ -4,6 +4,7 @@ package mcp.myclassplanner.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.CourseDTO;
+import mcp.myclassplanner.model.dto.ScheduleDTO;
 import mcp.myclassplanner.model.dto.SectionDTO;
 import mcp.myclassplanner.model.service.CourseService;
 import mcp.myclassplanner.model.service.PlanService;
@@ -14,10 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class PlanController {
@@ -68,11 +67,29 @@ public class PlanController {
         }
         int memberCode = (int) session.getAttribute("memberCode");
         planService.generatePro(courses,memberCode);
-        return "redirect:/generate";
+        return "redirect:/generatePro";
     }
     @GetMapping("generatePro")
-    public String generatePro(HttpServletRequest request){
-
-        return "plan/genereatePro";
+    public ModelAndView generatePro(HttpSession session, ModelAndView mv){
+        List<ScheduleDTO> scheduleDTOS = planService.viewResult();
+        for(ScheduleDTO scheduleDTO : scheduleDTOS){
+            if (scheduleDTO.getDays().contains("X")){
+                scheduleDTO.setDays(scheduleDTO.getDays().replace("X","Th"));
+            }
+        }
+        Map<Integer, List<ScheduleDTO>> groupedSchedules = scheduleDTOS.stream()
+                .collect(Collectors.groupingBy(ScheduleDTO::getCaseNo));
+        mv.addObject("groupedSchedules", groupedSchedules);
+        mv.setViewName("plan/generatepro");
+        return mv;
+    }
+    @PostMapping("saveSchedules")
+    public String saveSchedules(HttpSession session, HttpServletRequest request){
+        Map<String, String[]> parameters = request.getParameterMap();
+        String[] s = parameters.get("selectedCases");
+        for(String i : s){
+            planService.addNewPlan(i);
+        }
+        return "home";
     }
 }

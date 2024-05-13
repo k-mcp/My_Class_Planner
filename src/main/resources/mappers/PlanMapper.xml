@@ -13,6 +13,10 @@
         <result property="days" column="section_days"/>
     </resultMap>
 
+    <select id="viewResult" resultMap="ScheduleDTO">
+        select * from tbl_schedule
+    </select>
+
     <delete id="truncate">
         truncate tbl_schedule;
     </delete>
@@ -36,5 +40,11 @@
             #{end},
             #{days}
         )
+    </insert>
+
+    <insert id="addNewPlan" parameterType="string">
+        INSERT INTO tbl_plan (member_code, case_no, course_name, section_start, section_end, section_days)
+        SELECT member_code, case_no, course_name, section_start, section_end, section_days
+        FROM tbl_schedule where case_no = #{s};
     </insert>
 </mapper>
