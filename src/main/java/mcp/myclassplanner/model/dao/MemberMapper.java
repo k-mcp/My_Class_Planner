@@ -33,4 +33,6 @@ public interface MemberMapper {
     List<MemberDTO> getAllMembers();
 
     int getMemberCodeByEmail(String email);
+
+    int updatePassword(Map<String, Object> map);
 }
