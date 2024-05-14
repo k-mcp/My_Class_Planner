@@ -9,6 +9,34 @@
     <div th:replace="common/sidebar.html"></div>
     <div class="container mt-5">
       <h2>Welcome! This is My Plans Page</h2>
+      <div class="accordion" id="accordionExample">
+          <div th:each="groupEntry : ${groupedPlans}">
+              <div class="accordion-item">
+                  <h2 class="accordion-header" th:id="'heading' + ${groupEntry.key}">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                              th:attr="data-bs-target='#collapse' + ${groupEntry.key}, aria-controls='collapse' + ${groupEntry.key}">
+                          <input type="checkbox" class="form-check-input" th:value="${groupEntry.key}" th:name="${groupEntry.key}"/>
+                          <span class="ms-1" th:text="' Case Number: ' + ${groupEntry.key}"></span>
+                      </button>
+                  </h2>
+                  <div th:id="'collapse' + ${groupEntry.key}" class="accordion-collapse collapse"
+                       th:attr="aria-labelledby='heading' + ${groupEntry.key}" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                          <div th:each="plan : ${groupEntry.value}" class="form-check">
+                              <label class="form-check-label" th:for="'plan-' + ${plan.planNo}"
+                                     th:text=" '[' + ${plan.courseName} + '] ' + ${#numbers.formatInteger(plan.start/100,2)} + ':' + ${#numbers.formatInteger(plan.start%100,2)} +
+                                       ' - ' + ${#numbers.formatInteger(plan.end/100,2)} + ':' + ${#numbers.formatInteger(plan.end%100,2)} +
+                                       ' (' + ${plan.days} + ')'">
+
+                              </label>
+
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
     </div>
   </div>
 </body>

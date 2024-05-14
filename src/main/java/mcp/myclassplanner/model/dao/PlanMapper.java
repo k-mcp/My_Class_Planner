@@ -1,5 +1,6 @@
 package mcp.myclassplanner.model.dao;
 
+import mcp.myclassplanner.model.dto.PlanDTO;
 import mcp.myclassplanner.model.dto.ScheduleDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,4 +18,6 @@ public interface PlanMapper {
     List<ScheduleDTO> viewResult();
 
     void addNewPlan(String s);
+
+    List<PlanDTO> viewMyPlan();
 }

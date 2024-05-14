@@ -12,9 +12,21 @@
         <result property="end" column="section_end"/>
         <result property="days" column="section_days"/>
     </resultMap>
+    <resultMap id="PlanDTO" type="mcp.myclassplanner.model.dto.PlanDTO">
+        <id property="planNo" column="Plan_no"/>
+        <result property="memberCode" column="member_code"/>
+        <result property="caseNo" column="case_no"/>
+        <result property="courseName" column="course_name"/>
+        <result property="start" column="section_start"/>
+        <result property="end" column="section_end"/>
+        <result property="days" column="section_days"/>
+    </resultMap>
 
     <select id="viewResult" resultMap="ScheduleDTO">
         select * from tbl_schedule
+    </select>
+    <select id="viewMyPlan" resultMap="PlanDTO">
+        select * from tbl_plan
     </select>
 
     <delete id="truncate">
@@ -47,4 +59,6 @@
         SELECT member_code, case_no, course_name, section_start, section_end, section_days
         FROM tbl_schedule where case_no = #{s};
     </insert>
+
+
 </mapper>

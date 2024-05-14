@@ -4,6 +4,7 @@ package mcp.myclassplanner.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.CourseDTO;
+import mcp.myclassplanner.model.dto.PlanDTO;
 import mcp.myclassplanner.model.dto.ScheduleDTO;
 import mcp.myclassplanner.model.dto.SectionDTO;
 import mcp.myclassplanner.model.service.CourseService;
@@ -86,10 +87,25 @@ public class PlanController {
     @PostMapping("saveSchedules")
     public String saveSchedules(HttpSession session, HttpServletRequest request){
         Map<String, String[]> parameters = request.getParameterMap();
-        String[] s = parameters.get("selectedCases");
-        for(String i : s){
+
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             planService.addNewPlan(i);
         }
-        return "home";
+        return "redirect:/myplan";
+    }
+    @GetMapping("myplan")
+    public ModelAndView myplan(ModelAndView mv){
+        List<PlanDTO> planDTOS = planService.viewMyPlan();
+        for(PlanDTO planDTO : planDTOS){
+            if (planDTO.getDays().contains("X")){
+                planDTO.setDays(planDTO.getDays().replace("X","Th"));
+            }
+        }
+        Map<Integer, List<PlanDTO>> groupedPlans = planDTOS.stream()
+                .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
+        mv.addObject("groupedPlans", groupedPlans);
+        mv.setViewName("plan/plan");
+        return mv;
     }
 }

@@ -162,6 +162,10 @@ public class PlanService {
     public void addNewPlan(String s) {
         planMapper.addNewPlan(s);
     }
+
+    public List<PlanDTO> viewMyPlan() {
+        return planMapper.viewMyPlan();
+    }
 }
 
 
