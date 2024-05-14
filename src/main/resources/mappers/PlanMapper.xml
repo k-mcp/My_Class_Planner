@@ -29,7 +29,10 @@
         select * from tbl_plan
         where member_code = #{memberCode}
     </select>
-
+    <delete id="deletePlan" parameterType="string">
+        delete from tbl_plan
+        where case_no = #{caseNo};
+    </delete>
     <delete id="truncate">
         truncate tbl_schedule;
     </delete>

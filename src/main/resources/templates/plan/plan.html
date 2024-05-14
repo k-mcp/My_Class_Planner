@@ -9,6 +9,7 @@
     <div th:replace="common/sidebar.html"></div>
     <div class="container mt-5">
       <h2>Welcome! This is My Plans Page</h2>
+        <form action="/deletePlans" method="post">
       <div class="accordion" id="accordionExample">
           <div th:each="groupEntry, groupIndex : ${groupedPlans}">
               <div class="accordion-item">
@@ -37,6 +38,8 @@
               </div>
           </div>
       </div>
+            <button type="submit" class="btn btn-danger mt-3">Delete Plans</button>
+        </form>
     </div>
   </div>
 </body>

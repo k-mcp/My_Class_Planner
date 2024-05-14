@@ -20,4 +20,6 @@ public interface PlanMapper {
     void addNewPlan(String s);
 
     List<PlanDTO> viewMyPlan(int memberCode);
+
+    void deletePlan(String caseNo);
 }

@@ -110,15 +110,15 @@ public class PlanController {
         mv.setViewName("plan/plan");
         return mv;
     }
-    @GetMapping(value="/api/plans", produces = "application/json; charset=UTF-8")
-    @ResponseBody
-    public List<PlanDTO> timetableData(HttpSession session){
-        int memberCode = (int) session.getAttribute("memberCode");
-        return planService.viewMyPlan(memberCode);
-    }
 
-    @GetMapping("timetable")
-    public String timetable(){
-        return "plan/timetable";
+
+    @PostMapping("deletePlans")
+    public String deletePlans(HttpServletRequest request, HttpSession session){
+        Map<String, String[]> parameters = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
+            planService.deletePlan(i);
+        }
+        return "redirect:/myplan";
     }
 }

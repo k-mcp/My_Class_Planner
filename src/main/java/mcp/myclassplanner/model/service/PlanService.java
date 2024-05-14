@@ -166,6 +166,10 @@ public class PlanService {
     public List<PlanDTO> viewMyPlan(int memberCode) {
         return planMapper.viewMyPlan(memberCode);
     }
+
+    public void deletePlan(String i) {
+        planMapper.deletePlan(i);
+    }
 }
 
 
