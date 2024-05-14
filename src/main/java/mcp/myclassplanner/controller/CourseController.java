@@ -98,7 +98,7 @@ public class CourseController {
 
         courseService.addCourse(courseDTO);
 
-        return "/course/course";
+        return "redirect:/course/course";
     }
 
     @GetMapping("/course")
