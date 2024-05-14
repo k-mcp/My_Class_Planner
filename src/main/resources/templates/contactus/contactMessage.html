@@ -1,0 +1,17 @@
+
+    <script th:inline="javascript">
+
+        /* 이메일 전송 성공 여부에 따라 팝업창 표시 */
+        var contactSuccessMessage = [[${contactSuccessMessage}]];
+        var contactFailMessage = [[${contactFailMessage}]];
+
+        /* 이메일 전송 성공 메세지 팝업 */
+        if(contactSuccessMessage !== null){
+        alert(contactSuccessMessage);
+    }
+
+        /* 이메일 전송 실패 메세지 팝업 */
+        if(contactFailMessage !== null){
+        alert(contactFailMessage);
+    }
+</script>
