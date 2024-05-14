@@ -19,5 +19,5 @@ public interface PlanMapper {
 
     void addNewPlan(String s);
 
-    List<PlanDTO> viewMyPlan();
+    List<PlanDTO> viewMyPlan(int memberCode);
 }

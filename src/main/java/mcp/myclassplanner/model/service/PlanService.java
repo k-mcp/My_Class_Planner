@@ -163,8 +163,8 @@ public class PlanService {
         planMapper.addNewPlan(s);
     }
 
-    public List<PlanDTO> viewMyPlan() {
-        return planMapper.viewMyPlan();
+    public List<PlanDTO> viewMyPlan(int memberCode) {
+        return planMapper.viewMyPlan(memberCode);
     }
 }
 

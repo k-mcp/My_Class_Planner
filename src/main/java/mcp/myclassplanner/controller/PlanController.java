@@ -95,8 +95,9 @@ public class PlanController {
         return "redirect:/myplan";
     }
     @GetMapping("myplan")
-    public ModelAndView myplan(ModelAndView mv){
-        List<PlanDTO> planDTOS = planService.viewMyPlan();
+    public ModelAndView myplan(ModelAndView mv, HttpSession session){
+        int memberCode = (int) session.getAttribute("memberCode");
+        List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
         for(PlanDTO planDTO : planDTOS){
             if (planDTO.getDays().contains("X")){
                 planDTO.setDays(planDTO.getDays().replace("X","Th"));
