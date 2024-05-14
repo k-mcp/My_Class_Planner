@@ -101,4 +101,10 @@
         from tbl_member
         where email = #{email}
     </select>
+        
+   <update id="updatePassword" parameterType="hashmap">
+        update tbl_member
+        set password = #{newPassword}
+        where member_code = #{memberCode};
+    </update>
 </mapper>
