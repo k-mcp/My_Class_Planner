@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.*;
@@ -108,5 +109,16 @@ public class PlanController {
         mv.addObject("groupedPlans", groupedPlans);
         mv.setViewName("plan/plan");
         return mv;
+    }
+    @GetMapping(value="/api/plans", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public List<PlanDTO> timetableData(HttpSession session){
+        int memberCode = (int) session.getAttribute("memberCode");
+        return planService.viewMyPlan(memberCode);
+    }
+
+    @GetMapping("timetable")
+    public String timetable(){
+        return "plan/timetable";
     }
 }

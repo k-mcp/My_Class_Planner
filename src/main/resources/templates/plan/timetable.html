@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Class Planner</title>
+    <link rel="stylesheet" href="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler_material.css">
+    <script src="https://cdn.dhtmlx.com/scheduler/edge/dhtmlxscheduler.js"></script>
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+    <div class="dhx_cal_navline">
+        <div class="dhx_cal_prev_button">&nbsp;</div>
+        <div class="dhx_cal_next_button">&nbsp;</div>
+        <div class="dhx_cal_today_button"></div>
+        <div class="dhx_cal_date"></div>
+        <div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+        <div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+        <div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+    </div>
+    <div class="dhx_cal_header"></div>
+    <div class="dhx_cal_data"></div>
+</div>
+
+<script>
+    scheduler.config.xml_date = "%Y-%m-%d %H:%i";
+    scheduler.init('scheduler_here', new Date(), "week");
+
+    // Fetch PlanDTO data from server
+    fetch('/api/plans')  // Adjust the API endpoint as needed
+        .then(response => response.json())
+        .then(plans => {
+            // Convert PlanDTO to scheduler events
+            const events = plans.map(plan => ({
+                id: plan.planNo,
+                text: plan.courseName + ' (' + plan.days + ')',
+                start_date: new Date(plan.start).toLocaleString(),
+                end_date: new Date(plan.end).toLocaleString()
+            }));
+            scheduler.parse(events, "json");
+        });
+</script>
+</body>
+</html>
