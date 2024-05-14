@@ -23,11 +23,11 @@
         <form th:action="@{/updatePassword}" method="post">
             <div class="mb-3">
                 <label for="newPassword" class="form-label" >새 비밀번호</label>
-                <input type="password" class="input-field"  id="newPassword" name="newPassword" required>
+                <input type="password" class="input-field"  id="newPassword" name="newPassword" required minlength="6">
             </div>
             <div class="mb-3">
                 <label for="confirmPassword" class="form-label">새 비밀번호 확인</label>
-                <input type="password" class="input-field" id="confirmPassword" name="confirmPassword" required>
+                <input type="password" class="input-field" id="confirmPassword" name="confirmPassword" required minlength="6">
             </div>
             <button type="submit" class="btn btn-primary">비밀번호 변경</button>
         </form>

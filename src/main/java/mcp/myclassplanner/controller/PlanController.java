@@ -74,6 +74,9 @@ public class PlanController {
     @GetMapping("generatePro")
     public ModelAndView generatePro(HttpSession session, ModelAndView mv){
         List<ScheduleDTO> scheduleDTOS = planService.viewResult();
+        if(scheduleDTOS.size() == 0){
+            mv.addObject("message", "There is no available Schedule.");
+        }
         for(ScheduleDTO scheduleDTO : scheduleDTOS){
             if (scheduleDTO.getDays().contains("X")){
                 scheduleDTO.setDays(scheduleDTO.getDays().replace("X","Th"));
