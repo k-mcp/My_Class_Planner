@@ -29,6 +29,17 @@ public class CourseController {
         this.memberService = memberService;
     }
 
+    @PostMapping("/deleteCourse")
+    public String deleteCourse(HttpServletRequest request, HttpSession session) {
+        int memberCode = (int) session.getAttribute("memberCode");
+        Map<String, String[]> parameters = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String courseName = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
+            courseService.deleteCourse(courseName, memberCode);
+        }
+        return "redirect:/course/course";
+    }
+
     @GetMapping("/add")
     public ModelAndView addCourse(HttpSession session, ModelAndView mv) {
         mv.addObject("username", session.getAttribute("username"));

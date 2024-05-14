@@ -13,4 +13,5 @@ public interface CourseMapper {
 
     List<CourseEntity> viewAllCourse(int memberCode);
 
+    void deleteCourse(String courseName, int memberCode);
 }
