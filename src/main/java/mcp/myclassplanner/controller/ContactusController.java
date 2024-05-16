@@ -1,5 +1,6 @@
 package mcp.myclassplanner.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
@@ -24,7 +25,9 @@ public class ContactusController {
     }
 
     @GetMapping("/contactUs")
-    public String contactUs(Model model){
+    public String contactUs(Model model, HttpSession session){
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
         return "/contactUs/contactUs";
     }
 
