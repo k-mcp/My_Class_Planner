@@ -65,7 +65,14 @@
 
         <hr>
 
-        <ul class="nav nav-pills flex-column mb-5">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <span th:if="${username}" class="fs-4 ms-3">
+            <div th:text="|Hello ${username}!|"></div>
+        </span>
+        </a>
+        <hr>
+
+        <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
                 <a href="/home" class="nav-link text-white hover" aria-current="page">
                     <i class="bi bi-house">
@@ -76,7 +83,7 @@
                 </a>
             </li>
             <li>
-                <a href="/plan" class="nav-link text-white">
+                <a href="/myplan" class="nav-link text-white">
                     <i class="bi bi-clock">
                         <span class="ms-1">
                             My Plans
@@ -85,7 +92,7 @@
                 </a>
             </li>
             <li>
-                <a href="/course" class="nav-link text-white">
+                <a href="/course/course" class="nav-link text-white">
                     <i class="bi bi-book">
                         <span class="ms-1">
                             My Course
@@ -112,9 +119,19 @@
                 </a>
             </li>
 
+            <li>
+                <a href="/contactUs" class="nav-link text-white">
+                    <i class="bi bi-envelope"></i>
+                    <span class="ms-1">
+                            Contact Us
+                        </span>
+                    </i>
+                </a>
+            </li>
+
 
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="/settings" class="nav-link text-white">
                     <i class="bi bi-gear">
                         <span class="ms-1">
                             Settings
@@ -123,6 +140,7 @@
                 </a>
             </li>
         </ul>
+
 
         <!--    if not signed in -->
         <div th:if="${username}">
