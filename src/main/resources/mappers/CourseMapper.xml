@@ -39,7 +39,8 @@
 
         <select id="viewAllCourse" parameterType="int" resultMap="courseEntity">
                 select * from tbl_course
-                where member_code = #{memberCode};
+                where member_code = #{memberCode}
+                order by course_name;
         </select>
         <delete id="deleteCourse" parameterType="hashmap">
             delete from tbl_course
