@@ -18,11 +18,15 @@
 </style>
 
 <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-success" style="--bs-bg-opacity: .5; width: 280px; height: 100vh;">
-    <div class="d-flex justify-content-center">
-        <img src="/img/logo.png" alt="Logo" class="mb-3" style="width: 50%; height: auto;">
+    <div class="row justify-content-center align-items-center mb-3">
+        <div class="col text-center">
+            <a href="/myplan" class="text-decoration-none">
+                <img src="/img/logo.png" alt="Logo" style="width: 80%; height: auto;">
+            </a>
+        </div>
     </div>
 
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span th:if="${username}" class="fs-4 ms-3">
             <div th:text="|Hello ${username}!|"></div>
         </span>

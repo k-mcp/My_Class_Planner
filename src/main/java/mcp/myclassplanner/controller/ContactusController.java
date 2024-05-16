@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Objects;
+
 
 @Controller
 public class ContactusController {
@@ -22,7 +24,7 @@ public class ContactusController {
     }
 
     @GetMapping("/contactUs")
-    public String contactUs(){
+    public String contactUs(Model model){
         return "/contactUs/contactUs";
     }
 
@@ -40,13 +42,13 @@ public class ContactusController {
 
         try {
             mailSender.send(mailMessage);
-            model.addAttribute("contactSuccessMessage", "Your message has been sent! ");   // 이메일 전송 성공
+            model.addAttribute("message", "Your message has been sent! ");   // 이메일 전송 성공
         } catch (MailException e) {
-            model.addAttribute("contactFailMessage", "Oops! Something went wrong. Try again ! ");
+            model.addAttribute("message", "Oops! Something went wrong. Try again ! ");
             e.printStackTrace();    // 에러 내용 콘솔에 출력
         }
 
-        return "contactus/contactMessage";
+        return "contactus/contactUs";
 
     }
 }
