@@ -34,6 +34,7 @@ public class PlanController {
 
     @GetMapping("/generate")
     public ModelAndView plan(HttpSession session, ModelAndView mv){
+        mv.addObject("username",session.getAttribute("username"));
         // 세션에 사용자 정보 저장
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
@@ -47,6 +48,7 @@ public class PlanController {
     }
     @PostMapping("/generate")
     public String generateForm(HttpSession session, ModelAndView mv, HttpServletRequest request){
+        mv.addObject("username",session.getAttribute("username"));
         Map<String, String[]> parameters = request.getParameterMap();
         List<CourseDTO> courses = new ArrayList<>();
         CourseDTO courseDTO;
@@ -100,6 +102,7 @@ public class PlanController {
     }
     @GetMapping("myplan")
     public ModelAndView myplan(ModelAndView mv, HttpSession session){
+        mv.addObject("username",session.getAttribute("username"));
         int memberCode = (int) session.getAttribute("memberCode");
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
         for(PlanDTO planDTO : planDTOS){

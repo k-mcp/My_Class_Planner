@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 
 @Controller
-@RequestMapping("/course")
+@RequestMapping("course")
 public class CourseController {
 
     private final CourseService courseService;
@@ -44,7 +44,7 @@ public class CourseController {
     public ModelAndView addCourse(HttpSession session, ModelAndView mv) {
         mv.addObject("username", session.getAttribute("username"));
         // 세션에 사용자 정보 저장
-        mv.setViewName("/course/add");
+        mv.setViewName("course/add");
         return mv;
     }
     @PostMapping("/add")
@@ -103,10 +103,11 @@ public class CourseController {
 
     @GetMapping("/course")
     public ModelAndView viewCourse(HttpSession session, ModelAndView mv) {
+        mv.addObject("username",session.getAttribute("username"));
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
         mv.addObject("courseDTOList", courseDTOList);
-        mv.setViewName("/course/course");
+        mv.setViewName("course/course");
         return mv;
     }
 }
