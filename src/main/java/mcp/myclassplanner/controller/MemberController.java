@@ -33,7 +33,7 @@ public class MemberController {
     public ModelAndView signIn(String message, ModelAndView mv){
         message = message.replace('-', ' ');
         mv.addObject("message", message);
-        mv.setViewName("/auth/signin");
+        mv.setViewName("auth/signin");
         return mv;
     }
 
@@ -72,7 +72,7 @@ public class MemberController {
 
         }
         mv.addObject("message", message);
-        mv.setViewName("/auth/signin");
+        mv.setViewName("auth/signin");
         return mv;
     }
 

@@ -41,5 +41,9 @@
                 select * from tbl_course
                 where member_code = #{memberCode};
         </select>
-
+        <delete id="deleteCourse" parameterType="hashmap">
+            delete from tbl_course
+            where member_code = #{memberCode} AND
+            course_name = #{courseName};
+        </delete>
 </mapper>

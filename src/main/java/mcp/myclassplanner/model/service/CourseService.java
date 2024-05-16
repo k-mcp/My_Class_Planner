@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CourseService {
@@ -67,5 +69,12 @@ public class CourseService {
         courseDTO.setSectionDTOList(sectionDTOList);
         courseDTOList.add(courseDTO);
         return courseDTOList;
+    }
+
+    public void deleteCourse(String courseName, int memberCode) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("coursename", courseName);
+        map.put("memberCode", memberCode);
+        courseMapper.deleteCourse(courseName,memberCode);
     }
 }

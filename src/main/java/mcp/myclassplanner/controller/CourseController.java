@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.*;
 
 @Controller
-@RequestMapping("/course")
+@RequestMapping("course")
 public class CourseController {
 
     private final CourseService courseService;
@@ -29,11 +29,22 @@ public class CourseController {
         this.memberService = memberService;
     }
 
+    @PostMapping("/deleteCourse")
+    public String deleteCourse(HttpServletRequest request, HttpSession session) {
+        int memberCode = (int) session.getAttribute("memberCode");
+        Map<String, String[]> parameters = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String courseName = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
+            courseService.deleteCourse(courseName, memberCode);
+        }
+        return "redirect:/course/course";
+    }
+
     @GetMapping("/add")
     public ModelAndView addCourse(HttpSession session, ModelAndView mv) {
         mv.addObject("username", session.getAttribute("username"));
         // 세션에 사용자 정보 저장
-        mv.setViewName("/course/add");
+        mv.setViewName("course/add");
         return mv;
     }
     @PostMapping("/add")
@@ -87,15 +98,16 @@ public class CourseController {
 
         courseService.addCourse(courseDTO);
 
-        return "/course/course";
+        return "redirect:/course/course";
     }
 
     @GetMapping("/course")
     public ModelAndView viewCourse(HttpSession session, ModelAndView mv) {
+        mv.addObject("username",session.getAttribute("username"));
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
         mv.addObject("courseDTOList", courseDTOList);
-        mv.setViewName("/course/course");
+        mv.setViewName("course/course");
         return mv;
     }
 }

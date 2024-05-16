@@ -23,7 +23,7 @@
     <div th:replace="common/sidebar" ></div>
     <div class="container mt-4">
         <h2>My Course</h2>
-        <form id="plansForm" action="/course" method="POST">
+        <form id="plansForm" action="/course/deleteCourse" method="POST">
             <div class="accordion" id="accordionExample">
                 <!-- Loop through courses -->
                 <div th:each="courseDTO, courseIndex : ${courseDTOList}">
@@ -32,7 +32,8 @@
                             <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     th:attr="data-bs-target='#collapse' + ${courseIndex.index}"
                                     aria-expanded="true" aria-controls="'collapse' + ${courseIndex.index}">
-                                <span th:text="${courseDTO.courseName}"></span>
+                                <input type="checkbox" class="form-check-input" th:value="${courseDTO.courseName}" th:name="${courseDTO.courseName}"/>
+                                <span class="ms-2" th:text="${courseDTO.courseName}"></span>
                             </button>
                         </h2>
                         <div th:id="'collapse' + ${courseIndex.index}" class="accordion-collapse collapse"
@@ -41,8 +42,6 @@
                                 <!-- Loop through sections -->
                                 <div th:each="sectionDTO : ${courseDTO.sectionDTOList}">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" th:value="${sectionDTO.startTime} + '-' + ${sectionDTO.endTime} + '-' + ${sectionDTO.days}"
-                                               th:id="'courseSection-' + ${courseIndex.index} + '-' + ${sectionDTO.startTime}" name="selectedSections[]">
                                         <label class="form-check-label" th:for="'courseSection-' + ${courseIndex.index} + '-' + ${sectionDTO.startTime}"
                                                th:text="${#numbers.formatInteger(sectionDTO.startTime/100,2) + ':' + #numbers.formatInteger(sectionDTO.startTime%100,2) +
                                                ' - ' + #numbers.formatInteger(sectionDTO.endTime/100,2) + ':'+ #numbers.formatInteger(sectionDTO.endTime%100,2)
@@ -54,8 +53,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary mt-3">Modify</button>
-            <a href="/course" class="btn btn-danger mt-3">Cancel</a>
+            <button type="submit" class="btn btn-danger mt-3">Delete Course</button>
         </form>
     </div>
 </div>

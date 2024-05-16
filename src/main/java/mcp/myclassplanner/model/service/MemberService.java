@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -133,5 +134,12 @@ public class MemberService {
         return memberMapper.getMemberCodeByEmail(email);
     }
 
+    public int updatePassword(int memberCode, String newPassword) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        newPassword= (passwordEncoder.encode(newPassword));
+        map.put("newPassword", newPassword);
+        return memberMapper.updatePassword(map);
+    }
 
 }
