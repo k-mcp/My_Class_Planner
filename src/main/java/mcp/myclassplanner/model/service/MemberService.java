@@ -1,10 +1,15 @@
 package mcp.myclassplanner.model.service;
 
+import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +22,7 @@ public class MemberService {
     private final MemberMapper memberMapper;
     private final PasswordEncoder passwordEncoder;
     private static int guestNo = 1111;
+    private MemberService memberService;
 
     public int getGuestNo(){
         return guestNo++;
@@ -132,7 +138,7 @@ public class MemberService {
 
     public int getMemberCodeByEmail(String email) {
         return memberMapper.getMemberCodeByEmail(email);
-    }
+    };
 
 
     public int updatePassword(int memberCode, String newPassword) {
@@ -141,5 +147,4 @@ public class MemberService {
         newPassword= (passwordEncoder.encode(newPassword));
         map.put("newPassword", newPassword);
         return memberMapper.updatePassword(map);
-    }
-}
+    }}
