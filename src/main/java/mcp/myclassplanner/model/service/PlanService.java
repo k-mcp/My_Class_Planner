@@ -2,18 +2,20 @@ package mcp.myclassplanner.model.service;
 
 import mcp.myclassplanner.model.dao.PlanMapper;
 import mcp.myclassplanner.model.dto.*;
+import org.eclipse.angus.mail.imap.protocol.INTERNALDATE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PlanService {
     static List<ScheduleDTO> schedule;
     static List<ScheduleDTO> possible;
     static TimetableDTO[] timetable;
-    static int caseNo = 1;
+    static int caseNo = 0;
 
     private final PlanMapper planMapper;
 
@@ -145,6 +147,10 @@ public class PlanService {
         timetable = new TimetableDTO[5];
         for(int i =0; i< 5; i++){
             timetable[i] = new TimetableDTO();
+        }
+        Integer cNo = planMapper.getLastCaseNo(memberCode); // get last CaseNo if exist
+        if(!Objects.isNull(cNo)){
+            caseNo = cNo + 1;
         }
         generate(courses, 0, memberCode);
         planMapper.truncate();

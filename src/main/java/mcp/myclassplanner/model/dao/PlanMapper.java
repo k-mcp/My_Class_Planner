@@ -22,4 +22,6 @@ public interface PlanMapper {
     List<PlanDTO> viewMyPlan(int memberCode);
 
     void deletePlan(String caseNo);
+
+    Integer getLastCaseNo(int memberCode);
 }

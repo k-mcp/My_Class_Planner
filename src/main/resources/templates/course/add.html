@@ -5,9 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+    <style>
+        .scrollable-container {
+            max-height: 650px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+        /* Other styling might be necessary to make it look as you want */
+    </style>
     <div class="d-flex">
     <div th:replace="/common/sidebar.html"></div>
-        <div class="container mt-5">
+        <div class="container mt-5 scrollable-container">
             <h2 class="d-flex justify-content-center">Add Course</h2>
             <form id="courseForm" action="/course/add" method="post">
                 <div class="mb-3">

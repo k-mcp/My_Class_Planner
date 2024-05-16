@@ -64,5 +64,9 @@
         FROM tbl_schedule where case_no = #{s};
     </insert>
 
+    <select id="getLastCaseNo" parameterType="int" resultType="INTEGER">
+        SELECT MAX(case_no) FROM tbl_plan
+        WHERE member_code = #{memberCode}
+    </select>
 
 </mapper>
