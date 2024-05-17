@@ -147,4 +147,10 @@ public class MemberController {
 //        httpSession.setAttribute();
         return "redirect:/";
     }
+    
+    @GetMapping("/forgotPassword")
+    public String showForgotPasswordPage() {
+        return "/auth/forgotPassword";
+
+    }
 }
