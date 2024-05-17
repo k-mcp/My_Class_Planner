@@ -34,4 +34,7 @@
         where board_no = #{boardNo}
         order by comment_time;
     </select>
+    <select id="totalRecord" resultType="java.lang.Integer">
+        select count(*) from tbl_board
+    </select>
 </mapper>

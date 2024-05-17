@@ -25,4 +25,8 @@ public class BoardService {
     public List<CommentDTO> viewCommentByBoardNo(int boardNo) {
         return boardMapper.viewCommentByBoardNo(boardNo);
     }
+
+    public Integer totalRecord() {
+        return boardMapper.totalRecord();
+    }
 }

@@ -13,4 +13,6 @@ public interface BoardMapper {
     BoardDTO viewByBoardNo(int boardNo);
 
     List<CommentDTO> viewCommentByBoardNo(int boardNo);
+
+    Integer totalRecord();
 }
