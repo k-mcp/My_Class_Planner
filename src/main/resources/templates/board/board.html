@@ -12,8 +12,8 @@
     <hr>
     <!--<header th:replace="header :: header"></header>-->
         <div class="row">
-            <div class="ms-3 card card-margin search-form">
-                <div class="card-body p-0 me-4">
+<!--            <div class="ms-3 card card-margin search-form">-->
+                <div class="ms-4 card-body p-0 me-4">
                     <form id="search-form">
                         <div class="row">
                             <div class="col-12">
@@ -31,7 +31,7 @@
                                         <input type="text" placeholder="검색어..." class="form-control" id="search-value" name="searchValue">
                                     </div>
                                     <div class="col-lg-1 col-md-3 col-sm-12 p-0">
-                                        <button type="submit" class="btn btn-base">
+                                        <button type="submit" class="btn btn-base" style="border: 1px solid">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                                 <circle cx="11" cy="11" r="8"></circle>
                                                 <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -43,7 +43,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+<!--            </div>-->
         </div>
         <hr>
 
@@ -59,9 +59,12 @@
                 </thead>
                 <tbody>
                 <tr th:each="board : ${boardPage}">
-                    <td th:text="${board.boardTitle}">제목</td>
+
+                    <td><a th:href="@{/board/view(boardNo=${board.boardNo})}" th:text="${board.boardTitle}">제목</a></td>
+
                     <td th:text="${board.username}">작성자</td>
-                    <td th:text="${board.boardTime}">작성일</td>
+                        <td th:text="${board.boardTime}">작성일</td>
+
                 </tr>
                 </tbody>
             </table>

@@ -2,6 +2,7 @@ package mcp.myclassplanner.model.service;
 
 import mcp.myclassplanner.model.dao.BoardMapper;
 import mcp.myclassplanner.model.dto.BoardDTO;
+import mcp.myclassplanner.model.dto.CommentDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,5 +16,13 @@ public class BoardService {
 
     public List<BoardDTO> findAll(int page) {
         return boardMapper.findAll(page);
+    }
+
+    public BoardDTO viewByBoardNo(int boardNo) {
+        return boardMapper.viewByBoardNo(boardNo);
+    }
+
+    public List<CommentDTO> viewCommentByBoardNo(int boardNo) {
+        return boardMapper.viewCommentByBoardNo(boardNo);
     }
 }

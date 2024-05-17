@@ -11,10 +11,27 @@
         <result property="boardContent" column="board_content"/>
     </resultMap>
 
+    <resultMap id="CommentDTO" type="mcp.myclassplanner.model.dto.CommentDTO">
+        <id property="commentNo" column="comment_no"/>
+        <result property="username" column="username"/>
+        <result property="commentTime" column="comment_time"/>
+        <result property="commentContent" column="comment_content"/>
+        <result property="boardNo" column="board_no"/>
+    </resultMap>
+
     <select id="findAll" resultMap="BoardDTO" parameterType="int">
         SELECT * FROM tbl_board
         ORDER BY board_time DESC
         LIMIT 10 OFFSET #{offset}
     </select>
+    <select id="viewByBoardNo" resultMap="BoardDTO" parameterType="int">
+        SELECT * FROM tbl_board
+        where board_no = #{boardNo};
+    </select>
 
+    <select id="viewCommentByBoardNo" resultMap="CommentDTO" parameterType="int">
+        select * from tbl_comment
+        where board_no = #{boardNo}
+        order by comment_time;
+    </select>
 </mapper>
