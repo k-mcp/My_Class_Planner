@@ -26,10 +26,10 @@ public class BoardController {
     public String board(Model model, @RequestParam(defaultValue = "0") int page, HttpSession session){
         Integer totalRecord = boardService.totalRecord();
         int totalPage = 1;
-        if(!Objects.isNull(totalRecord)){
-            totalPage = totalRecord / 10;
-            if(totalRecord % 10 != 0) totalRecord++;
-        }
+//        if(!Objects.isNull(totalRecord)){
+//            totalPage = totalRecord / 10;
+//            if(totalRecord % 10 != 0) totalRecord++;
+//        }
         String username = (String)session.getAttribute("username");
         int memberCode = (int)session.getAttribute("memberCode");
         List<BoardDTO> boardDTOList = boardService.findAll(page);
@@ -37,6 +37,8 @@ public class BoardController {
         model.addAttribute("username", username);
         model.addAttribute("memberCode", memberCode);
         model.addAttribute("totalPage", totalPage);
+        model.addAttribute("boardNo", page);
+
 
         return "board/board";
     }
