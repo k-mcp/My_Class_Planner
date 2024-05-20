@@ -20,4 +20,10 @@ public interface BoardMapper {
     void postPro(Map<String, Object> map);
 
     int comment(Map map);
+
+    String getAuthor(int boardNo);
+
+    void deletePost(int boardNo);
+
+    void deletePostComment(int boardNo);
 }

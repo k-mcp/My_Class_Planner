@@ -47,4 +47,5 @@
             where member_code = #{memberCode} AND
             course_name = #{courseName};
         </delete>
+
 </mapper>

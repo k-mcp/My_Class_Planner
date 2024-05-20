@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.Timestamp;
 import java.util.*;
@@ -40,8 +41,13 @@ public class BoardController {
         model.addAttribute("boardNo", page);
         model.addAttribute("page",page);
 
-
         return "board/board";
+    }
+    @GetMapping("board/deletePost")
+    public String deletePost(HttpSession session){
+        int boardNo = (int) session.getAttribute("boardNo");
+        boardService.deletePost(boardNo);
+        return "redirect:/board";
     }
 
     @GetMapping("board/view")
@@ -56,21 +62,25 @@ public class BoardController {
         model.addAttribute("username", username);
         model.addAttribute("memberCode", memberCode);
         model.addAttribute("boardNo", boardNo);
+        boardService.getAuthor(boardNo);
+        if(boardService.getAuthor(boardNo).equals(username)){
+            model.addAttribute("author", true);
+        }
         return "board/view";
     }
     @PostMapping("board/view")
-    public String comment(Model model, HttpSession session, HttpServletRequest request){
+    public String comment(RedirectAttributes redirectAttributes, HttpSession session, HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
+        String username =(String)session.getAttribute("username");
         int boardNo = (int)session.getAttribute("boardNo");
         map.put("boardNo", boardNo);
-        map.put("username", (String)session.getAttribute("username"));
+        map.put("username", username);
         map.put("commentTime", new Timestamp(new Date().getTime()));
         Map<String, String[]> parameters = request.getParameterMap();
         for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
             String comment = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             map.put("comment", comment);
         }
-
         int result = boardService.comment(map);
         return "redirect:/board/view?boardNo="+boardNo;
     }

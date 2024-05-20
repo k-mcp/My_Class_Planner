@@ -39,4 +39,13 @@ public class BoardService {
 
         return boardMapper.comment(map);
     }
+
+    public String getAuthor(int boardNo) {
+        return boardMapper.getAuthor(boardNo);
+    }
+
+    public void deletePost(int boardNo) {
+        boardMapper.deletePost(boardNo);
+        boardMapper.deletePostComment(boardNo);
+    }
 }

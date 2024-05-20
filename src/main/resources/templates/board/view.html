@@ -50,14 +50,10 @@
         </div>
 
         <div class="row g-5" id="article-buttons">
-            <form id="delete-article-form">
                 <div class="pb-5 d-grid gap-2 d-md-block">
                     <div class="col-8"></div>
-                    <a class="btn btn-success me-md-2" role="button" id="update-article">modify</a>
-                    <button class="btn btn-danger me-md-2" type="submit">delete</button>
-
+                    <a th:if="${author}" class="btn btn-danger me-md-2" type="submit" th:href="@{/board/deletePost}">delete</a>
                 </div>
-            </form>
         </div>
 
         <div class="row g-5">
