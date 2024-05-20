@@ -1,0 +1,12 @@
+
+@font-face {
+    font-family: 'Prompt-Black'!important;
+    src: url('fonts/Prompt-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Prompt-Black'!important;
+    font-weight: 900;
+}
