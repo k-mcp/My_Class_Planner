@@ -13,12 +13,27 @@
 <style>
     .nav-link:hover {
         color: #ffffff; /* Changes text color on hover */
-        background-color: #17a2b8; /* Changes background color on hover */
+        background-color: #57b3b1; /* Changes background color on hover */
         transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        background-color: #8dc3a8; /* Sidebar background color */
+        padding: 20px;
+    }
+
+    .main-content {
+        margin-left: 280px; /* Adjust based on sidebar width */
+        padding: 20px;
     }
 </style>
 
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-success" style="--bs-bg-opacity: .5; width: 280px; height: 100vh;">
+<div class="sidebar">
     <div class="row justify-content-center align-items-center mb-3">
         <div class="col text-center">
             <a href="/myplan" class="text-decoration-none">
@@ -80,27 +95,23 @@
                 </i>
             </a>
         </li>
-
         <li>
             <a href="/board" class="nav-link text-white">
                 <i class="bi bi-building">
                     <span class="ms-1">
-                        Cummunity
+                        Community
                     </span>
                 </i>
             </a>
         </li>
-
         <li>
             <a href="/contactUs" class="nav-link text-white">
                 <i class="bi bi-envelope"></i>
-                        <span class="ms-1">
-                            Contact Us
-                        </span>
-                </i>
+                <span class="ms-1">
+                    Contact Us
+                </span>
             </a>
         </li>
-
         <li>
             <a href="/settings" class="nav-link text-white" th:if="${username != 'Guest'}">
                 <i class="bi bi-gear">
@@ -112,8 +123,8 @@
         </li>
     </ul>
 
-    <!-- if not signed in -->
-    <ul class="nav nav-pills flex-column mb-3">
+    <!-- Sign out link -->
+    <ul class="nav nav-pills flex-column mb-3 mt-auto">
         <li class="nav-item">
             <a href="/auth/logout" class="nav-link text-white">
                 <i class="bi bi-box-arrow-right">
@@ -124,8 +135,11 @@
             </a>
         </li>
     </ul>
-    
-
 </div>
+
+<div class="main-content">
+    <!-- Content goes here -->
+</div>
+
 </body>
 </html>
