@@ -101,7 +101,7 @@
         </li>
 
         <li>
-            <a href="/settings" class="nav-link text-white">
+            <a href="/settings" class="nav-link text-white" th:if="${username != 'Guest'}">
                 <i class="bi bi-gear">
                     <span class="ms-1">
                         Settings
