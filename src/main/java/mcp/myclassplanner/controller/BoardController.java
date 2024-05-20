@@ -32,7 +32,7 @@ public class BoardController {
 //        }
         String username = (String)session.getAttribute("username");
         int memberCode = (int)session.getAttribute("memberCode");
-        List<BoardDTO> boardDTOList = boardService.findAll(page);
+        List<BoardDTO> boardDTOList = boardService.findAll(page*10);
         model.addAttribute("boardPage", boardDTOList);
         model.addAttribute("username", username);
         model.addAttribute("memberCode", memberCode);
