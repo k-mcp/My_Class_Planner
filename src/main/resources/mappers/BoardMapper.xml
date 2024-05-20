@@ -37,4 +37,35 @@
     <select id="totalRecord" resultType="java.lang.Integer">
         select count(*) from tbl_board
     </select>
+    <insert id="postPro" parameterType="hashMap" useGeneratedKeys="true" keyProperty="board_no">
+        insert into tbl_board
+        (
+        username,
+        board_time,
+        board_title,
+        board_content
+        )
+        VALUES
+        (
+        #{username},
+        #{time},
+        #{index0},
+        #{index1}
+        )
+    </insert>
+    <insert id="comment" parameterType="hashMap" useGeneratedKeys="true" keyProperty="comment_no">
+        insert into tbl_comment
+        (
+            username,
+            comment_time,
+            comment_content,
+            board_no
+        ) values
+        (
+            #{username},
+            #{commentTime},
+            #{comment},
+            #{boardNo}
+        )
+    </insert>
 </mapper>

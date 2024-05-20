@@ -6,6 +6,7 @@ import mcp.myclassplanner.model.dto.CommentDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BoardService {
@@ -28,5 +29,14 @@ public class BoardService {
 
     public Integer totalRecord() {
         return boardMapper.totalRecord();
+    }
+
+    public void postPro(Map<String, Object> map) {
+        boardMapper.postPro(map);
+    }
+
+    public int comment(Map map) {
+
+        return boardMapper.comment(map);
     }
 }

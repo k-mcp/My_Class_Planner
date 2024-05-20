@@ -69,7 +69,8 @@
                 </tbody>
             </table>
 
-            <div>
+                <div class="col-4"></div>
+            <div class="col-6">
 <!--                <a th:if="${boardNo}" th:href="@{/board(page=${boardPage.number - 1})}">Previous</a>-->
                 <ul class="pagination">
 
@@ -80,16 +81,16 @@
                          <a class="page-link" th:href="@{/board(page=${i}-1)}" th:text="${i}">1</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="#">Next</a>
+                        <a class="page-link" th:href="@{/board(page=${page}+1)}">Next</a>
                     </li>
                 </ul>
 
 
 <!--                <a th:if="${boardPage.hasNext()}" th:href="@{/board(page=${boardPage.number + 1})}">Next</a>-->
             </div>
-            <div class="row">
+            <div class="col-2">
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a class="btn btn-primary me-md-2" role="button" id="write-article">글쓰기</a>
+                    <a class="btn btn-primary me-md-2" href="board/post" role="button" id="write-article">글쓰기</a>
                 </div>
             </div>
         </div>

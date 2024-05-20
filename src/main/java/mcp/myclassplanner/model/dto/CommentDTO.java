@@ -1,18 +1,28 @@
 package mcp.myclassplanner.model.dto;
 
+import java.sql.Timestamp;
+
 public class CommentDTO {
     private int commentNo;
     private String username;
-    private String commentTime;
+    private Timestamp commentTime;
     private String commentContent;
     private int boardNo;
+
+    public CommentDTO(int commentNo, String username, Timestamp commentTime, String commentContent, int boardNo) {
+        this.commentNo = commentNo;
+        this.username = username;
+        this.commentTime = commentTime;
+        this.commentContent = commentContent;
+        this.boardNo = boardNo;
+    }
 
     @Override
     public String toString() {
         return "CommentDTO{" +
                 "commentNo=" + commentNo +
                 ", username='" + username + '\'' +
-                ", commentTime='" + commentTime + '\'' +
+                ", commentTime=" + commentTime +
                 ", commentContent='" + commentContent + '\'' +
                 ", boardNo=" + boardNo +
                 '}';
@@ -34,11 +44,11 @@ public class CommentDTO {
         this.username = username;
     }
 
-    public String getCommentTime() {
+    public Timestamp getCommentTime() {
         return commentTime;
     }
 
-    public void setCommentTime(String commentTime) {
+    public void setCommentTime(Timestamp commentTime) {
         this.commentTime = commentTime;
     }
 
@@ -55,14 +65,6 @@ public class CommentDTO {
     }
 
     public void setBoardNo(int boardNo) {
-        this.boardNo = boardNo;
-    }
-
-    public CommentDTO(int commentNo, String username, String commentTime, String commentContent, int boardNo) {
-        this.commentNo = commentNo;
-        this.username = username;
-        this.commentTime = commentTime;
-        this.commentContent = commentContent;
         this.boardNo = boardNo;
     }
 
