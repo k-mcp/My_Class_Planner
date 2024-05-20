@@ -25,11 +25,12 @@ public class SettingController {
     private MemberService memberService;
 
     @GetMapping("/settings")
-    public String settings(HttpSession session, Model model) {
+    public ModelAndView settings(HttpSession session, ModelAndView mv) {
         // 사용자 이름을 세션에서 가져와 모델에 추가
         String username = (String) session.getAttribute("username");
-        model.addAttribute("username", username);
-        return "settings/settings";
+        mv.addObject("username", username);
+        mv.setViewName("settings/settings");
+        return mv;
     }
 
 

@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.Objects;
-
 
 @Controller
 public class ContactusController {
@@ -28,7 +26,7 @@ public class ContactusController {
     public String contactUs(Model model, HttpSession session){
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
-        return "contactUs/contactUs";
+        return "home/contactUs";
     }
 
     @PostMapping("/contactUs")
@@ -51,7 +49,7 @@ public class ContactusController {
             e.printStackTrace();    // 에러 내용 콘솔에 출력
         }
 
-        return "contactus/contactUs";
+        return "home/contactUs";
 
     }
 }

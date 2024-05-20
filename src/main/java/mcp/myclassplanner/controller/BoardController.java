@@ -23,7 +23,7 @@ public class BoardController {
         this.boardService = boardService;
     }
 
-    @GetMapping("board")
+    @GetMapping("/board")
     public String board(Model model, @RequestParam(defaultValue = "0") int page, HttpSession session){
         Integer totalRecord = boardService.totalRecord();
         int totalPage = 1;
@@ -43,14 +43,14 @@ public class BoardController {
 
         return "board/board";
     }
-    @GetMapping("board/deletePost")
+    @GetMapping("/board/deletePost")
     public String deletePost(HttpSession session){
         int boardNo = (int) session.getAttribute("boardNo");
         boardService.deletePost(boardNo);
         return "redirect:/board";
     }
 
-    @GetMapping("board/view")
+    @GetMapping("/board/view")
     public String viewBoard(int boardNo, Model model, HttpSession session){
         BoardDTO boardDTO = boardService.viewByBoardNo(boardNo);
         List<CommentDTO> comment = boardService.viewCommentByBoardNo(boardNo);
@@ -68,7 +68,7 @@ public class BoardController {
         }
         return "board/view";
     }
-    @PostMapping("board/view")
+    @PostMapping("/board/view")
     public String comment(RedirectAttributes redirectAttributes, HttpSession session, HttpServletRequest request){
         Map<String, Object> map = new HashMap<>();
         String username =(String)session.getAttribute("username");
@@ -85,7 +85,7 @@ public class BoardController {
         return "redirect:/board/view?boardNo="+boardNo;
     }
 
-    @GetMapping("board/post")
+    @GetMapping("/board/post")
     public String postBoard(HttpSession session, Model model){
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
