@@ -124,7 +124,7 @@
         </div>
     </div>
 
-    <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none" style="font-weight: bold;">
+    <a href="/home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <span th:if="${username}" class="fs-4 ms-3">
             <div th:text="|Hello ${username}!|"></div>
         </span>
@@ -135,7 +135,7 @@
         <li class="nav-item">
             <a href="/home" class="nav-link text-white hover" aria-current="page">
                 <i class="bi bi-house"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         Home
                     </span>
             </a>
@@ -143,7 +143,7 @@
         <li>
             <a href="/course/add" class="nav-link text-white">
                 <i class="bi bi-calendar-plus"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         Add Courses
                     </span>
             </a>
@@ -151,7 +151,7 @@
         <li>
             <a href="/course/course" class="nav-link text-white">
                 <i class="bi bi-book"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         My Course
                     </span>
             </a>
@@ -159,7 +159,7 @@
         <li>
             <a href="/generate" class="nav-link text-white">
                 <i class="bi bi-phone-flip"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         Generate Plans
                     </span>
             </a>
@@ -167,7 +167,7 @@
         <li>
             <a href="/myplan" class="nav-link text-white">
                 <i class="bi bi-clock"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         My Plans
                     </span>
             </a>
@@ -175,7 +175,7 @@
         <li>
             <a href="/board" class="nav-link text-white">
                 <i class="bi bi-building"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         Community
                     </span>
 
@@ -192,7 +192,7 @@
         <li>
             <a href="/settings" class="nav-link text-white" th:if="${username != 'Guest'}">
                 <i class="bi bi-gear"></i>
-                <span class="ms-1">
+                    <span class="ms-1">
                         Settings
                     </span>
             </a>
@@ -204,7 +204,7 @@
         <li class="nav-item">
             <a href="/auth/logout" class="nav-link text-white">
                 <i class="bi bi-box-arrow-right"></i>
-                <span class="ms-2 fs-6">
+                    <span class="ms-2 fs-6">
                         Sign out
                     </span>
             </a>
