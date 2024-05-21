@@ -35,4 +35,9 @@ public class HomeController {
         return "common/loading";
     }
 
+    @GetMapping("/openai")
+    public String openai(){
+        return "openai/chatRoom";
+    }
+
 }
