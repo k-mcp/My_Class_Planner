@@ -12,7 +12,7 @@
         }
         .carousel-control-prev-icon,
         .carousel-control-next-icon {
-            background-color: black; /* Change icon background color */
+            background-color: #8BD4E0; /* Change icon background color */
             border-radius: 50%; /* Round the icons */
             width: 50px; /* Icon width */
             height: 50px; /* Icon height */
@@ -23,23 +23,44 @@
         .carousel-control-next-icon {
             padding-right: 10px; /* Adjust right icon padding */
         }
+        .how-to-use {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .how-to-use .icon {
+            font-size: 3rem;
+            color: #ffc107;
+            animation: blink 1.0s infinite;
+        }
+        .how-to-use .title {
+            font-weight: bold;
+            margin-left: 10px;
+            color: #8EBFA3; /* Change title color to specified color */
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
     </style>
 </head>
 <body>
 <div class="d-flex">
     <div th:replace="common/sidebar.html"></div>
     <div class="container mt-5">
-        <h2>Welcome! This is Home Page</h2>
-        <hr>
-        <div class="h2">How To Use</div>
-        <div id="exampleCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                <button type="button" data-bs-target="#exampleCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            </div>
+        <div class="how-to-use">
+            <i class="bi bi-lightbulb icon"></i>
+            <div class="h2 title">How To Use</div>
+        </div>
+        <div id="exampleCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1500"> <!-- 2초마다 자동으로 넘어가도록 설정 -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img src="/img/ex1.png" class="d-block w-100" alt="그림1">
@@ -67,6 +88,5 @@
             </button>
         </div>
     </div>
-</div>
 </body>
 </html>
