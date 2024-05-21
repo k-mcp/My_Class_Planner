@@ -6,18 +6,46 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-   <style>
-       input:focus {
-           border-color: #17a2b8; /* 원하는 색상으로 변경 */
-       }
-   </style>
+    <style>
+        .scrollable-container {
+            max-height: 650px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+        /* Other styling might be necessary to make it look as you want */
+        .MyCourse {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .MyCourse .icon {
+            font-size: 3rem;
+            color: #ffc107;
+            color: #ffc107;
+        }
+        .MyCourse .title {
+            font-weight: bold;
+            margin-left: 10px;
+            color: #8EBFA3; /* Change title color to specified color */
+        }
+
+    </style>
 </head>
 <body>
 <div class="d-flex"> <!-- Flex container -->
 
     <div th:replace="common/sidebar"></div>
     <div class="container mt-4">
-        <h2>My Course</h2>
+        <br>
+        <div class="MyCourse">
+            <i class="bi bi-book icon"></i>
+            <div class="h2 title">My Course</div>
+        </div>
         <form id="plansForm" action="/course/deleteCourse" method="POST">
             <div class="accordion" id="accordionExample">
                 <!-- Loop through courses -->
@@ -49,8 +77,8 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between mt-3">
-                <button type="submit" class="btn btn-danger">Delete Course</button>
-                <a href="/generate" class="btn btn-secondary">Go To generate <i class="bi bi-arrow-right"></i> </a>
+                <button type="submit" class="btn btn-danger" style="background-color: #636B73; border-color: transparent;">Delete Course</button>
+                <a href="/generate" class="btn btn-secondary" style="background-color: #17a2b8; border-color: transparent;">Go To Generate <i class="bi bi-arrow-right"></i> </a>
             </div>
         </form>
     </div>
