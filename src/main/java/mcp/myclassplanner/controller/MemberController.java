@@ -113,6 +113,21 @@ public class MemberController {
 
         }
     }
+    @GetMapping("/forgotpassword")
+    public String forgotpassword(String email, String authKey, HttpSession session){
+        Map<String, String> map = new HashMap<>();
+        map.put("email", email);
+        map.put("authKey", authKey);
+        int auth = memberService.authorize(map);
+        if(auth == 0){ // if error occurs
+            return "auth/fail";
+        }
+        else { // if succeed
+            session.setAttribute("email", email);
+            return "auth/resetPassword";
+
+        }
+    }
 
     @GetMapping(value="getAllMembers", produces = "application/json; charset=UTF-8")
     @ResponseBody
