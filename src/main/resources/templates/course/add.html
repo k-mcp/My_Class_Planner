@@ -33,6 +33,7 @@
             margin-left: 10px;
             color: #8EBFA3; /* Change title color to specified color */
         }
+
     </style>
 </head>
 <body>
@@ -46,22 +47,18 @@
             <div class="h2 title">Add Course</div>
         </div>
         <form id="courseForm" action="/course/add" method="post" onsubmit="return validateForm()">
-            <div class="mb-3">
-                <label for="courseName" class="form-label">Course Name</label>
-                <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Course Name" required>
-            </div>
+
+                <div class="mb-3">
+                    <label for="courseName" class="form-label" style="font-weight: bold; font-size: 1.2em; color: #636B73;">Course Name</label>
+                    <input type="text" class="form-control" id="courseName" name="courseName" placeholder="Course Name" required>
+                </div>
+
             <div id="sectionsContainer" class="mb-3">
                 <!-- Sections will be dynamically added here -->
             </div>
-            <div class="d-flex justify-content-between align-items-center">
-                <div>
-                    <button type="button" class="btn btn-primary mt-3" onclick="addSection()" style="background-color:#8EBFA3; border-color: transparent;">Add Section</button>
-                    <button type="submit" class="btn btn-success mt-3" style="background-color:#17a2b8; border-color: transparent;">Submit</button>
-                </div>
-                <div>
-                    <a href="/course/course" class="btn btn-secondary mt-3">Check My Courses <i class="bi bi-arrow-right"></i></a>
-                </div>
-            </div>
+            <button type="button" class="btn btn-primary mt-3" onclick="addSection()" style="background-color:#8EBFA3; border-color: transparent;">Add Section</button>
+            <button type="submit" class="btn btn-success mt-3" style="background-color:#17a2b8; border-color: transparent;">Submit</button>
+            <br><br><br>
         </form>
         <script>
             let sectionId = 0;
@@ -107,8 +104,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3 d-flex pe-3 align-items-center justify-content-end">
-                            <button type="button" class="btn btn-danger" onclick="removeSection(${sectionId})">Remove</button>
+                            <div class="col-md-3 d-flex pe-3 align-items-center justify-content-end">
+                            <button type="button" class="btn btn-danger" onclick="removeSection(${sectionId})" style="background-color: #636B73; border-color: transparent;">Remove</button>
                         </div>
                     </div>
                 </div>`;
@@ -131,7 +128,7 @@
             function validateForm() {
                 for (let i = 0; i < sectionId; i++) {
                     const startTimeInput = document.getElementById(`startTime-${i}`);
-                    const endTimeInput = document.getElementById(`endTime-${i}`);
+                    const endTimeInput = document
                     if (startTimeInput && endTimeInput) {
                         const startTime = startTimeInput.value;
                         const endTime = endTimeInput.value;
@@ -144,6 +141,8 @@
                 return true; // 모든 검사를 통과했다면 폼 제출을 허용합니다.
             }
         </script>
+
+        <!-- <div class="align-items-end"></div> -->
     </div>
 </div>
 </body>
