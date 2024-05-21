@@ -36,14 +36,14 @@
 
 </head>
 <body>
-  <div class="d-flex">
-    <div th:replace="common/sidebar.html"></div>
-    <div class="container mt-5 scrollable-container">
+<div class="d-flex"> <!-- Flex container -->
+    <div th:replace="common/sidebar" ></div>
+    <div class="container mt-5">
         <div class="MyPlans">
             <i class="bi bi-clock icon"></i>
-      <div class="h2 title">My Plans<div>
-      </div>
-        <form action="/deletePlans" method="post">
+            <div class="h2 title">My Course</div>
+        </div>
+          <form action="/deletePlans" method="post">
       <div class="accordion" id="accordionExample">
           <div th:each="groupEntry, groupIndex : ${groupedPlans}">
               <div class="accordion-item">
