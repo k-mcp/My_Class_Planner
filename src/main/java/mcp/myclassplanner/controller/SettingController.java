@@ -54,7 +54,32 @@ public ModelAndView updatePassword(ModelAndView mv,
     }
     mv.setViewName("redirect:/settings");
     return mv;
-}}
+    }
+
+    @PostMapping("/resetPassword")
+    public ModelAndView resetPassword(ModelAndView mv,
+                                       @RequestParam("newPassword") String newPassword,
+                                       @RequestParam("confirmPassword") String confirmPassword,
+                                       HttpSession session, RedirectAttributes redirectAttributes) {
+
+        int memberCode = memberService.getMemberCodeByEmail((String) session.getAttribute("email"));
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+            mv.setViewName("/");
+            return mv;
+        }
+        int affectedRows = memberService.updatePassword(memberCode, newPassword);
+        if (affectedRows > 0) {
+            redirectAttributes.addFlashAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "비밀번호 변경에 실패했습니다.");
+        }
+        mv.setViewName("redirect:/auth/signin");
+        return mv;
+    }
+
+
+}
 
 
 

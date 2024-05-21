@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .scrollable-container {
+            max-height: 650px; /* Adjust height as needed */
+            overflow-y: auto;
+        }
+        .MyPlans {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .MyPlans .icon {
+            font-size: 3rem;
+            color: #ffc107;
+        }
+        .MyPlans .title {
+            font-weight: bold;
+            margin-left: 10px;
+            color: #8EBFA3; /* Change title color to specified color */
+        }
+        /* Other styling might be necessary to make it look as you want */
+    </style>
+
 </head>
 <body>
-<style>
-    .scrollable-container {
-        max-height: 650px; /* Adjust height as needed */
-        overflow-y: auto;
-    }
-    /* Other styling might be necessary to make it look as you want */
-</style>
   <div class="d-flex">
     <div th:replace="common/sidebar.html"></div>
     <div class="container mt-5 scrollable-container">
-      <h2>Welcome! This is My Plans Page</h2>
+        <div class="MyPlans">
+            <i class="bi bi-clock icon"></i>
+      <div class="h2 title">My Plans<div>
+      </div>
         <form action="/deletePlans" method="post">
       <div class="accordion" id="accordionExample">
           <div th:each="groupEntry, groupIndex : ${groupedPlans}">
@@ -45,9 +72,9 @@
               </div>
           </div>
       </div>
-            <button type="submit" class="btn btn-danger mt-3">Delete Plans</button>
         </form>
     </div>
   </div>
+        <button type="submit" class="btn btn-danger mt-3">Delete Plans</button>
 </body>
 </html>
