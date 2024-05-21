@@ -12,17 +12,37 @@
 </head>
 
 <style>
-    .nav-link:hover {
-        color: #ffffff; /* Changes text color on hover */
-        background-color: #17a2b8; /* Changes background color on hover */
-        transition: all 0.3s ease-in-out; /* Smooth transition for hover effect */
+
+    .generate-plan {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+    .generate-plan .icon {
+        font-size: 3rem;
+        color: #ffc107;
+        color: #ffc107;
+    }
+    .generate-plan .title {
+        font-weight: bold;
+        margin-left: 10px;
+        color: #8EBFA3; /* Change title color to specified color */
     }
 </style>
 <div class="d-flex"> <!-- Flex container -->
 
     <div th:replace="common/sidebar" ></div>
-    <div class="container mt-4">
-        <h2>Generate Plans</h2>
+    <div class="container mt-5">
+        <div class="generate-plan">
+            <i class="bi bi-phone-flip icon"></i>
+            <div class="h2 title">Generate Plans</h2></div>
+        </div>
         <form id="plansForm" action="/generate" method="POST">
             <div class="accordion" id="accordionExample">
                 <!-- Loop through courses -->
@@ -55,7 +75,7 @@
                 </div>
 
             <div class="d-flex justify-content-between align-items-center mt-3">
-            <button type="submit" class="btn btn-primary mt-3">Generate</button>
+            <button type="submit" class="btn btn-primary mt-3" style="background-color: #878783; color: white">Generate</button>
             </div>
             </div>
         </form>
