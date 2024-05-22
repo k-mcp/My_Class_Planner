@@ -19,6 +19,24 @@
         <result property="boardNo" column="board_no"/>
     </resultMap>
 
+    <select id="findByTitle" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE board_title LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
+    <select id="findByContext" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE board_content LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
+    <select id="findByAuthor" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE username LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
     <select id="findAll" resultMap="BoardDTO" parameterType="int">
         SELECT * FROM tbl_board
         ORDER BY board_time DESC
