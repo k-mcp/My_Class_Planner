@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.BoardDTO;
 import mcp.myclassplanner.model.dto.CommentDTO;
 import mcp.myclassplanner.model.service.BoardService;
+import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +21,10 @@ import java.util.*;
 public class BoardController {
 
     private final BoardService boardService;
-    public BoardController(BoardService boardService){
+    private final MemberService memberService;
+    public BoardController(BoardService boardService, MemberService memberService){
         this.boardService = boardService;
+        this.memberService = memberService;
     }
 
     @GetMapping("board")
@@ -41,6 +44,7 @@ public class BoardController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("boardNo", page);
         model.addAttribute("page",page);
+        model.addAttribute("lev", memberService.getLev(memberCode));
 
         return "board/board";
     }
