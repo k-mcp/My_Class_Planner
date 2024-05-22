@@ -142,4 +142,7 @@ public class MemberService {
         return memberMapper.updatePassword(map);
     }
 
+    public int getLev(int memberCode) {
+        return memberMapper.getLev(memberCode);
+    }
 }
