@@ -166,4 +166,8 @@ public class MemberService {
             memberMapper.levUp(memberCode);
         }
     }
+
+    public int getExp(int memberCode) {
+        return memberMapper.getExp(memberCode);
+    }
 }
