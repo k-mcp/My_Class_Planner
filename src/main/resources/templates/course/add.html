@@ -137,6 +137,19 @@
                             return false; // 폼 제출을 막습니다.
                         }
                     }
+
+                    // 요일 체크 여부 확인
+                    const dayInputs = document.querySelectorAll(`#section-${i} .form-check-input`);
+                    let dayChecked = false;
+                    dayInputs.forEach(input => {
+                        if (input.checked) {
+                            dayChecked = true;
+                        }
+                    });
+                    if (!dayChecked) {
+                        alert("Please select at least one day for each section.");
+                        return false; // 폼 제출을 막습니다.
+                    }
                 }
                 return true; // 모든 검사를 통과했다면 폼 제출을 허용합니다.
             }
