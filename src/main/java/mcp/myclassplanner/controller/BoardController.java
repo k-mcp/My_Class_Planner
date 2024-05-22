@@ -44,7 +44,7 @@ public class BoardController {
         model.addAttribute("totalPage", totalPage);
         model.addAttribute("boardNo", page);
         model.addAttribute("page",page);
-        model.addAttribute("lev", memberService.getLev(memberCode));
+//        model.addAttribute("lev", memberService.getLev(memberCode));
 
         return "board/board";
     }

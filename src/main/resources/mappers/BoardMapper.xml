@@ -9,6 +9,7 @@
         <result property="boardTime" column="board_time"/>
         <result property="boardTitle" column="board_title"/>
         <result property="boardContent" column="board_content"/>
+        <result property="lev" column="lev"/>
     </resultMap>
 
     <resultMap id="CommentDTO" type="mcp.myclassplanner.model.dto.CommentDTO">
@@ -20,27 +21,63 @@
     </resultMap>
 
     <select id="findByTitle" resultMap="BoardDTO" parameterType="string">
-        SELECT * FROM tbl_board
+        SELECT
+        a.board_no,
+        a.username,
+        a.board_time,
+        a.board_title,
+        a.board_content,
+        b.lev
+        FROM tbl_board a
+        left join tbl_member b
+        on a.username = b.username
         WHERE board_title LIKE CONCAT('%', #{searchValue}, '%')
         ORDER BY board_time DESC
     </select>
 
     <select id="findByContext" resultMap="BoardDTO" parameterType="string">
-        SELECT * FROM tbl_board
+        SELECT
+        a.board_no,
+        a.username,
+        a.board_time,
+        a.board_title,
+        a.board_content,
+        b.lev
+        FROM tbl_board a
+        left join tbl_member b
+        on a.username = b.username
         WHERE board_content LIKE CONCAT('%', #{searchValue}, '%')
         ORDER BY board_time DESC
     </select>
 
     <select id="findByAuthor" resultMap="BoardDTO" parameterType="string">
-        SELECT * FROM tbl_board
+        SELECT
+        a.board_no,
+        a.username,
+        a.board_time,
+        a.board_title,
+        a.board_content,
+        b.lev
+        FROM tbl_board a
+        left join tbl_member b
+        on a.username = b.username
         WHERE username LIKE CONCAT('%', #{searchValue}, '%')
         ORDER BY board_time DESC
     </select>
 
     <select id="findAll" resultMap="BoardDTO" parameterType="int">
-        SELECT * FROM tbl_board
+        SELECT
+        a.board_no,
+        a.username,
+        a.board_time,
+        a.board_title,
+        a.board_content,
+        b.lev
+        FROM tbl_board a
+        left join tbl_member b
+        on a.username = b.username
         ORDER BY board_time DESC
-        LIMIT 10 OFFSET #{offset}
+        LIMIT 10 OFFSET 0;
     </select>
     <select id="viewByBoardNo" resultMap="BoardDTO" parameterType="int">
         SELECT * FROM tbl_board

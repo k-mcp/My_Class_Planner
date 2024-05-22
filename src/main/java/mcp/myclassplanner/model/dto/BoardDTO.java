@@ -6,20 +6,22 @@ public class BoardDTO {
     private String boardTime;
     private String boardTitle;
     private String boardContent;
+    private int lev;
+
+    public int getBoardNo() {
+        return boardNo;
+    }
 
     @Override
     public String toString() {
-        return "BoardDTO{" +
+        return "BoardAndRankDTO{" +
                 "boardNo=" + boardNo +
                 ", username='" + username + '\'' +
                 ", boardTime='" + boardTime + '\'' +
                 ", boardTitle='" + boardTitle + '\'' +
                 ", boardContent='" + boardContent + '\'' +
+                ", lev=" + lev +
                 '}';
-    }
-
-    public int getBoardNo() {
-        return boardNo;
     }
 
     public void setBoardNo(int boardNo) {
@@ -58,12 +60,21 @@ public class BoardDTO {
         this.boardContent = boardContent;
     }
 
-    public BoardDTO(int boardNo, String username, String boardTime, String boardTitle, String boardContent) {
+    public int getLev() {
+        return lev;
+    }
+
+    public void setLev(int lev) {
+        this.lev = lev;
+    }
+
+    public BoardDTO(int boardNo, String username, String boardTime, String boardTitle, String boardContent, int lev) {
         this.boardNo = boardNo;
         this.username = username;
         this.boardTime = boardTime;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
+        this.lev = lev;
     }
 
     public BoardDTO() {

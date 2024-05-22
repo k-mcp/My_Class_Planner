@@ -93,8 +93,13 @@
                         <tbody>
                         <tr th:each="board : ${boardPage}">
                             <td><a th:href="@{/board/view(boardNo=${board.boardNo})}" th:text="${board.boardTitle}" style="text-decoration: none">Title</a></td>
-                            <td>
-                                <img class="rankImage ms-2" th:src="@{img/rank_1_red.png}" alt="lev">
+                            <td th:switch="${board.lev}">
+                                <img th:case="1" class="rankImage ms-2" th:src="@{img/rank_1_red.png}" alt="lev">
+                                <img th:case="2" class="rankImage ms-2" th:src="@{img/rank_2_orange.png}" alt="lev">
+                                <img th:case="3" class="rankImage ms-2" th:src="@{img/rank_3_yellow.png}" alt="lev">
+                                <img th:case="4" class="rankImage ms-2" th:src="@{img/rank_4_green.png}" alt="lev">
+                                <img th:case="5" class="rankImage ms-2" th:src="@{img/rank_5_blue.png}" alt="lev">
+                                <img th:case="6" class="rankImage ms-2" th:src="@{img/rank_admin.png}" alt="lev">
                             </td>
                             <td th:text="${board.username}">
                                 Username
