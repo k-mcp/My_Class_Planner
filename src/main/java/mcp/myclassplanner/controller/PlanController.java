@@ -8,6 +8,7 @@ import mcp.myclassplanner.model.dto.PlanDTO;
 import mcp.myclassplanner.model.dto.ScheduleDTO;
 import mcp.myclassplanner.model.dto.SectionDTO;
 import mcp.myclassplanner.model.service.CourseService;
+import mcp.myclassplanner.model.service.MemberService;
 import mcp.myclassplanner.model.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.lang.reflect.Member;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -25,11 +27,12 @@ public class PlanController {
 
     private final CourseService courseService;
     private final PlanService planService;
-
+    private final MemberService memberService;
     @Autowired
-    public PlanController(CourseService courseService, PlanService planService) {
+    public PlanController(CourseService courseService, PlanService planService, MemberService memberService) {
         this.courseService = courseService;
         this.planService = planService;
+        this.memberService = memberService;
     }
 
     @GetMapping("/generate")
@@ -71,6 +74,10 @@ public class PlanController {
         }
         int memberCode = (int) session.getAttribute("memberCode");
         planService.generatePro(courses,memberCode);
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 3);
+        memberService.addExp(exMap);
         return "redirect:/generatePro";
     }
     @GetMapping("generatePro")
@@ -98,6 +105,11 @@ public class PlanController {
             String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             planService.addNewPlan(i);
         }
+        int memberCode = (int) session.getAttribute("memberCode");
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 1);
+        memberService.addExp(exMap);
         return "redirect:/myplan";
     }
     @GetMapping("myplan")
@@ -125,6 +137,11 @@ public class PlanController {
             String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             planService.deletePlan(i);
         }
+        int memberCode = (int) session.getAttribute("memberCode");
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 1);
+        memberService.addExp(exMap);
         return "redirect:/myplan";
     }
 }

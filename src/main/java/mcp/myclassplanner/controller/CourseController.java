@@ -37,6 +37,10 @@ public class CourseController {
             String courseName = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             courseService.deleteCourse(courseName, memberCode);
         }
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 1);
+        memberService.addExp(exMap);
         return "redirect:/course/course";
     }
 
@@ -97,10 +101,10 @@ public class CourseController {
         courseDTO.setMemberCode(memberCode);
 
         courseService.addCourse(courseDTO);
-        Map<String, Integer> map = new HashMap<>();
-        map.put("memberCode", memberCode);
-        map.put("exp", 4);
-        memberService.addExp(map);
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 1);
+        memberService.addExp(exMap);
 
         return "redirect:/course/course";
     }
