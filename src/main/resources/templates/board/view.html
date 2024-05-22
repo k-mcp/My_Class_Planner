@@ -13,8 +13,11 @@
     <link href="/css/articles/article-content.css" rel="stylesheet">
 </head>
 
-<body>
 <style>
+    .rankImage{
+        width: 20px;
+        height: 20px;
+    }
     .sidebar {
         position: fixed; /* 고정 위치 */
         top: 0;
@@ -31,6 +34,7 @@
         overflow-y: auto; /* 스크롤 가능 */
     }
 </style>
+<body>
 
 <!--<header th:replace="header :: header"></header>-->
 <div class="d-flex">
@@ -39,10 +43,19 @@
         <header id="article-header" class="py-5 text-center">
             <h1 class="article-title" th:text="${boardDTO.boardTitle}">첫 번째 글</h1>
             <div class="article-meta">
+
+                <span th:switch="${rank}">
+                    <img th:case="1" class="rankImage ms-2" th:src="@{/img/rank_1_red.png}" alt="lev">
+                    <img th:case="2" class="rankImage ms-2" th:src="@{/img/rank_2_orange.png}" alt="lev">
+                    <img th:case="3" class="rankImage ms-2" th:src="@{/img/rank_3_yellow.png}" alt="lev">
+                    <img th:case="4" class="rankImage ms-2" th:src="@{/img/rank_4_green.png}" alt="lev">
+                    <img th:case="5" class="rankImage ms-2" th:src="@{/img/rank_5_blue.png}" alt="lev">
+                    <img th:case="6" class="rankImage ms-2" th:src="@{/img/rank_admin.png}" alt="lev">
+                </span>
                 <span th:text="${boardDTO.username}">nana</span>
                 <span> | </span>
                 <time th:text="${boardDTO.boardTime}">2022-01-01</time>
-            </div>
+                </div>
         </header>
 
         <div class="row g-4">
@@ -73,36 +86,44 @@
                 </form>
 
                 <ul id="article-comments" class="col-md-10 col-lg-8 pt-3">
-                    <li th:each="comment : ${commentDTOs}">
+                    <div th:each="comment : ${commentDTOs}">
                         <div class="row">
                             <div class="col-md-10 col-lg-9">
+                            <span th:switch="${comment.rank}">
+                                <img th:case="1" class="rankImage ms-2" th:src="@{/img/rank_1_red.png}" alt="lev">
+                                <img th:case="2" class="rankImage ms-2" th:src="@{/img/rank_2_orange.png}" alt="lev">
+                                <img th:case="3" class="rankImage ms-2" th:src="@{/img/rank_3_yellow.png}" alt="lev">
+                                <img th:case="4" class="rankImage ms-2" th:src="@{/img/rank_4_green.png}" alt="lev">
+                                <img th:case="5" class="rankImage ms-2" th:src="@{/img/rank_5_blue.png}" alt="lev">
+                                <img th:case="6" class="rankImage ms-2" th:src="@{/img/rank_admin.png}" alt="lev">
+                            </span>
                                 <strong th:text="${comment.username}">Username</strong>
                                 <small><time th:text="${comment.commentTime}">Comment Time</time></small>
-                                <p th:text="${comment.commentContent}">Comment Content</p>
+                                <p class="ms-5" th:text="${comment.commentContent}">Comment Content</p>
                             </div>
                         </div>
-                    </li>
+                    </div>
                 </ul>
 
             </section>
         </div>
 
-        <div class="row g-5">
-            <nav id="pagination" aria-label="Page navigation">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo; prev</span>
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">next &raquo;</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+<!--        <div class="row g-5">-->
+<!--            <nav id="pagination" aria-label="Page navigation">-->
+<!--                <ul class="pagination">-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" href="#" aria-label="Previous">-->
+<!--                            <span aria-hidden="true">&laquo; prev</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li class="page-item">-->
+<!--                        <a class="page-link" href="#" aria-label="Next">-->
+<!--                            <span aria-hidden="true">next &raquo;</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
+<!--        </div>-->
     </div>
 </div>
 

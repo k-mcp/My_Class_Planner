@@ -67,6 +67,7 @@ public class BoardController {
         model.addAttribute("username", username);
         model.addAttribute("memberCode", memberCode);
         model.addAttribute("boardNo", boardNo);
+        model.addAttribute("rank",boardDTO.getLev());
         boardService.getAuthor(boardNo);
         if(boardService.getAuthor(boardNo).equals(username)){
             model.addAttribute("author", true);
