@@ -26,10 +26,4 @@ public interface BoardMapper {
     void deletePost(int boardNo);
 
     void deletePostComment(int boardNo);
-
-    List<BoardDTO> findByTitle(String searchValue);
-
-    List<BoardDTO> findByContext(String searchValue);
-
-    List<BoardDTO> findByAuthor(String searchValue);
 }

@@ -48,16 +48,4 @@ public class BoardService {
         boardMapper.deletePost(boardNo);
         boardMapper.deletePostComment(boardNo);
     }
-
-    public List<BoardDTO> findByTitle(String searchValue) {
-        return boardMapper.findByTitle(searchValue);
-    }
-
-    public List<BoardDTO> findByContext(String searchValue) {
-        return boardMapper.findByContext(searchValue);
-    }
-
-    public List<BoardDTO> findByAuthor(String searchValue) {
-        return boardMapper.findByAuthor(searchValue);
-    }
 }
