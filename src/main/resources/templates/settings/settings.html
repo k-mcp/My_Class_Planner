@@ -27,6 +27,12 @@
             margin-left: 10px;
             color: #8EBFA3; /* Change title color to specified color */
         }
+        .form-container {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
         .input-field {
             width: 100%;
         }
@@ -77,6 +83,7 @@
             height: auto;
             margin-right: 20px; /* Adjust the spacing between image and file description */
         }
+
     </style>
     <script th:inline="javascript">
         /*<![CDATA[*/
@@ -100,6 +107,7 @@
     </script>
 </head>
 <body>
+
 <div class="d-flex">
     <div th:replace="common/sidebar.html"></div>
     <div class="container mt-5">
@@ -108,6 +116,7 @@
             <div class="h2 title">Settings</div>
         </div>
 
+        <div class="form-container mt-5">
         <div class="section-title">Image File Upload</div>
         <div class="file-upload-container">
             <form action="single-file" method="post" enctype="multipart/form-data" class="mb-3">
@@ -208,6 +217,7 @@
             </div>
         </form>
         <div style="margin-top: 50px;"></div>
+    </div>
     </div>
 </div>
 </body>
