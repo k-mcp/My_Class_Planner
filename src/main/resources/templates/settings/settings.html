@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <style>
         .input-field {
-            width: 100%;
+            width: 80%; /* Adjusted from 100% to 80% */
         }
         .form-label {
             font-weight: bold;
@@ -18,10 +18,11 @@
             display: flex;
             align-items: center;
             margin-bottom: 1rem;
+            justify-content: center; /* Added for centering the form group */
         }
         .btn-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: center; /* Changed from flex-end to center */
         }
         .section-title {
             margin-top: 40px;
@@ -31,52 +32,12 @@
             border-bottom: 2px solid #ddd;
             padding-bottom: 10px;
         }
-        .file-upload-container {
-            margin-bottom: 20px;
+        .password-form-container {
+            width: 50%; /* Added to control the width of the password form */
+            margin: auto; /* Center the form horizontally */
         }
-        .file-upload-container input[type="file"] {
-            display: none;
-        }
-        .custom-file-upload {
-            display: inline-block;
-            padding: 6px 12px;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .uploaded-image {
-            margin-top: 20px;
-        }
-        .image-upload-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .image-upload-wrapper img {
-            width: 300px; /* Adjust the width as needed */
-            height: auto;
-            margin-right: 20px; /* Adjust the spacing between image and file description */
-        }
+
     </style>
-    <script th:inline="javascript">
-        /*<![CDATA[*/
-        var message = /*[[${message}]]*/ 'null';
-        if (message && message !== 'null') {
-            window.onload = function () {
-                alert(message);
-            }
-        }
-        function updateFileName(input) {
-            var fileName = input.files[0] ? input.files[0].name : "No file chosen";
-            document.getElementById("fileName").textContent = fileName;
-            // Update the image preview
-            var fileReader = new FileReader();
-            fileReader.onload = function(e) {
-                document.getElementById("uploadedImage").src = e.target.result;
-            };
-            fileReader.readAsDataURL(input.files[0]);
-        }
-        /*]]>*/
-    </script>
 </head>
 <body>
 <div class="d-flex">
@@ -84,66 +45,40 @@
     <div class="container mt-5">
 
         <div class="section-title">User Info</div>
-        <div class="file-upload-container">
-            <div class="image-upload-wrapper">
-                <img id="uploadedImage" th:src="@{'/img/' + ${lev}}" style="width: 250px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-4 bg-success">
+                    <img id="uploadedImage" th:src="@{'/img/' + ${lev}}" style="width: 250px;">
+                </div>
+                <div class="col-8">
+                    <div class="h3" th:text="|Your rank is ${rank}|"></div>
+                    <div th:text="|다음레벨까지 - ${nextRank} exp|"></div>
+                </div>
+                <div>
+                    How to Earn exp
+                </div>
+
 
             </div>
+<!--                <div th:text="Your rank is"></div>-->
         </div>
-
-        <div class="alert alert-info" th:if="${message != null}" th:text="${message}"></div>
-
-        <div class="uploaded-image" th:if="${img != null}">
-            <img th:src="${img}" class="img-fluid" style="max-width: 500px; height: auto;">
-        </div>
-
-        <div class="section-title">Update User Information</div>
-        <form th:action="@{/updateUserInfo}" method="post">
-            <div class="form-group">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control input-field" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control input-field" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control input-field" id="phone" name="phone" required>
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn btn-primary">Update Info</button>
-            </div>
-        </form>
 
         <div class="section-title">Change Password</div>
-        <form th:action="@{/updatePassword}" method="post">
-            <div class="form-group">
-                <label for="newPassword" class="form-label">New Password</label>
-                <input type="password" class="form-control input-field" id="newPassword" name="newPassword" required minlength="6">
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword" class="form-label">New Password Confirmation</label>
-                <input type="password" class="form-control input-field" id="confirmPassword" name="confirmPassword" required minlength="6">
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn btn-primary">Change Password</button>
-            </div>
-        </form>
-
-        <div class="section-title">Page Visibility Settings</div>
-        <form th:action="@{/updatePageVisibility}" method="post">
-            <div class="form-group">
-                <label for="pageVisibility" class="form-label">Page Visibility</label>
-                <select id="pageVisibility" name="pageVisibility" class="form-control input-field">
-                    <option value="public">Public</option>
-                    <option value="private">Private</option>
-                </select>
-            </div>
-            <div class="btn-container">
-                <button type="submit" class="btn btn-primary">Update Visibility</button>
-            </div>
-        </form>
+        <div class="password-form-container">
+            <form th:action="@{/updatePassword}" method="post">
+                <div class="form-group">
+                    <label for="newPassword" class="form-label">New Password</label>
+                    <input type="password" class="form-control input-field" id="newPassword" name="newPassword" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">New Password Confirmation</label>
+                    <input type="password" class="form-control input-field" id="confirmPassword" name="confirmPassword" required minlength="6">
+                </div>
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                </div>
+            </form>
+        </div>
 
     </div>
 </div>
