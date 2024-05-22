@@ -33,17 +33,17 @@
 
 
 
-<!--    <select id="signInWithAuth" parameterType="map" resultType="string">-->
-<!--        select email-->
-<!--        from tbl_member-->
-<!--        where username = #{username} AND password = #{password} AND authCode = 1-->
+    <!--    <select id="signInWithAuth" parameterType="map" resultType="string">-->
+    <!--        select email-->
+    <!--        from tbl_member-->
+    <!--        where username = #{username} AND password = #{password} AND authCode = 1-->
 
-<!--    <select id="signIn" parameterType="string" resultType="string">-->
-<!--        select password-->
-<!--        from tbl_member-->
-<!--        where username = #{username};-->
+    <!--    <select id="signIn" parameterType="string" resultType="string">-->
+    <!--        select password-->
+    <!--        from tbl_member-->
+    <!--        where username = #{username};-->
 
-<!--    </select>-->
+    <!--    </select>-->
 
     <select id="getEmail">
         select email
@@ -77,21 +77,30 @@
             useGeneratedKeys="true" keyProperty="memberCode">
         INSERT INTO tbl_member
         (
-            username,
-            password,
-            email,
-            auth_code,
-            auth_status
+        username,
+        password,
+        email,
+        auth_code,
+        auth_status,
+        lev,
+        ex
         )
         VALUES
         (
-            #{username},
-            #{password},
-            #{email},
-            #{authCode},
-            #{authStatus}
+        #{username},
+        #{password},
+        #{email},
+        #{authCode},
+        #{authStatus},
+        1,
+        0
         )
     </insert>
+    <select id="getLev" parameterType="int" resultType="int">
+        select lev
+        from tbl_member
+        where member_code = #{memberCode}
+    </select>
     <update id="authStatus" parameterType="hashmap">
         update tbl_member set auth_status = 1
         where email = #{email};
@@ -101,8 +110,8 @@
         from tbl_member
         where email = #{email}
     </select>
-        
-   <update id="updatePassword" parameterType="hashmap">
+
+    <update id="updatePassword" parameterType="hashmap">
         update tbl_member
         set password = #{newPassword}
         where member_code = #{memberCode};
