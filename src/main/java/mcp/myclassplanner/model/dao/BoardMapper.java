@@ -19,7 +19,7 @@ public interface BoardMapper {
 
     void postPro(Map<String, Object> map);
 
-    int comment(Map map);
+    int comment(Map<String, Object> map);
 
     String getAuthor(int boardNo);
 

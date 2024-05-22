@@ -97,6 +97,10 @@ public class CourseController {
         courseDTO.setMemberCode(memberCode);
 
         courseService.addCourse(courseDTO);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("memberCode", memberCode);
+        map.put("exp", 4);
+        memberService.addExp(map);
 
         return "redirect:/course/course";
     }

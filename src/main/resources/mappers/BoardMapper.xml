@@ -98,4 +98,5 @@
         delete from tbl_comment
         where board_no = #{boardNo};
     </delete>
+
 </mapper>

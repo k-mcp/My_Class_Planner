@@ -145,4 +145,25 @@ public class MemberService {
     public int getLev(int memberCode) {
         return memberMapper.getLev(memberCode);
     }
+
+    public void addExp(Map<String, Integer> map) {
+        memberMapper.addExp(map);
+        int memberCode = map.get("memberCode");
+        int lev = memberMapper.getLev(memberCode);
+        if (lev == 1 && memberMapper.getExp(memberCode) > 10){
+            memberMapper.levUp(memberCode);
+        }
+        else if (lev == 2 && memberMapper.getExp(memberCode) > 30){
+            memberMapper.levUp(memberCode);
+        }
+        else if (lev == 3 && memberMapper.getExp(memberCode) > 60){
+            memberMapper.levUp(memberCode);
+        }
+        else if (lev == 4 && memberMapper.getExp(memberCode) > 100){
+            memberMapper.levUp(memberCode);
+        }
+        else if (lev == 5 && memberMapper.getExp(memberCode) > 10000){
+            memberMapper.levUp(memberCode);
+        }
+    }
 }

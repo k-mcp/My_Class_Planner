@@ -35,7 +35,7 @@ public class BoardService {
         boardMapper.postPro(map);
     }
 
-    public int comment(Map map) {
+    public int comment(Map<String, Object> map) {
 
         return boardMapper.comment(map);
     }

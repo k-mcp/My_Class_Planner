@@ -37,4 +37,10 @@ public interface MemberMapper {
     int updatePassword(Map<String, Object> map);
 
     int getLev(int memberCode);
+
+    void addExp(Map<String, Integer> map);
+
+    int getExp(int memberCode);
+
+    void levUp(int memberCode);
 }

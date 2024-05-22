@@ -116,4 +116,18 @@
         set password = #{newPassword}
         where member_code = #{memberCode};
     </update>
+    <select id="getExp" parameterType="int">
+        select ex from tbl_member
+        where member_code = #{memberCode};
+    </select>
+    <update id="levUp" parameterType="int">
+        update tbl_member
+        set lev = lev + 1;
+        where member_code = #{memberCode};
+    </update>
+    <update id="addExp" parameterType="hashmap">
+        update tbl_member
+        set ex = ex + #{exp}
+        where member_code = #{memberCode};
+    </update>
 </mapper>
