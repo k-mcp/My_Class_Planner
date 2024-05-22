@@ -35,4 +35,6 @@ public interface MemberMapper {
     int getMemberCodeByEmail(String email);
 
     int updatePassword(Map<String, Object> map);
+
+    int getLev(int memberCode);
 }

@@ -25,42 +25,64 @@ public class SettingController {
     private MemberService memberService;
 
     @GetMapping("/settings")
-    public String settings(HttpSession session, Model model) {
+    public ModelAndView settings(HttpSession session, ModelAndView mv) {
         // 사용자 이름을 세션에서 가져와 모델에 추가
         String username = (String) session.getAttribute("username");
-        model.addAttribute("username", username);
-        return "settings/settings";
-    }
-
-
-@PostMapping("/updatePassword")
-public ModelAndView updatePassword(ModelAndView mv,
-                                   @RequestParam("newPassword") String newPassword,
-                                   @RequestParam("confirmPassword") String confirmPassword,
-                                   HttpSession session, RedirectAttributes redirectAttributes) {
-
-    int memberCode = (int) session.getAttribute("memberCode");
-
-    if (!newPassword.equals(confirmPassword)) {
-        redirectAttributes.addFlashAttribute("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-        mv.setViewName("redirect:/settings");
+        mv.addObject("username", username);
+        int lev = memberService.getLev((int)session.getAttribute("memberCode"));
+        switch (lev) {
+            case 1:
+                mv.addObject("lev", "rank_1_red.png");
+                break;
+            case 2:
+                mv.addObject("lev", "rank_2_orange.png");
+                break;
+            case 3:
+                mv.addObject("lev", "rank_3_yellow.png");
+                break;
+            case 4:
+                mv.addObject("lev", "rank_4_green.png");
+                break;
+            case 5:
+                mv.addObject("lev", "rank_5_blue.png");
+                break;
+            case 6:
+                mv.addObject("lev", "rank_admin.png");
+                break;
+        }
+        mv.setViewName("settings/settings");
         return mv;
     }
-    int affectedRows = memberService.updatePassword(memberCode, newPassword);
-    if (affectedRows > 0) {
-        redirectAttributes.addFlashAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
-    } else {
-        redirectAttributes.addFlashAttribute("message", "비밀번호 변경에 실패했습니다.");
-    }
-    mv.setViewName("redirect:/settings");
-    return mv;
+
+
+    @PostMapping("/updatePassword")
+    public ModelAndView updatePassword(ModelAndView mv,
+                                       @RequestParam("newPassword") String newPassword,
+                                       @RequestParam("confirmPassword") String confirmPassword,
+                                       HttpSession session, RedirectAttributes redirectAttributes) {
+
+        int memberCode = (int) session.getAttribute("memberCode");
+
+        if (!newPassword.equals(confirmPassword)) {
+            redirectAttributes.addFlashAttribute("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
+            mv.setViewName("redirect:/settings");
+            return mv;
+        }
+        int affectedRows = memberService.updatePassword(memberCode, newPassword);
+        if (affectedRows > 0) {
+            redirectAttributes.addFlashAttribute("message", "비밀번호가 성공적으로 변경되었습니다.");
+        } else {
+            redirectAttributes.addFlashAttribute("message", "비밀번호 변경에 실패했습니다.");
+        }
+        mv.setViewName("redirect:/settings");
+        return mv;
     }
 
     @PostMapping("/resetPassword")
     public ModelAndView resetPassword(ModelAndView mv,
-                                       @RequestParam("newPassword") String newPassword,
-                                       @RequestParam("confirmPassword") String confirmPassword,
-                                       HttpSession session, RedirectAttributes redirectAttributes) {
+                                      @RequestParam("newPassword") String newPassword,
+                                      @RequestParam("confirmPassword") String confirmPassword,
+                                      HttpSession session, RedirectAttributes redirectAttributes) {
 
         int memberCode = memberService.getMemberCodeByEmail((String) session.getAttribute("email"));
         if (!newPassword.equals(confirmPassword)) {

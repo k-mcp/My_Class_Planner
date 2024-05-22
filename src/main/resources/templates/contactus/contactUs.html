@@ -27,6 +27,12 @@
             margin-left: 10px;
             color: #8EBFA3; /* Change title color to specified color */
         }
+        .form-container {
+            background-color: #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -39,6 +45,7 @@
             <i class="bi bi-envelope icon"></i>
             <div class="h2 title">Contact Us</div>
         </div>
+        <div class="form-container mt-5">
         <div class="text-center mb-4">
             <h1><b>FAQ</b></h1>
         </div>
@@ -183,7 +190,7 @@
         <hr style="margin-top: 150px;">
 
         <!-- Contact Section -->
-        <div class="container bg-white" style="--bs-bg-opacity: .3; margin-top: 160px; margin-bottom: 100px;">
+
             <div class="container mt-5">
                 <section class="contact-section">
                     <!-- Logo -->
@@ -202,37 +209,38 @@
                         </div>
                     </div>
 
-                    <div class="container">
-                        <div class="row justify-content-center"> <!-- Horizontally center the input fields -->
-                            <div class="col-md-6">
-                                <form th:action="@{/contactUs}" method="post" class="contact-form">
-                                    <!--Username-->
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Username</label>
-                                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Username" required>
-                                    </div>
-                                    <!--Email-->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Your Email</label>
-                                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
-                                    </div>
-                                    <!--Message-->
-                                    <div class="mb-3">
-                                        <label for="message" class="form-label">Message</label>
-                                        <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
-                                    </div>
-                                    <!--Submit button-->
-                                    <button style="align-items: center; background-color: #878783; color: white" type="submit" class="btn btn-dark">Submit</button>
-                                    <br>
-                                </form>
-                            </div>
+
+                    <div class="row justify-content-center"> <!-- Horizontally center the input fields -->
+                        <div class="col-md-6">
+                            <form th:action="@{/contactUs}" method="post" class="contact-form">
+                                <!--Username-->
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Username</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your Username" required>
+                                </div>
+                                <!--Email-->
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Your Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                                </div>
+                                <!--Message-->
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+                                </div>
+                                <!--Submit button-->
+                                <button style="align-items: center; background-color: #ffc107; color: white; border: none;" type="submit" class="btn btn-dark">Submit</button>
+                                <br>
+                            </form>
                         </div>
                     </div>
+
                 </section>
             </div>
         </div>
 
     </div>
+</div>
 </div>
 </body>
 </html>

@@ -19,6 +19,24 @@
         <result property="boardNo" column="board_no"/>
     </resultMap>
 
+    <select id="findByTitle" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE board_title LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
+    <select id="findByContext" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE board_content LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
+    <select id="findByAuthor" resultMap="BoardDTO" parameterType="string">
+        SELECT * FROM tbl_board
+        WHERE username LIKE CONCAT('%', #{searchValue}, '%')
+        ORDER BY board_time DESC
+    </select>
+
     <select id="findAll" resultMap="BoardDTO" parameterType="int">
         SELECT * FROM tbl_board
         ORDER BY board_time DESC
@@ -56,16 +74,16 @@
     <insert id="comment" parameterType="hashMap" useGeneratedKeys="true" keyProperty="comment_no">
         insert into tbl_comment
         (
-            username,
-            comment_time,
-            comment_content,
-            board_no
+        username,
+        comment_time,
+        comment_content,
+        board_no
         ) values
         (
-            #{username},
-            #{commentTime},
-            #{comment},
-            #{boardNo}
+        #{username},
+        #{commentTime},
+        #{comment},
+        #{boardNo}
         )
     </insert>
     <select id="getAuthor" parameterType="int" resultType="string">
