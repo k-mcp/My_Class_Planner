@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.net.http.HttpRequest;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -108,6 +109,30 @@ public class BoardController {
         }
         boardService.postPro(map);
 
+        return "redirect:/board";
+    }
+    @GetMapping("/searchBy")
+    public String searchPostByTitle(String searchType, String searchValue, Model model, HttpSession session){
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("notShow", true);
+        List<BoardDTO> boardDTOList;
+        switch (searchType) {
+            case "Title":
+                boardDTOList = boardService.findByTitle(searchValue);
+                model.addAttribute("boardPage", boardDTOList);
+                model.addAttribute("username", username);
+                return "board/board";
+            case "Context":
+                boardDTOList = boardService.findByContext(searchValue);
+                model.addAttribute("boardPage", boardDTOList);
+                model.addAttribute("username", username);
+                return "board/board";
+            case "Author":
+                boardDTOList = boardService.findByAuthor(searchValue);
+                model.addAttribute("boardPage", boardDTOList);
+                model.addAttribute("username", username);
+                return "board/board";
+        }
         return "redirect:/board";
     }
 }
