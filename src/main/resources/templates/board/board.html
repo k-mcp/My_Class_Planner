@@ -36,6 +36,12 @@
             border-radius: 10px;
             margin-top: 20px;
         }
+        
+        .narrow-table {
+            width: 90%; /* 테이블 폭을 원하는 값으로 조정 */
+            margin: auto; /* 가운데 정렬 */
+        }
+
     </style>
 </head>
 <body>
@@ -81,7 +87,9 @@
             <br>
 
         <div class="row">
-                    <table class="table" id="article-table">
+                     <div class="table-responsive"> <!-- 테이블 반응형 컨테이너 -->
+                    <table class="table narrow-table" id="article-table"> <!-- narrow-table 클래스 추가 -->
+
                         <thead>
                         <tr>
                             <th class="title col-5"><a>Title</a></th>
