@@ -30,33 +30,9 @@ public class SettingController {
         String username = (String) session.getAttribute("username");
         mv.addObject("username", username);
         int lev = memberService.getLev((int)session.getAttribute("memberCode"));
-        switch (lev) {
-            case 1:
-                mv.addObject("lev", "rank_1_red.png");
-                mv.addObject("rank", lev);
-                break;
-            case 2:
-                mv.addObject("lev", "rank_2_orange.png");
-                mv.addObject("rank", lev);
-                break;
-            case 3:
-                mv.addObject("lev", "rank_3_yellow.png");
-                mv.addObject("rank", lev);
-                break;
-            case 4:
-                mv.addObject("lev", "rank_4_green.png");
-                mv.addObject("rank", lev);
-                break;
-            case 5:
-                mv.addObject("lev", "rank_5_blue.png");
-                mv.addObject("rank", lev);
-                break;
-            case 6:
-                mv.addObject("lev", "rank_admin.png");
-                mv.addObject("rank", "Admin");
-                mv.addObject("nextRank", "0");
-                break;
-        }
+        mv.addObject("rank", lev);
+        int exp = memberService.getExp((int)session.getAttribute("memberCode"));
+        mv.addObject("nextRank",exp);
         mv.setViewName("settings/settings");
         return mv;
     }
