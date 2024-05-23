@@ -111,7 +111,7 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <div class="h3" style="color: #636B73; font-weight=bold;" th:text="|Your rank is ${rank}|"></div>
+                        <div class="h3" style="color: #636B73; font-weight:bold;" th:text="|Your rank is ${rank}|"></div>
                         <div th:switch="${rank}">
                             <div th:case="1" th:text="|다음레벨까지 - ${11 - nextRank} exp|"></div>
                             <div th:case="2" th:text="|다음레벨까지 - ${31 - nextRank} exp|"></div>
