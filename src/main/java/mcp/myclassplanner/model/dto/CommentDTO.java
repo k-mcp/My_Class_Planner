@@ -8,14 +8,7 @@ public class CommentDTO {
     private Timestamp commentTime;
     private String commentContent;
     private int boardNo;
-
-    public CommentDTO(int commentNo, String username, Timestamp commentTime, String commentContent, int boardNo) {
-        this.commentNo = commentNo;
-        this.username = username;
-        this.commentTime = commentTime;
-        this.commentContent = commentContent;
-        this.boardNo = boardNo;
-    }
+    private int rank;
 
     @Override
     public String toString() {
@@ -25,6 +18,7 @@ public class CommentDTO {
                 ", commentTime=" + commentTime +
                 ", commentContent='" + commentContent + '\'' +
                 ", boardNo=" + boardNo +
+                ", rank=" + rank +
                 '}';
     }
 
@@ -66,6 +60,23 @@ public class CommentDTO {
 
     public void setBoardNo(int boardNo) {
         this.boardNo = boardNo;
+    }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+
+    public CommentDTO(int commentNo, String username, Timestamp commentTime, String commentContent, int boardNo, int rank) {
+        this.commentNo = commentNo;
+        this.username = username;
+        this.commentTime = commentTime;
+        this.commentContent = commentContent;
+        this.boardNo = boardNo;
+        this.rank = rank;
     }
 
     public CommentDTO() {
