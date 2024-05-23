@@ -109,19 +109,22 @@
                         </tbody>
                     </table>
                     <div class="col-4"></div>
-                    <div class="col-6">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a class="page-link" th:href="@{/board(page=${page}-1)}" tabindex="-1" aria-disabled="true">Previous</a>
-                            </li>
-                            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}">
-                                <a class="page-link" th:href="@{/board(page=${i}-1)}" th:text="${i}">1</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" th:href="@{/board(page=${page}+1)}">Next</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="col-6">
+                <ul class="pagination">
+                    <!-- Previous Button -->
+                    <li class="page-item" th:classappend="${page == 0} ? 'disabled'">
+                        <a class="page-link" th:href="${page > 0} ? @{/board(page=${page}-1)} : '#'" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <!-- Pagination Numbers -->
+                    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}">
+                        <a class="page-link" th:href="@{/board(page=${i}-1)}" th:text="${i}">1</a>
+                    </li>
+                    <!-- Next Button -->
+                    <li class="page-item" th:classappend="${page == totalPage - 1} ? 'disabled'">
+                        <a class="page-link" th:href="${page < totalPage - 1} ? @{/board(page=${page}+1)} : '#'" th:text="Next">Next</a>
+                    </li>
+                </ul>
+            </div>
                     <div class="col-2">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <a th:unless="${username} == 'Guest'" class="btn btn-primary me-md-2" href="board/post" role="button" id="write-article" style="background-color: #ffc107; color: white; border: none">Post</a>
