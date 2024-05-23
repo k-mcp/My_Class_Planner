@@ -8,74 +8,94 @@
     <title>Page</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link href="/css/articles/article-content.css" rel="stylesheet">
 </head>
 
 <body>
 <style>
-    .sidebar {
-        position: fixed; /* 고정 위치 */
-        top: 0;
-        left: 0;
-        width: 280px;
-        height: 100vh; /* 전체 높이 */
-        background-color: #28a745; /* 색상 변경 */
-        overflow-y: auto; /* 필요한 경우 스크롤 표시 */
-        z-index: 1000; /* 다른 요소 위에 표시 */
+    .comment-page {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+        border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+        position: relative;
+        display: flex;
+        align-items: center;
     }
-    .scrollable-container {
-
-        height: 100vh; /* 전체 높이 */
-        overflow-y: auto; /* 스크롤 가능 */
+    .comment-page .icon {
+        font-size: 3rem;
+        color: #ffc107;
+    }
+    .comment-page .title {
+        font-weight: bold;
+        margin-left: 10px;
+        color: #8EBFA3; /* Change title color to specified color */
+    }
+    .form-container {
+        background-color: #e9ecef;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+    .article-meta {
+        text-align: right; /* 오른쪽 정렬 */
+        padding-right: 15px; /* 오른쪽 여백 추가 */
+    }
+    .article-content {
+        text-align: left; /* 왼쪽 정렬 */
+    }
+    .comment-form textarea {
+        width: 100%; /* 가로 크기를 늘림 */
+    }
+    .comment-submit {
+        width: fit-content; /* 내용에 맞게 크기 조정 */
+        margin-left: auto; /* 오른쪽 정렬 */
     }
 </style>
 
 <!--<header th:replace="header :: header"></header>-->
 <div class="d-flex">
     <div th:replace="common/sidebar"></div>
-    <div class="container scrollable-container">
-        <header id="article-header" class="py-5 text-center">
-            <h1 class="article-title" th:text="${boardDTO.boardTitle}">첫 번째 글</h1>
+
+    <div class="container mt-5">
+        <!-- 게시글 헤더 -->
+        <div class="comment-page">
+            <i class="bi bi-chat-left-dots icon"></i>
+            <div class="h2 title">게시글</div>
+        </div>
+
+        <header id="article-header" class="text-start">
             <div class="article-meta">
                 <span th:text="${boardDTO.username}">nana</span>
-                <span> | </span>
+                <span style="margin: 0 10px;"> | </span>
                 <time th:text="${boardDTO.boardTime}">2022-01-01</time>
             </div>
         </header>
 
         <div class="row g-4">
-            <article id="article-content" class="col-md-12 col-lg-12 border text-center">
-                <h4 th:text="${boardDTO.boardContent}"></h4>
+            <br>
+            <article id="article-content" class="col-md-12 col-lg-12 border text-start article-content"> <!-- 수정 -->
+                <h4 th:text="${boardDTO.boardContent}">게시글 내용</h4>
             </article>
         </div>
 
+        <!-- 게시글 삭제 버튼 -->
         <div class="row g-5" id="article-buttons">
-                <div class="pb-5 d-grid gap-2 d-md-block">
-                    <div class="col-8"></div>
-                    <a th:if="${author}" class="btn btn-danger me-md-2" type="submit" th:href="@{/board/deletePost}">delete</a>
-                </div>
+            <br>
+            <div class="pb-5 d-grid gap-2 d-md-block text-end" >
+                <br>
+                <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/deletePost}" style="background-color: #e07f75; color: white; border: none; padding: 8px 16px;">delete</a>
+            </div>
         </div>
 
-        <div class="row g-5">
-            <section>
-                <form class="row g-3" id="comment-form" method="post">
-                    <input type="hidden" class="article-id">
-                    <div class="col-md-9 col-lg-8">
-                        <label for="comment-textbox" hidden>comment</label>
-                        <textarea class="form-control" id="comment-textbox" placeholder="comment.." rows="3" name="content" required></textarea>
-                    </div>
-                    <div class="col-md-3 col-lg-4">
-                        <label for="comment-submit" hidden>write</label>
-                        <button class="btn btn-primary" id="comment-submit" type="submit" th:href="@{/board/view}">write</button>
-                    </div>
-                </form>
-
-                <ul id="article-comments" class="col-md-10 col-lg-8 pt-3">
-                    <li th:each="comment : ${commentDTOs}">
+        <div class="form-container mt-5">
+            <div class="row g-5" style="margin-left: -250px;"> <!-- 수정 -->
+                <ul id="article-comments" class="col-md-18 col-lg-8 pt-3 mx-auto"> <!-- 수정 -->
+                    <li th:each="comment : ${commentDTOs}" class="border-bottom mb-3 pb-3">
                         <div class="row">
-                            <div class="col-md-10 col-lg-9">
+                            <div class="col-md-12 col-lg-9"> <!-- 수정 -->
                                 <strong th:text="${comment.username}">Username</strong>
                                 <small><time th:text="${comment.commentTime}">Comment Time</time></small>
                                 <p th:text="${comment.commentContent}">Comment Content</p>
@@ -83,13 +103,34 @@
                         </div>
                     </li>
                 </ul>
+            </div>
 
-            </section>
-        </div>
 
-        <div class="row g-5">
+
+            <!-- 댓글 작성 폼 -->
+            <div class="row g-5">
+                <section>
+                    <form class="row g-3 comment-form" id="comment-form" method="post">
+                        <input type="hidden" class="article-id">
+                        <div class="col-md-12 col-lg-12">
+                            <label for="comment-textbox" hidden>comment</label>
+                            <textarea class="form-control" id="comment-textbox" placeholder="comment.." rows="3" name="content" required></textarea>
+                        </div>
+                        <div class="col-md-16 col-lg-16 d-flex align-items-end mt-2 justify-content-end">
+                            <label for="comment-submit" hidden>write</label>
+                            <button class="btn btn-primary comment-submit" id="comment-submit" type="submit" th:href="@{/board/view}" style="background-color: #ffc107; color: white; border: none; padding: 8px 16px;">write</button>
+
+                        </div>
+                    </form>
+                </section>
+            </div>
+            </div>
+
+
+            <!-- 페이지 네비게이션 -->
+        <div class="row g-5 mt-5">
             <nav id="pagination" aria-label="Page navigation">
-                <ul class="pagination">
+                <ul class="pagination justify-content-center">
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo; prev</span>
@@ -99,14 +140,13 @@
                         <a class="page-link" href="#" aria-label="Next">
                             <span aria-hidden="true">next &raquo;</span>
                         </a>
+
                     </li>
                 </ul>
             </nav>
         </div>
     </div>
 </div>
-
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
