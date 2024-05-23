@@ -67,10 +67,15 @@ public class BoardController {
         model.addAttribute("username", username);
         model.addAttribute("memberCode", memberCode);
         model.addAttribute("boardNo", boardNo);
+        model.addAttribute("rank",boardDTO.getLev());
         boardService.getAuthor(boardNo);
         if(boardService.getAuthor(boardNo).equals(username)){
             model.addAttribute("author", true);
         }
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 1);
+        memberService.addExp(exMap);
         return "board/view";
     }
     @PostMapping("board/view")
@@ -87,6 +92,10 @@ public class BoardController {
             map.put("comment", comment);
         }
         int result = boardService.comment(map);
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", (int)session.getAttribute("memberCode"));
+        exMap.put("exp", 2);
+        memberService.addExp(exMap);
         return "redirect:/board/view?boardNo="+boardNo;
     }
 
@@ -112,7 +121,10 @@ public class BoardController {
             map.put("index"+index++,i);
         }
         boardService.postPro(map);
-
+        Map<String, Integer> exMap = new HashMap<>();
+        exMap.put("memberCode", memberCode);
+        exMap.put("exp", 3);
+        memberService.addExp(exMap);
         return "redirect:/board";
     }
     @GetMapping("/searchBy")
