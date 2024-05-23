@@ -2,6 +2,7 @@ package mcp.myclassplanner.model.dao;
 
 import mcp.myclassplanner.model.dto.MemberDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -43,4 +44,7 @@ public interface MemberMapper {
     int getExp(int memberCode);
 
     void levUp(int memberCode);
+
+    // 검색 메서드 추가
+    List<MemberDTO> searchUsers(@Param("query") String query);
 }

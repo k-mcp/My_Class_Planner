@@ -170,4 +170,10 @@ public class MemberService {
     public int getExp(int memberCode) {
         return memberMapper.getExp(memberCode);
     }
+
+    public List<MemberDTO> searchUsers(String query) {
+        // MemberMapper를 사용하여 데이터베이스에서 사용자를 검색
+        // 사용자 이름 또는 이메일이 검색어(query)를 포함하는 경우 검색
+        return memberMapper.searchUsers(query);
+    }
 }

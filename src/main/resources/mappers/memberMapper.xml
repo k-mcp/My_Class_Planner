@@ -130,4 +130,11 @@
         set ex = ex + #{exp}
         where member_code = #{memberCode};
     </update>
+
+    <select id="searchUsers" parameterType="string" resultMap="memberDTO">
+        SELECT *
+        FROM tbl_member
+        WHERE username LIKE CONCAT('%', #{query}, '%')
+        <!--OR email LIKE CONCAT('%', #{query}, '%');-->
+    </select>
 </mapper>

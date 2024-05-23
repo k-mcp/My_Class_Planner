@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <style>
+        .search-Users {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .search-Users .icon {
+            font-size: 3rem;
+            color: #ffc107;
+            color: #ffc107;
+        }
+        .search-Users .title {
+            font-weight: bold;
+            margin-left: 10px;
+            color: #8EBFA3; /* Change title color to specified color */
+        }
+    </style>
+
+<body>
+<div class="d-flex"> <!-- Flex container -->
+
+    <div th:replace="common/sidebar"></div>
+
+    <div class="container mt-5">
+        <div class="search-Users">
+            <i class="bi bi-search icon"></i>
+            <div class="h2 title">Search Users</div>
+        </div>
+        <div class="container mt-5">
+            <form id="searchForm" action="/searchUsers" method="get">
+                <div class="mb-3">
+                    <label for="query" class="form-label">Search</label>
+                    <input type="text" class="form-control" id="query" name="query" placeholder="Enter search Username">
+                </div>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+
+
+
+
+            <div class="mt-4">
+                <h2>Search Results</h2>
+                <div id="searchResults"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
