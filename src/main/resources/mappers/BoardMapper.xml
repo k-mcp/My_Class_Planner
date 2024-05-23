@@ -61,7 +61,7 @@
         FROM tbl_board a
         left join tbl_member b
         on a.username = b.username
-        WHERE username LIKE CONCAT('%', #{searchValue}, '%')
+        WHERE a.username LIKE CONCAT('%', #{searchValue}, '%')
         ORDER BY board_time DESC
     </select>
 
