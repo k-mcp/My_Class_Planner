@@ -72,7 +72,7 @@
 
         <header id="article-header" class="text-start">
             <div class="article-meta">
-                 <span th:switch="${rank}">
+                 <span th:switch="${boardDTO.lev}">
                     <img th:case="1" class="rankImage ms-2" th:src="@{/img/rank_1_red.png}" alt="lev">
                     <img th:case="2" class="rankImage ms-2" th:src="@{/img/rank_2_orange.png}" alt="lev">
                     <img th:case="3" class="rankImage ms-2" th:src="@{/img/rank_3_yellow.png}" alt="lev">
@@ -80,7 +80,9 @@
                     <img th:case="5" class="rankImage ms-2" th:src="@{/img/rank_5_blue.png}" alt="lev">
                     <img th:case="6" class="rankImage ms-2" th:src="@{/img/rank_admin.png}" alt="lev">
                 </span>
-
+                <span>
+                    <img class="rankImage ms-2" th:src="@{/img/rank_1_red.png}" alt="lev">
+                </span>
                 <span th:text="${boardDTO.username}">nana</span>
                 <span style="margin: 0 10px;"> | </span>
                 <time th:text="${boardDTO.boardTime}">2022-01-01</time>
@@ -109,6 +111,14 @@
                     <li th:each="comment : ${commentDTOs}" class="border-bottom mb-3 pb-3">
                         <div class="row">
                             <div class="col-md-12 col-lg-9"> <!-- 수정 -->
+                                <span th:switch="${comment.rank}">
+                                    <img th:case="1" class="rankImage ms-2" th:src="@{/img/rank_1_red.png}" alt="lev">
+                                    <img th:case="2" class="rankImage ms-2" th:src="@{/img/rank_2_orange.png}" alt="lev">
+                                    <img th:case="3" class="rankImage ms-2" th:src="@{/img/rank_3_yellow.png}" alt="lev">
+                                    <img th:case="4" class="rankImage ms-2" th:src="@{/img/rank_4_green.png}" alt="lev">
+                                    <img th:case="5" class="rankImage ms-2" th:src="@{/img/rank_5_blue.png}" alt="lev">
+                                    <img th:case="6" class="rankImage ms-2" th:src="@{/img/rank_admin.png}" alt="lev">
+                                </span>
                                 <strong th:text="${comment.username}">Username</strong>
                                 <small><time th:text="${comment.commentTime}">Comment Time</time></small>
                                 <p th:text="${comment.commentContent}">Comment Content</p>
