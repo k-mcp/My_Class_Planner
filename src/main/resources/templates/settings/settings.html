@@ -65,11 +65,11 @@
                     <div class="col-8">
                         <div class="h3" th:text="|Your rank is ${rank}|"></div>
                         <div th:switch="${rank}">
-                            <div th:case="1" th:text="|다음레벨까지 - ${10 - nextRank} exp|"></div>
-                            <div th:case="2" th:text="|다음레벨까지 - ${30 - nextRank} exp|"></div>
-                            <div th:case="3" th:text="|다음레벨까지 - ${60 - nextRank} exp|"></div>
-                            <div th:case="4" th:text="|다음레벨까지 - ${100 - nextRank} exp|"></div>
-                            <div th:case="5" th:text="|다음레벨까지 - ${10000 - nextRank} exp|"></div>
+                            <div th:case="1" th:text="|다음레벨까지 - ${11 - nextRank} exp|"></div>
+                            <div th:case="2" th:text="|다음레벨까지 - ${31 - nextRank} exp|"></div>
+                            <div th:case="3" th:text="|다음레벨까지 - ${61 - nextRank} exp|"></div>
+                            <div th:case="4" th:text="|다음레벨까지 - ${101 - nextRank} exp|"></div>
+                            <div th:case="5" th:text="|다음레벨까지 - ${10001 - nextRank} exp|"></div>
                             <div th:case="6" th:text="|You are an Admin|"></div>
                         </div>
                         <br>
