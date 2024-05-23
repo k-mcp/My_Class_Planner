@@ -18,8 +18,6 @@
         <result property="commentTime" column="comment_time"/>
         <result property="commentContent" column="comment_content"/>
         <result property="boardNo" column="board_no"/>
-        <result property="rank" column="lev"/>
-
     </resultMap>
 
     <select id="findByTitle" resultMap="BoardDTO" parameterType="string">
@@ -79,31 +77,15 @@
         left join tbl_member b
         on a.username = b.username
         ORDER BY board_time DESC
-        LIMIT 10 OFFSET 0;
+        LIMIT 10 OFFSET #{page};
     </select>
     <select id="viewByBoardNo" resultMap="BoardDTO" parameterType="int">
-        SELECT
-        a.board_no,
-        a.username,
-        a.board_time,
-        a.board_title,
-        a.board_content,
-        b.lev
-        FROM tbl_board a
-        left join tbl_member b
-        on a.username = b.username
+        SELECT * FROM tbl_board
         where board_no = #{boardNo};
     </select>
 
     <select id="viewCommentByBoardNo" resultMap="CommentDTO" parameterType="int">
-        SELECT
-        a.username,
-        a.comment_time,
-        a.comment_content,
-        b.lev
-        FROM tbl_comment a
-        left join tbl_member b
-        on a.username = b.username
+        select * from tbl_comment
         where board_no = #{boardNo}
         order by comment_time;
     </select>
