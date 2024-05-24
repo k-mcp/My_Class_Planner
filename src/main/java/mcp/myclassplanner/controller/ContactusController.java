@@ -2,6 +2,8 @@ package mcp.myclassplanner.controller;
 
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,9 +17,13 @@ import java.util.Objects;
 
 
 @Controller
+@PropertySource("classpath:application.properties")
 public class ContactusController {
 
     private JavaMailSender mailSender;
+
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     @Autowired
     public ContactusController(JavaMailSender mailSender){
@@ -28,6 +34,7 @@ public class ContactusController {
     public String contactUs(Model model, HttpSession session){
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
+        model.addAttribute("API_KEY", API_KEY);
         return "contactus/contactUs";
     }
 
@@ -50,6 +57,7 @@ public class ContactusController {
             model.addAttribute("message", "Oops! Something went wrong. Try again ! ");
             e.printStackTrace();    // 에러 내용 콘솔에 출력
         }
+        model.addAttribute("API_KEY", API_KEY);
 
         return "contactus/contactUs";
 

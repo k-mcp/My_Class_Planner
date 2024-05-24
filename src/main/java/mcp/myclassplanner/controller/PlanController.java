@@ -11,6 +11,8 @@ import mcp.myclassplanner.model.service.CourseService;
 import mcp.myclassplanner.model.service.MemberService;
 import mcp.myclassplanner.model.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
+@PropertySource("classpath:application.properties")
 public class PlanController {
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     private final CourseService courseService;
     private final PlanService planService;
@@ -44,7 +49,7 @@ public class PlanController {
 
         // mv 추가
         mv.addObject("courseDTOList",courseDTOList);
-
+        mv.addObject("API_KEY", API_KEY);
         mv.setViewName("plan/generate");
         return mv;
 
@@ -94,6 +99,7 @@ public class PlanController {
         Map<Integer, List<ScheduleDTO>> groupedSchedules = scheduleDTOS.stream()
                 .collect(Collectors.groupingBy(ScheduleDTO::getCaseNo));
         mv.addObject("groupedSchedules", groupedSchedules);
+        mv.addObject("API_KEY", API_KEY);
         mv.setViewName("plan/generatepro");
         return mv;
     }
@@ -125,6 +131,7 @@ public class PlanController {
         Map<Integer, List<PlanDTO>> groupedPlans = planDTOS.stream()
                 .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
         mv.addObject("groupedPlans", groupedPlans);
+        mv.addObject("API_KEY", API_KEY);
         mv.setViewName("plan/plan");
         return mv;
     }

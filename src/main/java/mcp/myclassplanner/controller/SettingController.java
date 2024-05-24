@@ -6,6 +6,8 @@ import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +20,11 @@ import java.io.File;
 import java.io.IOException;
 
 @Controller
+@PropertySource("classpath:application.properties")
 public class SettingController {
+
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     //비밀번호 변경
     @Autowired
@@ -34,6 +40,7 @@ public class SettingController {
         int exp = memberService.getExp((int)session.getAttribute("memberCode"));
         mv.addObject("nextRank",exp);
         mv.setViewName("settings/settings");
+        mv.addObject("API_KEY", API_KEY);
         return mv;
     }
 
@@ -85,61 +92,3 @@ public class SettingController {
 
 
 }
-
-
-
-//    @PostMapping("/updatePassword")
-//    public ModelAndView updatePassword(ModelAndView mv,
-//            @RequestParam("newPassword") String newPassword,
-//            @RequestParam("confirmPassword") String confirmPassword,
-//            HttpSession session, RedirectAttributes redirectAttributes) {
-//
-//        int memberCode = (int) session.getAttribute("memberCode");
-//
-//        if (!newPassword.equals(confirmPassword)) {
-//            redirectAttributes.addFlashAttribute("message", "새 비밀번호와 확인 비밀번호가 일치하지 않습니다.");
-//            mv.setViewName("redirect:/settings");
-//        }
-//        int affectedRows = memberService.updatePassword(memberCode, newPassword);
-//        if (affectedRows>0) {
-//            mv.addObject("message", "비밀번호가 성공적으로 변경되었습니다.");
-//        } else {
-//            mv.addObject("message", "비밀번호 변경에 실패했습니다.");
-//        }
-//
-//        return mv;
-//    }
-//}
-//
-//
-//
-//
-//
-////    @PostMapping("/settings/upload")
-////    public String handleFileUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {
-////        if (file.isEmpty()) {
-////            redirectAttributes.addFlashAttribute("message", "파일을 선택해주세요.");
-////            return "redirect:/settings";
-////        }
-////        // 저장할 디렉토리 지정
-////        String uploadDir = "/home/username/uploads/";
-////
-////        // 디렉토리가 존재하지 않는 경우 생성
-////        File directory = new File(uploadDir);
-////        if (!directory.exists()) {
-////            directory.mkdirs();
-////        }
-////
-////        // 파일 저장 로직 구현
-////        try {
-////            // 파일을 서버나 지정된 위치에 저장
-////            file.transferTo(new File("/path/to/your/uploads/directory" + file.getOriginalFilename()));
-////            redirectAttributes.addFlashAttribute("message", "성공적으로 업로드되었습니다: " + file.getOriginalFilename());
-////        } catch (IOException e) {
-////            e.printStackTrace();
-////            redirectAttributes.addFlashAttribute("message", "업로드에 실패했습니다: " + file.getOriginalFilename());
-////        }
-////
-////        return "redirect:/settings";
-////    }
-////}

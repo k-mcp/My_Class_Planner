@@ -6,19 +6,26 @@ import mcp.myclassplanner.model.dto.BoardDTO;
 import mcp.myclassplanner.model.dto.CommentDTO;
 import mcp.myclassplanner.model.service.BoardService;
 import mcp.myclassplanner.model.service.MemberService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.thymeleaf.model.IModel;
 
 import java.net.http.HttpRequest;
 import java.sql.Timestamp;
 import java.util.*;
 
 @Controller
+@PropertySource("classpath:application.properties")
 public class BoardController {
+
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     private final BoardService boardService;
     private final MemberService memberService;
@@ -45,13 +52,14 @@ public class BoardController {
         model.addAttribute("boardNo", page);
         model.addAttribute("page",page);
 //        model.addAttribute("lev", memberService.getLev(memberCode));
-
+        model.addAttribute("API_KEY", API_KEY);
         return "board/board";
     }
     @GetMapping("board/deletePost")
-    public String deletePost(HttpSession session){
+    public String deletePost(HttpSession session, Model model){
         int boardNo = (int) session.getAttribute("boardNo");
         boardService.deletePost(boardNo);
+        model.addAttribute("API_KEY", API_KEY);
         return "redirect:/board";
     }
 
@@ -76,6 +84,7 @@ public class BoardController {
         exMap.put("memberCode", memberCode);
         exMap.put("exp", 1);
         memberService.addExp(exMap);
+        model.addAttribute("API_KEY", API_KEY);
         return "board/view";
     }
     @PostMapping("board/view")
@@ -103,6 +112,7 @@ public class BoardController {
     public String postBoard(HttpSession session, Model model){
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
+        model.addAttribute("API_KEY", API_KEY);
         return "board/post";
     }
     @PostMapping("board/post")
@@ -132,6 +142,7 @@ public class BoardController {
         String username = (String) session.getAttribute("username");
         model.addAttribute("notShow", true);
         List<BoardDTO> boardDTOList;
+        model.addAttribute("API_KEY", API_KEY);
         switch (searchType) {
             case "Title":
                 boardDTOList = boardService.findByTitle(searchValue);

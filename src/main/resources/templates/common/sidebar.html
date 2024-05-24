@@ -14,7 +14,7 @@
             position: fixed;
             right: 50px;
             bottom: 70px;
-            background-color: #007bff; /* Bootstrap primary color */
+            background-color: rgba(110, 205, 163, 0.98); /* Bootstrap primary color */
             color: white;
             width: 60px;
             height: 60px;
@@ -231,9 +231,9 @@
 
 <!---->
 <!-- AI Chat Icon -->
-<!--<div class="chat-icon" data-bs-toggle="modal" data-bs-target="#chatModal" title="Get Help with AI">-->
-<!--    <i class="bi bi-robot"></i>-->
-<!--</div>-->
+<div class="chat-icon" data-bs-toggle="modal" data-bs-target="#chatModal" title="Get Help with AI">
+    <i class="bi bi-robot"></i>
+</div>
 
 
 
@@ -265,7 +265,7 @@
         const chatArea = document.getElementById('chatArea');
         const message = inputField.value;
         inputField.value = ''; // Clear input field
-
+        const API_KEY = `[[${API_KEY}]]`;
         // Display user message
         chatArea.innerHTML += `<div class="chat-message user-message"><div class="chat-name">You</div><span class="chat-bubble">${message}</span></div>`;
 
@@ -274,11 +274,20 @@
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'Bearer YOUR_API_KEY'  // API Key는 여기서 수정
+                'Authorization': `Bearer ${API_KEY}`  // API Key는 여기서 수정
             },
             body: JSON.stringify({
                 model: "gpt-3.5-turbo",
-                messages: [{role: "user", content: message}],
+                messages: [
+                    {role: "user",
+                        content: "You are AI Assistant of Web Application called My Class Planner owned By Ken Ryu. " +
+                            "To use this app, customers needs to add course, view added course, generate plan, and view my plan." +
+                            "This app contains back-tracking based algorithm so that program creates not overlapped schedules based on user's inputs" +
+                            "since you are allowed to answer within 100 tokens, you will briefly answer user's question and something that you can't answer" +
+                            "let them know there are frequent questions answered in contactus page" +
+                            "or instruct them to contactus page and email us at the bottom of the page. And there is also community page to ask questions" +
+                            "There are five ranks in the community page and one rank describing admin, currently there are no privilege on ranks but such system will be ended"},
+                    {role: "user", content: message}],
                 max_tokens: 100
             })
         })

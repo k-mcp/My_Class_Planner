@@ -8,7 +8,10 @@ import mcp.myclassplanner.model.dto.SectionDTO;
 import mcp.myclassplanner.model.service.CourseService;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +21,11 @@ import java.util.*;
 
 @Controller
 @RequestMapping("course")
+@PropertySource("classpath:application.properties")
 public class CourseController {
+
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     private final CourseService courseService;
     private final MemberService memberService;
@@ -30,7 +37,7 @@ public class CourseController {
     }
 
     @PostMapping("/deleteCourse")
-    public String deleteCourse(HttpServletRequest request, HttpSession session) {
+    public String deleteCourse(HttpServletRequest request, HttpSession session, Model model) {
         int memberCode = (int) session.getAttribute("memberCode");
         Map<String, String[]> parameters = request.getParameterMap();
         for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
@@ -41,6 +48,7 @@ public class CourseController {
         exMap.put("memberCode", memberCode);
         exMap.put("exp", 1);
         memberService.addExp(exMap);
+        model.addAttribute("API_KEY", API_KEY);
         return "redirect:/course/course";
     }
 
@@ -49,6 +57,7 @@ public class CourseController {
         mv.addObject("username", session.getAttribute("username"));
         // 세션에 사용자 정보 저장
         mv.setViewName("course/add");
+        mv.addObject("API_KEY", API_KEY);
         return mv;
     }
     @PostMapping("/add")
@@ -116,6 +125,7 @@ public class CourseController {
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
         mv.addObject("courseDTOList", courseDTOList);
         mv.setViewName("course/course");
+        mv.addObject("API_KEY", API_KEY);
         return mv;
     }
 }

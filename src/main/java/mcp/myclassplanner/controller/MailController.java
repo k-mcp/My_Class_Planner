@@ -6,6 +6,7 @@ import mcp.myclassplanner.model.dto.MailTO;
 import mcp.myclassplanner.model.service.MailService;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
+@PropertySource("classpath:application.properties")
 public class MailController {
     private final MailService mailService;
     private final MemberService memberService;
