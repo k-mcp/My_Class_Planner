@@ -103,7 +103,7 @@ public class CourseController {
         courseService.addCourse(courseDTO);
         Map<String, Integer> exMap = new HashMap<>();
         exMap.put("memberCode", memberCode);
-        exMap.put("exp", 1);
+        exMap.put("exp", 2);
         memberService.addExp(exMap);
 
         return "redirect:/course/course";

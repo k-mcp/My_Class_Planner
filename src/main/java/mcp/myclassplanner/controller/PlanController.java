@@ -108,7 +108,7 @@ public class PlanController {
         int memberCode = (int) session.getAttribute("memberCode");
         Map<String, Integer> exMap = new HashMap<>();
         exMap.put("memberCode", memberCode);
-        exMap.put("exp", 1);
+        exMap.put("exp", 2);
         memberService.addExp(exMap);
         return "redirect:/myplan";
     }
@@ -137,11 +137,6 @@ public class PlanController {
             String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "");
             planService.deletePlan(i);
         }
-        int memberCode = (int) session.getAttribute("memberCode");
-        Map<String, Integer> exMap = new HashMap<>();
-        exMap.put("memberCode", memberCode);
-        exMap.put("exp", 1);
-        memberService.addExp(exMap);
         return "redirect:/myplan";
     }
 }

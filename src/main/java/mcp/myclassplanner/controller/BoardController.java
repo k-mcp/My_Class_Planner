@@ -123,7 +123,7 @@ public class BoardController {
         boardService.postPro(map);
         Map<String, Integer> exMap = new HashMap<>();
         exMap.put("memberCode", memberCode);
-        exMap.put("exp", 3);
+        exMap.put("exp", 2);
         memberService.addExp(exMap);
         return "redirect:/board";
     }
