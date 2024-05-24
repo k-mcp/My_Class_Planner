@@ -36,6 +36,11 @@
             border-radius: 10px;
             margin-top: 20px;
         }
+        .narrow-table {
+            width: 90%; /* 테이블 폭을 원하는 값으로 조정 */
+            margin: auto; /* 가운데 정렬 */
+        }
+
     </style>
 </head>
 <body>
@@ -80,14 +85,15 @@
             <hr>
             <br>
 
-        <div class="row">
-                    <table class="table" id="article-table">
-                        <thead>
+            <div class="row">
+                <div class="table-responsive"> <!-- 테이블 반응형 컨테이너 -->
+                    <table class="table narrow-table" id="article-table"> <!-- narrow-table 클래스 추가 -->
+                       <thead>
                         <tr>
-                            <th class="title col-5"><a>Title</a></th>
-                            <th class="rank"><a>Rank</a></th>
-                            <th class="user-id"><a>Username</a></th>
-                            <th class="created-at"><a>Date</a></th>
+                            <th class="title col-5" style="color: #636B73;"><a>Title</a></th>
+                            <th class="rank" style="color: #636B73;"><a>Rank</a></th>
+                            <th class="user-id" style="color: #636B73;"><a>Username</a></th>
+                            <th class="created-at" style="color: #636B73;"><a>Date</a></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -108,32 +114,33 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="col-4"></div>
-            <div class="col-6">
-                <ul class="pagination">
-                    <!-- Previous Button -->
-                    <li class="page-item" th:classappend="${page == 0} ? 'disabled'">
-                        <a class="page-link" th:href="${page > 0} ? @{/board(page=${page}-1)} : '#'" tabindex="-1" aria-disabled="true">Previous</a>
-                    </li>
-                    <!-- Pagination Numbers -->
-                    <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}">
-                        <a class="page-link" th:href="@{/board(page=${i}-1)}" th:text="${i}">1</a>
-                    </li>
-                    <!-- Next Button -->
-                    <li class="page-item" th:classappend="${page == totalPage - 1} ? 'disabled'">
-                        <a class="page-link" th:href="${page < totalPage - 1} ? @{/board(page=${page}+1)} : '#'" th:text="Next">Next</a>
-                    </li>
-                </ul>
-            </div>
-                    <div class="col-2">
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a th:unless="${username} == 'Guest'" class="btn btn-primary me-md-2" href="board/post" role="button" id="write-article" style="background-color: #ffc107; color: white; border: none">Post</a>
-                        </div>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-6">
+                    <ul class="pagination">
+                        <!-- Previous Button -->
+                        <li class="page-item" th:classappend="${page == 0} ? 'disabled'">
+                            <a class="page-link" th:href="${page > 0} ? @{/board(page=${page}-1)} : '#'" tabindex="-1" aria-disabled="true">Previous</a>
+                        </li>
+                        <!-- Pagination Numbers -->
+                        <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}">
+                            <a class="page-link" th:href="@{/board(page=${i}-1)}" th:text="${i}">1</a>
+                        </li>
+                        <!-- Next Button -->
+                        <li class="page-item" th:classappend="${page == totalPage - 1} ? 'disabled'">
+                            <a class="page-link" th:href="${page < totalPage - 1} ? @{/board(page=${page}+1)} : '#'" th:text="Next">Next</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a th:unless="${username} == 'Guest'" class="btn btn-primary me-md-2" href="board/post" role="button" id="write-article" style="background-color: #ffc107; color: white; border: none">Post</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
