@@ -123,10 +123,17 @@
                 if (sectionElement) {
                     sectionElement.parentNode.removeChild(sectionElement);
                 }
+                if (sectionElement) {
+                    sectionElement.setAttribute('data-deleted', 'true'); // 섹션이 삭제됨을 표시
+                }
             }
 
             function validateForm() {
                 for (let i = 0; i < sectionId; i++) {
+                    const section = document.getElementById(`section-${i}`);
+                    if (!section || section.getAttribute('data-deleted') === 'true') {
+                        continue; // 섹션이 삭제되었거나 존재하지 않으면 검사를 건너뜁니다.
+                    }
                     const startTimeInput = document.getElementById(`startTime-${i}`);
                     const endTimeInput = document.getElementById(`endTime-${i}`);
                     if (startTimeInput && endTimeInput) {

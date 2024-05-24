@@ -120,7 +120,7 @@
                     <ul class="pagination">
                         <!-- Previous Button -->
                         <li class="page-item" th:classappend="${page == 0} ? 'disabled'">
-                            <a class="page-link" th:href="${page > 0} ? @{/board(page=${page}-1)}` : '#'" tabindex="-1" aria-disabled="true">Previous</a>
+                            <a class="page-link" th:href="${page > 0} ? @{/board(page=${page-1})} : '#'" tabindex="-1" aria-disabled="true">Previous</a>
                         </li>
                         <!-- Pagination Numbers -->
                         <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPage)}">
