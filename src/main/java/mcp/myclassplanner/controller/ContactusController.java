@@ -28,7 +28,7 @@ public class ContactusController {
     public String contactUs(Model model, HttpSession session){
         String username = (String) session.getAttribute("username");
         model.addAttribute("username", username);
-        return "contactUs/contactUs";
+        return "contactus/contactUs";
     }
 
     @PostMapping("/contactUs")
