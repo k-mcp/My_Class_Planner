@@ -98,125 +98,127 @@
 
         <div class="course-container mt-5">
             <div class="container-fluid mt-5">
-                <div class="section-title" STYLE="color: #636B73">Rank Description</div>
+                <div class="section-title" style="color: #636B73">Rank Description</div>
                 <div class="row">
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_1_red.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span><h4 STYLE="color: #636B73">lv1</h4></span>
-                            <div STYLE="color: #636B73">0 EXP</div>
+                            <span><h4>lv1</h4></span>
+                            <div style="color: #636B73">0 EXP</div>
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_2_orange.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span STYLE="color: #636B73"><h4>lv2</h4></span>
-                            <div STYLE="color: #636B73">10 EXP</div>
+                            <span ><h4>lv2</h4></span>
+                            <div >10 EXP</div>
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_3_yellow.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span STYLE="color: #636B73"><h4>lv3</h4></span>
-                            <div STYLE="color: #636B73">30 EXP</div>
+                            <span><h4>lv3</h4></span>
+                            <div>30 EXP</div>
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_4_green.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span STYLE="color: #636B73"><h4>lv4</h4></span>
-                            <div STYLE="color: #636B73">60 EXP</div>
+                            <span><h4>lv4</h4></span>
+                            <div>60 EXP</div>
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_5_blue.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span STYLE="color: #636B73"><h4>lv5</h4></span>
-                            <div STYLE="color: #636B73">100 EXP</div>
+                            <span><h4>lv5</h4></span>
+                            <div>100 EXP</div>
                         </div>
                     </div>
                     <div class="col-2">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-center" style="color: #636B73">
                             <img class="rankImage ms-1" th:src="@{/img/rank_admin.png}" alt="lev" style="max-width: 70px; max-height: 70px;">
                             <br>
-                            <span STYLE="color: #636B73"><h4>Admin</h4></span>
-                            <div STYLE="color: #636B73">100000 EXP</div>
+                            <span><h4>Admin</h4></span>
+                            <div>10000 EXP</div>
                         </div>
                     </div>
                 </div>
 
-            <div class="container mt-5">
-                <div class="mt-5">
-                    <div class="container">
-                        <div class="section-title" STYLE="color: #636B73">My Rank</div>
-                        <div class="row">
-                            <div class="col-4 d-flex align-items-center">
-                                <div th:switch="${rank}">
-                                    <img th:case="1" class="rankImage ms-1" th:src="@{/img/rank_1_red.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
-                                    <img th:case="2" class="rankImage ms-1" th:src="@{/img/rank_2_orange.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
-                                    <img th:case="3" class="rankImage ms-1" th:src="@{/img/rank_3_yellow.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
-                                    <img th:case="4" class="rankImage ms-1" th:src="@{/img/rank_4_green.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
-                                    <img th:case="5" class="rankImage ms-1" th:src="@{/img/rank_5_blue.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
-                                    <img th:case="6" class="rankImage ms-1" th:src="@{/img/rank_admin.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                <div class="container mt-5">
+                    <div class="mt-5">
+                        <div class="container">
+                            <div class="section-title" style="color: #636B73">My Rank</div>
+                            <div class="row">
+                                <div class="col-4 d-flex align-items-center">
+                                    <div th:switch="${rank}">
+                                        <img th:case="1" class="rankImage ms-1" th:src="@{/img/rank_1_red.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                        <img th:case="2" class="rankImage ms-1" th:src="@{/img/rank_2_orange.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                        <img th:case="3" class="rankImage ms-1" th:src="@{/img/rank_3_yellow.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                        <img th:case="4" class="rankImage ms-1" th:src="@{/img/rank_4_green.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                        <img th:case="5" class="rankImage ms-1" th:src="@{/img/rank_5_blue.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                        <img th:case="6" class="rankImage ms-1" th:src="@{/img/rank_admin.png}" alt="lev" style="max-width: 100px; max-height: 100px;">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-8">
-                                <div class="h3" STYLE="color: #636B73" th:text="|Your rank is ${rank}|"></div>
-                                <div th:switch="${rank}" STYLE="color: #636B73">
-                                    <div th:case="1" th:text="|다음레벨까지 - ${11 - nextRank} EXP|"></div>
-                                    <div th:case="2" th:text="|다음레벨까지 - ${31 - nextRank} EXP|"></div>
-                                    <div th:case="3" th:text="|다음레벨까지 - ${61 - nextRank} EXP|"></div>
-                                    <div th:case="4" th:text="|다음레벨까지 - ${101 - nextRank} EXP|"></div>
-                                    <div th:case="5" th:text="|다음레벨까지 - ${10001 - nextRank} EXP|"></div>
-                                    <div th:case="6" th:text="|You are an Admin|"></div>
-                                </div>
-<!--                                <p>How To Earn EXP(?)</p> &lt;!&ndash; 추가된 텍스트 &ndash;&gt;-->
-                                <div>
-                                    <p STYLE="color: #636B73">[How To Earn EXP]</p>
-                                <ol>
-                                    <li STYLE="color: #636B73">Add Course + 2 EXP</li>
-                                    <li STYLE="color: #636B73">Generate Plan +3 EXP</li>
-                                    <li STYLE="color: #636B73">Save Schedule + 2 EXP</li>
-                                    <li STYLE="color: #636B73">Write Post + 2 EXP</li>
-                                    <li STYLE="color: #636B73">Write Post + 2 EXP</li>
-                                    <li STYLE="color: #636B73">Comment +1 EXP</li>
-
-                                </ol>
+                                <br>
+                                <div class="col-8">
+                                    <div class="h3" style="color: #636B73" th:text="|Your rank is ${rank}|"></div>
+                                    <div style="color: #636B73" th:switch="${rank}">
+                                        <div th:case="1" th:text="|EXP remaining until next level - ${11 - nextRank} EXP|"></div>
+                                        <div th:case="2" th:text="|EXP remaining until next level - ${31 - nextRank} EXP|"></div>
+                                        <div th:case="3" th:text="|EXP remaining until next level - ${61 - nextRank} EXP|"></div>
+                                        <div th:case="4" th:text="|EXP remaining until next level - ${101 - nextRank} EXP|"></div>
+                                        <div th:case="5" th:text="|EXP remaining until next level - ${10001 - nextRank} EXP|"></div>
+                                        <div th:case="6" th:text="|You are an Admin|"></div>
+                                    </div>
+                                    <!--                                <p>How To Earn EXP(?)</p> &lt;!&ndash; 추가된 텍스트 &ndash;&gt;-->
+                                    <div>
+                                        <p style="color: #636B73">[How To Earn EXP]</p>
+                                        <ol style="color: #636B73">
+                                            <li>Add Course + 2 EXP</li>
+                                            <li>Generate Plan +3 EXP</li>
+                                            <li>Save Schedule + 2 EXP</li>
+                                            <li>Write Post + 2 EXP</li>
+                                            <li>Write Post + 2 EXP</li>
+                                            <li>Comment +1 EXP</li>
+                                            <br>
+                                        </ol>
+                                         <p style="color: #636B73">If you want to work with us after reaching 100000exp, please contact us through 'Contact Us'</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            </div>
-            </div>
+        </div>
 
 
 
 
         <div class="course-container mt-5">
-        <div class="section-title" STYLE="color: #636B73">Change Password</div>
-        <div class="password-form-container">
-            <form th:action="@{/updatePassword}" method="post">
-                <div class="form-group">
-                    <label for="newPassword" class="form-label" STYLE="color: #636B73">New Password</label>
-                    <input type="password" class="form-control input-field" id="newPassword" name="newPassword" required minlength="6">
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword" class="form-label" STYLE="color: #636B73">New Password Confirmation</label>
-                    <input type="password" class="form-control input-field" id="confirmPassword" name="confirmPassword" required minlength="6">
-                </div>
-                <div class="btn-container">
-                    <button type="submit" class="btn btn-success mt-3" style="background-color:#ffc107; border-color: transparent;">Change Password</button>
-                </div>
-            </form>
+            <div class="section-title" style="color: #636B73">Change Password</div>
+            <div class="password-form-container">
+                <form th:action="@{/updatePassword}" method="post">
+                    <div class="form-group" style="color: #636B73">
+                        <label for="newPassword" class="form-label">New Password</label>
+                        <input type="password" class="form-control input-field" id="newPassword" name="newPassword" required minlength="6">
+                    </div>
+                    <div class="form-group" style="color: #636B73">
+                        <label for="confirmPassword" class="form-label">New Password Confirmation</label>
+                        <input type="password" class="form-control input-field" id="confirmPassword" name="confirmPassword" required minlength="6">
+                    </div>
+                    <div class="btn-container">
+                        <button type="submit" class="btn btn-success mt-3" style="background-color:#ffc107; border-color: transparent;">Change Password</button>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
     </div>
 
 </div>
