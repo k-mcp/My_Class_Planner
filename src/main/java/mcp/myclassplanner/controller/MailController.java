@@ -36,7 +36,7 @@ public class MailController {
         mailTO.setTitle("My Class Planner confirmation email");
         mailTO.setMessage(new StringBuffer().append("<h1>[이메일 인증]</h1>")
                 .append("<p>아래 링크를 클릭하시면 이메일 인증이 완료됩니다.</p>")
-                .append("<a href='http://localhost:8081/auth/signUpConfirm?email=")
+                .append("<a href='http://115.95.149.11:8081/auth/signUpConfirm?email=")
                 .append(email)
                 .append("&authKey=")
                 .append(key)
@@ -58,7 +58,7 @@ public class MailController {
         mailTO.setTitle("My Class Planner confirmation email");
         mailTO.setMessage(new StringBuffer().append("<h1>[비밀번호 재설정]</h1>")
                 .append("<p>아래 링크를 클릭하세요.</p>")
-                .append("<a href='http://localhost:8081/auth/forgotpassword?email=")
+                .append("<a href='http://115.95.149.11:8081/auth/forgotpassword?email=")
                 .append(email)
                 .append("&authKey=")
                 .append(key)
