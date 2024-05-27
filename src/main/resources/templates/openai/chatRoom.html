@@ -15,7 +15,7 @@
             overflow-y: auto;
             border: 1px solid #ccc;
             padding: 10px;
-            background: #f9f9f9;
+            background: rgba(0, 255, 89, 0.94);
         }
         .chat-message {
             padding: 4px 10px;
@@ -27,7 +27,7 @@
             max-width: 80%;
         }
         .user-message {
-            background-color: #007bff;
+            background-color: rgba(62, 250, 167, 0.98);
             align-self: flex-end;
             justify-content: flex-end;
         }
@@ -46,11 +46,11 @@
             font-weight: bold;
         }
         .user-message .chat-name {
-            color: #007bff;
+            color: #599f77;
             text-align: right;
         }
         .ai-message .chat-name {
-            color: #6c757d;
+            color: rgba(134, 168, 168, 0.93);
             text-align: left;
         }
         /* 스크롤바 스타일 */
@@ -87,7 +87,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
+                <button type="button" class="btn btn-success" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
