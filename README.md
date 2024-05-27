@@ -1,5 +1,4 @@
-
-https://github.com/k-mcp/My_Class_Planner/assets/98254345/e5635548-ef23-4d11-83ed-c02e9514fefe
+[Try Our Application](http://115.95.149.11:8081)
   <p align='center'>
     <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=My%20Class%20Planner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=&descAlignY=51&descAlign=62" width="100%">
 </p>
