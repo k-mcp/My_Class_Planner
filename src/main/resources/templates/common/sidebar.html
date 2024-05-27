@@ -75,18 +75,18 @@
             padding: 4px 10px;
             border-radius: 12px;
             margin: 4px 10px;
-            color: white;
+            color: #6c757d;
             display: flex;
             position: relative;
             max-width: 80%;
         }
         .user-message {
-            background-color: #007bff;
+            background-color: #98c3f4;
             align-self: flex-end;
             justify-content: flex-end;
         }
         .ai-message {
-            background-color: #6c757d;
+            background-color: #f3c6a0;
             align-self: flex-start;
             justify-content: flex-start;
         }
@@ -96,7 +96,7 @@
             word-wrap: break-word;
         }
         .chat-name {
-            font-size: 3px;
+            font-size: 10px;
             font-weight: bold;
         }
         .user-message .chat-name {
@@ -246,13 +246,13 @@
             </div>
             <div class="modal-body">
                 <div id="chatArea" class="chat-container">
-                    <div class="chat-message ai-message"><div class="chat-name">AI Assistant</div><span class="chat-bubble">Hello, this is the AI assistant. How can I help you?</span></div>
+                    <div class="chat-message ai-message"><div class="chat-name">AI</div><span class="chat-bubble">Hello, this is the AI assistant. How can I help you?</span></div>
                 </div>
                 <input type="text" id="userInput" class="form-control" placeholder="Type your message here..." />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" onclick="sendMessage()">Send</button>
+                <button type="button" class="btn btn-success" style="opacity: 0.8" onclick="sendMessage()">Send</button>
             </div>
         </div>
     </div>
