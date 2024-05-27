@@ -110,7 +110,7 @@
         <div class="row mt-3 ms-2 me-2">
             <br>
             <article id="article-content" class="container form-container border text-start article-content"> <!-- 수정 -->
-               <pre th:text="${boardDTO.boardContent}" class="comment-box">게시글 내용</pre>
+               <pre th:text="${boardDTO.boardContent}" class="comment-box">Content</pre>
             </article>
         </div>
 
@@ -119,7 +119,7 @@
             <br>
             <div class="pb-5 d-grid gap-2 d-md-block text-end" >
                 <br>
-                <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/deletePost}" style="background-color: #e07f75; color: white; border: none; padding: 8px 16px;">delete</a>
+                <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/deletePost}" style="background-color: #e07f75; color: white; border: none; padding: 8px 16px;">Delete</a>
             </div>
         </div>
 
@@ -151,10 +151,10 @@
                 <form class="row g-3 comment-form" id="comment-form" method="post">
                     <input type="hidden" class="article-id">
                     <div class="col-md-12 col-lg-12">
-                        <textarea class="form-control" id="comment-textbox" placeholder="댓글을 입력하세요..." rows="3" name="content" required></textarea>
+                        <textarea class="form-control" id="comment-textbox" placeholder="Comment" rows="3" name="content" required></textarea>
                     </div>
                     <div class="col-md-12 col-lg-12 d-flex justify-content-end">
-                        <button class="btn btn-primary" id="comment-submit" type="submit">댓글 작성</button>
+                        <button class="btn btn-primary" id="comment-submit" type="submit">Submit</button>
                     </div>
                 </form>
             </section>
