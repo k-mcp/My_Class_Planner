@@ -11,6 +11,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -161,5 +162,30 @@ public class BoardController {
                 return "board/board";
         }
         return "redirect:/board";
+    }
+    @GetMapping("/board/updatePost")
+    public String updateBoard(Model model, HttpSession session){
+        int boardNo = (int) session.getAttribute("boardNo");
+        BoardDTO boardDTO = boardService.viewByBoardNo(boardNo);
+        model.addAttribute("title", boardDTO.getBoardTitle());
+        model.addAttribute("content", boardDTO.getBoardContent().trim());
+        model.addAttribute("boardNo", boardNo);
+        return "board/update";
+    }
+
+    @PostMapping("/board/updatePost")
+    public String updateBoardPro(Model model, HttpSession session, HttpServletRequest request){
+        int boardNo = (int) session.getAttribute("boardNo");
+        Map<String, String[]> parameters = request.getParameterMap();
+        String[] a = {"title", "content"};
+        int x = 0;
+        Map<String,Object> map = new HashMap<>();
+        for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
+            String i = Arrays.toString(entry.getValue()).replace("[", "").replace("]", "").trim();
+            map.put(a[x++], i);
+        }
+        map.put("boardNo", boardNo);
+        boardService.updatePost(map);
+        return "redirect:/board/view?boardNo="+boardNo;
     }
 }

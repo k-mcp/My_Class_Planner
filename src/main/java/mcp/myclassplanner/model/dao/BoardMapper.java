@@ -32,5 +32,7 @@ public interface BoardMapper {
     List<BoardDTO> findByContext(String searchValue);
 
     List<BoardDTO> findByAuthor(String searchValue);
+
+    void updatePost(Map<String, Object> map);
 }
 

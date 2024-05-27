@@ -60,4 +60,8 @@ public class BoardService {
     public List<BoardDTO> findByAuthor(String searchValue) {
         return boardMapper.findByAuthor(searchValue);
     }
+
+    public void updatePost(Map<String, Object> map) {
+        boardMapper.updatePost(map);
+    }
 }

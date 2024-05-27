@@ -11,7 +11,6 @@
         <result property="boardContent" column="board_content"/>
         <result property="lev" column="lev"/>
     </resultMap>
-
     <resultMap id="CommentDTO" type="mcp.myclassplanner.model.dto.CommentDTO">
         <id property="commentNo" column="comment_no"/>
         <result property="username" column="username"/>
@@ -21,6 +20,12 @@
         <result property="rank" column="lev"/>
     </resultMap>
 
+    <update id="updatePost" parameterType="hashmap">
+        update tbl_board
+        set board_title = #{title},
+        board_content = #{content}
+        where board_no = #{boardNo}
+    </update>
     <select id="findByTitle" resultMap="BoardDTO" parameterType="string">
         SELECT
         a.board_no,
