@@ -19,7 +19,7 @@ https://github.com/k-mcp/My_Class_Planner/assets/98254345/e5635548-ef23-4d11-83e
 
 | 이름    | 역할         | 깃허브 주소                   |
 |---------|--------------|-------------------------------|
-| 유정우  | 팀장, Server, Algorithm | [유정우의 깃허브](https://github.com/Jungwoo-Ryu) |
+| 유정우  | 팀장, Server, Algorithm, OPEN AI | [유정우의 깃허브](https://github.com/Jungwoo-Ryu) |
 | 이은숙  | 업무관리, DB 관리, 테스트관리 | [이은숙의 깃허브](https://github.com/Leeeunsookl) |
 | 이혜진  | 문서관리, DB 관리 | [이혜진의 깃허브](https://github.com/tesla1220) |
 | 정고은  | Server, UI/UX   | [정고은의 깃허브](https://github.com/GonY0624) |
@@ -101,7 +101,7 @@ https://github.com/k-mcp/My_Class_Planner/assets/98254345/e5635548-ef23-4d11-83e
 ### 🍊유정우
 
 - **UI**
-    - 페이지 : 홈, Add Course, Generate Plans, AI 채팅방
+    - 페이지 : 홈, 사이드바, Add Course, Generate Plans, AI 채팅방
     - 공통 컴포넌트 : 게시글 템플릿, 버튼
 - **기능**
     - 게시글 등록 및 수정, 댓글 등록 및 삭제, 백트래킹 기반의 시간표 생성 알고리즘, OPEN AI Fetch
