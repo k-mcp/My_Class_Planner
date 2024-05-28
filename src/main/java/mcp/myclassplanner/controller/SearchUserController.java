@@ -11,10 +11,7 @@ import mcp.myclassplanner.model.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -59,13 +56,12 @@ public class SearchUserController {
 
     @PostMapping(value="search", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public String memberExist() throws JsonProcessingException {
-
-        List<MemberDTO> memberDTOList = memberService.searchAllMember();
-
+    public String memberExist(@RequestBody String query) throws JsonProcessingException {
+        query = query.replace("\"","").replace("}","").substring(query.indexOf(":")-1);
+        List<String> usernames = memberService.searchAllMember(query);
         ObjectMapper mapper = new ObjectMapper();
 
-        return mapper.writeValueAsString(memberDTOList);
+        return mapper.writeValueAsString(usernames);
     }
 
 }
