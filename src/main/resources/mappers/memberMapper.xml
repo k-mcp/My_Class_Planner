@@ -23,7 +23,7 @@
         from tbl_member
         where username = #{username};
     </select>
-    <select id="getMemberCodeByUsername" parameterType="string" resultType="int">
+    <select id="getMemberCodeByUsername" parameterType="string" resultType="Integer">
         select member_code
         from tbl_member
         where username = #{username};

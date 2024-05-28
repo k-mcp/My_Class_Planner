@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Controller
@@ -52,8 +53,18 @@ public class SearchUserController {
     @PostMapping("/searchUsers")
     public String searchedUser(HttpServletRequest request, Model model, HttpSession session){
         String username = request.getParameter("searchInput");
-        int memberCode = memberService.getMemberCodeByUsername(username);
+        Integer memberCode = memberService.getMemberCodeByUsername(username);
+        if(Objects.isNull(memberCode)){
+            model.addAttribute("message","There is no such username.");
+            return "search/searchUsers";
+        }
+
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
+        // 유저가 플랜 저장을 안한경우
+        if(planDTOS.size() == 0){
+            model.addAttribute("message","User has not saved any plans yet.");
+            return "search/searchUsers";
+        }
         for(PlanDTO planDTO : planDTOS){
             if (planDTO.getDays().contains("X")){
                 planDTO.setDays(planDTO.getDays().replace("X","Th"));

@@ -177,7 +177,7 @@ public class MemberService {
         return memberMapper.searchUsers(query);
     }
 
-    public int getMemberCodeByUsername(String username) {
+    public Integer getMemberCodeByUsername(String username) {
         return memberMapper.getMemberCodeByUsername(username);
     }
 

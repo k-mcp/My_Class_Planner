@@ -54,6 +54,12 @@
     </style>
 </head>
 <body>
+<script>
+    const message = `[[${message}]]`;
+    if(message){
+        alert(message);
+    }
+</script>
 <div class="d-flex"> <!-- Flex container -->
 
     <div th:replace="common/sidebar"></div>
@@ -69,7 +75,7 @@
             <form id="searchForm" action="/searchUsers" method="post">
                 <div class="dropdown">
                     <div class="input-group">
-                        <input type="text" class="form-control" name="searchInput" id="searchInput" placeholder="Enter search Username" oninput="search()">
+                        <input type="text" class="form-control" name="searchInput" id="searchInput" placeholder="Enter search Username" oninput="search()" required>
                         <span class="input-group-text" id="searchIcon" onclick="document.getElementById('searchForm').submit();">
                             <i class="bi bi-search"></i>
                         </span>
