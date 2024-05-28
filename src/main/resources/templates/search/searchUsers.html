@@ -35,7 +35,7 @@
 
     <div th:replace="common/sidebar"></div>
 
-    <div class="container mt-5">
+      <div class="container mt-5">
         <div class="search-Users">
             <i class="bi bi-search icon"></i>
             <div class="h2 title">Search Users</div>
@@ -43,10 +43,12 @@
         <div class="container mt-5">
             <form id="searchForm" action="/searchUsers" method="get">
                 <div class="mb-3">
-                    <label for="query" class="form-label">Search</label>
+                    <label for="query" class="form-label" style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search</label>
                     <input type="text" class="form-control" id="query" name="query" placeholder="Enter search Username">
                 </div>
-                <button type="submit" class="btn btn-primary">Search</button>
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-primary" style="background-color: #ffc107; color: white; border: none">Search</button>
+                </div>
             </form>
 
 
