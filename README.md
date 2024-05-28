@@ -153,6 +153,7 @@
 
 ## 6. 신경 쓴 부분
 - [알고리즘](https://github.com/k-mcp/My_Class_Planner/wiki/시간표-생성-알고리즘)
+- [메인인증](https://github.com/k-mcp/My_Class_Planner/wiki/이메일-인증-시스템)
 
 
 <br>
