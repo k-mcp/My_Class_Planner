@@ -250,7 +250,13 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 
 <br>
 
-## 8. 개선 목표
+## 8. 물리적 데이터 모델
+<img width="596" alt="model" src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/3190614a-92bb-4003-ae18-b64c77761a10">
+
+
+<br>
+
+## 9. 개선 목표
 
 - 시간표 시각화 : Timetable API 를 이용해서 강의들을 블럭 단위로 시각화 해서 보여줄 예정
 
