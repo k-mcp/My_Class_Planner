@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -59,9 +60,13 @@ public class SearchUserController {
     public String memberExist(@RequestBody Map<String,Object> query) throws JsonProcessingException {
         String username = (String) query.get("query");
         List<String> usernames = memberService.searchAllMember(username);
+        Map<String,String> map = new HashMap<>();
+        for(String name : usernames){
+            map.put(name,name);
+        }
 
         ObjectMapper mapper = new ObjectMapper();
-        Object a = mapper.writeValueAsString(usernames);
+        Object a = mapper.writeValueAsString(map);
         return mapper.writeValueAsString(usernames);
     }
 
