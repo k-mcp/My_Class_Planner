@@ -1,5 +1,7 @@
 package mcp.myclassplanner.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import mcp.myclassplanner.model.dto.PlanDTO;
@@ -12,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.Map;
@@ -52,6 +55,17 @@ public class SearchUserController {
                 .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
         model.addAttribute("groupedPlans", groupedPlans);
         return "search/searchUsers";
+    }
+
+    @PostMapping(value="search", produces = "application/json; charset=UTF-8")
+    @ResponseBody
+    public String memberExist() throws JsonProcessingException {
+
+        List<MemberDTO> memberDTOList = memberService.searchAllMember();
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        return mapper.writeValueAsString(memberDTOList);
     }
 
 }

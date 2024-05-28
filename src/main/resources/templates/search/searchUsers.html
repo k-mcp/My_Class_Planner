@@ -44,7 +44,7 @@
             <form id="searchForm" action="/searchUsers" method="post">
                 <div class="mb-3">
                     <label for="query" class="form-label" style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search</label>
-                    <input type="text" class="form-control" id="query" name="query" placeholder="Enter search Username">
+                    <input type="text" class="form-control" id="query" name="query" placeholder="Enter search Username" onchange="">
                 </div>
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary" style="background-color: #ffc107; color: white; border: none">Search</button>
@@ -87,6 +87,20 @@
 
     </div>
 </div>
+<script>
+    function search(){
+        const query = document.getElementById('query').value;
+        fetch('/search', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                "query":query
+            })
+        }).then(response => response.json() )
+            .then(data => {
 
+            })
+    }
+</script>
 </body>
 </html>
