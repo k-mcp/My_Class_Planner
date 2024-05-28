@@ -53,12 +53,11 @@ public class CourseController {
     }
 
     @GetMapping("/add")
-    public ModelAndView addCourse(HttpSession session, ModelAndView mv) {
-        mv.addObject("username", session.getAttribute("username"));
+    public String addCourse(HttpSession session, Model model) {
+        model.addAttribute("username", session.getAttribute("username"));
         // 세션에 사용자 정보 저장
-        mv.setViewName("course/add");
-        mv.addObject("API_KEY", API_KEY);
-        return mv;
+        model.addAttribute("API_KEY", API_KEY);
+        return "course/add";
     }
     @PostMapping("/add")
     public String addCourse(String courseName,HttpSession httpSession, HttpServletRequest request){
@@ -119,13 +118,12 @@ public class CourseController {
     }
 
     @GetMapping("/course")
-    public ModelAndView viewCourse(HttpSession session, ModelAndView mv) {
-        mv.addObject("username",session.getAttribute("username"));
+    public String viewCourse(HttpSession session, Model mv) {
+        mv.addAttribute("username",session.getAttribute("username"));
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
-        mv.addObject("courseDTOList", courseDTOList);
-        mv.setViewName("course/course");
-        mv.addObject("API_KEY", API_KEY);
-        return mv;
+        mv.addAttribute("courseDTOList", courseDTOList);
+        mv.addAttribute("API_KEY", API_KEY);
+        return "course/course";
     }
 }

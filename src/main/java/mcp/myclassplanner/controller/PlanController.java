@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Member;
 import java.util.*;
@@ -41,17 +42,16 @@ public class PlanController {
     }
 
     @GetMapping("/generate")
-    public ModelAndView plan(HttpSession session, ModelAndView mv){
-        mv.addObject("username",session.getAttribute("username"));
+    public String plan(HttpSession session, Model model){
+        model.addAttribute("username",session.getAttribute("username"));
         // 세션에 사용자 정보 저장
         int memberCode = (int) session.getAttribute("memberCode");
         List<CourseDTO> courseDTOList = courseService.viewAllCourse(memberCode);
 
         // mv 추가
-        mv.addObject("courseDTOList",courseDTOList);
-        mv.addObject("API_KEY", API_KEY);
-        mv.setViewName("plan/generate");
-        return mv;
+        model.addAttribute("courseDTOList",courseDTOList);
+        model.addAttribute("API_KEY", API_KEY);
+        return "plan/generate";
 
     }
     @PostMapping("/generate")
@@ -86,10 +86,11 @@ public class PlanController {
         return "redirect:/generatePro";
     }
     @GetMapping("generatePro")
-    public ModelAndView generatePro(HttpSession session, ModelAndView mv){
+    public String generatePro(HttpSession session, Model model, RedirectAttributes flash){
         List<ScheduleDTO> scheduleDTOS = planService.viewResult();
         if(scheduleDTOS.size() == 0){
-            mv.addObject("message", "There is no available Schedule.");
+            flash.addFlashAttribute("message", "There is no available Schedule.");
+            return "redirect:/generate";
         }
         for(ScheduleDTO scheduleDTO : scheduleDTOS){
             if (scheduleDTO.getDays().contains("X")){
@@ -98,10 +99,9 @@ public class PlanController {
         }
         Map<Integer, List<ScheduleDTO>> groupedSchedules = scheduleDTOS.stream()
                 .collect(Collectors.groupingBy(ScheduleDTO::getCaseNo));
-        mv.addObject("groupedSchedules", groupedSchedules);
-        mv.addObject("API_KEY", API_KEY);
-        mv.setViewName("plan/generatepro");
-        return mv;
+        model.addAttribute("groupedSchedules", groupedSchedules);
+        model.addAttribute("API_KEY", API_KEY);
+        return "plan/generatepro";
     }
     @PostMapping("saveSchedules")
     public String saveSchedules(HttpSession session, HttpServletRequest request){
@@ -119,8 +119,8 @@ public class PlanController {
         return "redirect:/myplan";
     }
     @GetMapping("myplan")
-    public ModelAndView myplan(ModelAndView mv, HttpSession session){
-        mv.addObject("username",session.getAttribute("username"));
+    public String myplan(Model mv, HttpSession session){
+        mv.addAttribute("username",session.getAttribute("username"));
         int memberCode = (int) session.getAttribute("memberCode");
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
         for(PlanDTO planDTO : planDTOS){
@@ -130,10 +130,9 @@ public class PlanController {
         }
         Map<Integer, List<PlanDTO>> groupedPlans = planDTOS.stream()
                 .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
-        mv.addObject("groupedPlans", groupedPlans);
-        mv.addObject("API_KEY", API_KEY);
-        mv.setViewName("plan/plan");
-        return mv;
+        mv.addAttribute("groupedPlans", groupedPlans);
+        mv.addAttribute("API_KEY", API_KEY);
+        return "plan/plan";
     }
 
 
