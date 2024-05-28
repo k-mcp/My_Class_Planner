@@ -1,4 +1,14 @@
-[Try Our Application](http://115.95.149.11:8081)
+## 🚀 Try Our Application Now!
+
+We're excited to invite you to experience our web application firsthand! Our app is designed to simplify your tasks and enhance productivity. 🌟
+
+Click below to start exploring:
+
+[![Explore Our Application](https://img.shields.io/badge/Explore-OurApp-blue?style=for-the-badge&logo=appveyor)](http://115.95.149.11:8081)
+
+
+We hope you enjoy using our app as much as we enjoyed building it. If you have any feedback or encounter any issues, please let us know!
+
   <p align='center'>
     <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=My%20Class%20Planner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=&descAlignY=51&descAlign=62" width="100%">
 </p>
