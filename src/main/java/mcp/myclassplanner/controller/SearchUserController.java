@@ -41,7 +41,7 @@ public class SearchUserController {
 
     @PostMapping("/searchUsers")
     public String searchedUser(HttpServletRequest request, Model model){
-        String username = request.getParameter("query");
+        String username = request.getParameter("searchInput");
         int memberCode = memberService.getMemberCodeByUsername(username);
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
         for(PlanDTO planDTO : planDTOS){
