@@ -5,7 +5,6 @@
     <title>Title</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-
     <style>
         .search-Users {
             background-color: #f8f9fa;
@@ -13,7 +12,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
-            border-left: 10px solid #8EBFA3; /* Add a left border with the specified color */
+            border-left: 10px solid #8EBFA3;
             position: relative;
             display: flex;
             align-items: center;
@@ -25,13 +24,32 @@
         .search-Users .title {
             font-weight: bold;
             margin-left: 10px;
-            color: #8EBFA3; /* Change title color to specified color */
+            color: #8EBFA3;
+        }
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            overflow: hidden;
         }
         .course-container {
             background-color: #e9ecef;
             padding: 20px;
             border-radius: 10px;
             margin-top: 20px;
+        }
+        .input-group-text {
+            background-color: #ffc107;
+            border: none;
+        }
+        .input-group-text:hover {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -40,44 +58,49 @@
 
     <div th:replace="common/sidebar"></div>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="search-Users">
             <i class="bi bi-search icon"></i>
             <div class="h2 title">Search Users</div>
         </div>
         <div class="container mt-5">
-            <div class="dropdown">
-                <div style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search</div>
-                <input type="text" class="form-control dropdown-toggle" id="search-input" data-bs-toggle="dropdown" aria-expanded="false" placeholder="Enter search Username">
-                <ul class="dropdown-menu w-100" id="searchDropdown" aria-labelledby="searchInput"></ul>
-            </div>
+            <div style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search</div>
             <br>
-            <div class="d-flex justify-content-end">
-                <button type="button" onclick="search()" class="btn btn-primary" style="background-color: #ffc107; color: white; border: none">Search</button>
-            </div>
-        </div>
+            <form id="searchForm" action="/searchUsers" method="post">
+                <div class="dropdown">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="searchInput" id="searchInput" placeholder="Enter search Username" oninput="search()">
+                        <span class="input-group-text" id="searchIcon" onclick="document.getElementById('searchForm').submit();">
+                            <i class="bi bi-search"></i>
+                        </span>
+                    </div>
+                    <div id="autocomplete-list" class="autocomplete-items"></div>
+                </div>
+            </form>
 
-        <div class="course-container mt-5">
-            <h2 style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search Results</h2>
-            <div id="searchResults"></div>
-            <div class="accordion" id="accordionExample">
-                <div th:each="groupEntry, groupIndex : ${groupedPlans}">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" th:id="'heading' + ${groupEntry.key}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    th:attr="data-bs-target='#collapse' + ${groupEntry.key}, aria-controls='collapse' + ${groupEntry.key}">
-                                <span class="ms-1" th:text="' Case Number: ' + ${groupIndex.index + 1}"></span>
-                            </button>
-                        </h2>
-                        <div th:id="'collapse' + ${groupEntry.key}" class="accordion-collapse collapse"
-                             th:attr="aria-labelledby='heading' + ${groupEntry.key}" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <div th:each="plan : ${groupEntry.value}" class="form-check">
-                                    <label class="form-check-label" th:for="'plan-' + ${plan.planNo}"
-                                           th:text=" '[' + ${plan.courseName} + '] ' + ${#numbers.formatInteger(plan.start/100,2)} + ':' + ${#numbers.formatInteger(plan.start%100,2)} +
-                                                           ' - ' + ${#numbers.formatInteger(plan.end/100,2)} + ':' + ${#numbers.formatInteger(plan.end%100,2)} +
-                                                           ' (' + ${plan.days} + ')'">
-                                    </label>
+            <div class="course-container mt-5">
+                <div style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search Results</div>
+                <div id="searchResults"></div>
+                <div class="accordion" id="accordionExample">
+                    <br>
+                    <div th:each="groupEntry, groupIndex : ${groupedPlans}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" th:id="'heading' + ${groupEntry.key}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        th:attr="data-bs-target='#collapse' + ${groupEntry.key}, aria-controls='collapse' + ${groupEntry.key}">
+                                    <span class="ms-1" th:text="' Case Number: ' + ${groupIndex.index + 1}"></span>
+                                </button>
+                            </h2>
+                            <div th:id="'collapse' + ${groupEntry.key}" class="accordion-collapse collapse"
+                                 th:attr="aria-labelledby='heading' + ${groupEntry.key}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div th:each="plan : ${groupEntry.value}" class="form-check">
+                                        <label class="form-check-label" th:for="'plan-' + ${plan.planNo}"
+                                               th:text=" '[' + ${plan.courseName} + '] ' + ${#numbers.formatInteger(plan.start/100,2)} + ':' + ${#numbers.formatInteger(plan.start%100,2)} +
+                                                       ' - ' + ${#numbers.formatInteger(plan.end/100,2)} + ':' + ${#numbers.formatInteger(plan.end%100,2)} +
+                                                       ' (' + ${plan.days} + ')'">
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -87,26 +110,45 @@
         </div>
     </div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script>
-    function search(){
-        const query = document.getElementById('search-input').value;
+    function search() {
+        const input = document.getElementById('searchInput');
+        const inputValue = input.value;
+        const autocompleteList = document.getElementById('autocomplete-list');
+
+        if (!inputValue) {
+            autocompleteList.innerHTML = '';
+            return;
+        }
+
         fetch('/search', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                "query":query
-            })
-        }).then(response => response.json() )
+            body: JSON.stringify({"query": inputValue})
+        })
+            .then(response => response.json())
             .then(data => {
-                // Handle the search results here
-                console.log(data);
+                autocompleteList.innerHTML = '';
+                data.forEach(item => {
+                    const div = document.createElement('div');
+                    div.textContent = item;
+                    div.className = 'autocomplete-item';
+                    div.addEventListener('click', function() {
+                        input.value = this.textContent;
+                        autocompleteList.innerHTML = '';
+                    });
+                    autocompleteList.appendChild(div);
+                });
             })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            .catch(error => console.error('Error:', error));
     }
+
+    // Close the dropdown when clicking outside
+    window.onclick = function(event) {
+        if (!event.target.matches('#searchInput')) {
+            document.getElementById('autocomplete-list').innerHTML = '';
+        }
+    };
 </script>
 </body>
 </html>

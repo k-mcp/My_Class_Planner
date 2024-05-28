@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,7 +41,7 @@ public class SearchUserController {
 
     @PostMapping("/searchUsers")
     public String searchedUser(HttpServletRequest request, Model model){
-        String username = request.getParameter("query");
+        String username = request.getParameter("searchInput");
         int memberCode = memberService.getMemberCodeByUsername(username);
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
         for(PlanDTO planDTO : planDTOS){
@@ -56,11 +57,16 @@ public class SearchUserController {
 
     @PostMapping(value="search", produces = "application/json; charset=UTF-8")
     @ResponseBody
-    public String memberExist(@RequestBody String query) throws JsonProcessingException {
-        query = query.replace("\"","").replace("}","").substring(query.indexOf(":")-1);
-        List<String> usernames = memberService.searchAllMember(query);
-        ObjectMapper mapper = new ObjectMapper();
+    public String memberExist(@RequestBody Map<String,Object> query) throws JsonProcessingException {
+        String username = (String) query.get("query");
+        List<String> usernames = memberService.searchAllMember(username);
+        Map<String,String> map = new HashMap<>();
+        for(String name : usernames){
+            map.put(name,name);
+        }
 
+        ObjectMapper mapper = new ObjectMapper();
+        Object a = mapper.writeValueAsString(map);
         return mapper.writeValueAsString(usernames);
     }
 
