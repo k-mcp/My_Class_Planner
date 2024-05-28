@@ -61,7 +61,7 @@ public class SearchUserController {
         List<String> usernames = memberService.searchAllMember(username);
 
         ObjectMapper mapper = new ObjectMapper();
-
+        Object a = mapper.writeValueAsString(usernames);
         return mapper.writeValueAsString(usernames);
     }
 
