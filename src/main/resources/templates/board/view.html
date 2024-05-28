@@ -110,10 +110,10 @@
         <div class="row mt-3 ms-2 me-2">
 
             <br>
-            <article id="article-content" class="container form-container border text-start article-content"> <!-- 수정 -->
-                <div th:text="${boardDTO.boardTitle}" class="h2 ms-2">게시글 제목</div>
+            <article id="article-content"> <!-- 수정 -->
                <pre th:text="${boardDTO.boardContent}" class="comment-box">게시글 내용</pre>
             </article>
+
         </div>
 
         <!-- 게시글 삭제 버튼 -->
@@ -121,7 +121,7 @@
             <br>
             <div class="pb-5 d-grid gap-2 d-md-block text-end" >
                 <br>
-                <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/updatePost}" style="background-color: #e07f75; color: white; border: none; padding: 8px 16px;">Update</a>
+                <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/updatePost}" style="background-color: #ffc107; color: white; border: none; padding: 8px 16px;">Update</a>
                 <a th:if="${author}" class="btn btn-danger me-md-2 comment-submit" type="submit" th:href="@{/board/deletePost}" style="background-color: #e07f75; color: white; border: none; padding: 8px 16px;">delete</a>
             </div>
         </div>
