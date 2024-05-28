@@ -9,6 +9,7 @@ import mcp.myclassplanner.model.service.MemberService;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,11 +22,18 @@ import java.util.stream.Collectors;
 @Controller
 public class SearchUserController {
 
-    @Autowired
-    private MemberService memberService; // MemberService를 Autowired하여 인스턴스 생성
+    private final MemberService memberService; // MemberService를 Autowired하여 인스턴스 생성
+    private final PlanService planService;
+
+    @Value("${API_KEY}")
+    private String API_KEY;
 
     @Autowired
-    private PlanService planService;
+    public SearchUserController(MemberService memberService, PlanService planService) {
+        this.memberService = memberService;
+        this.planService = planService;
+    }
+
 
     //@RequestParam("query")
     @GetMapping("/searchUsers")
@@ -36,11 +44,13 @@ public class SearchUserController {
 
         model.addAttribute("searchResults", searchResults); // 검색 결과를 모델에 추가
         model.addAttribute("username", username);
+
+        model.addAttribute("API_KEY", API_KEY);
         return "search/searchUsers";
     }
 
     @PostMapping("/searchUsers")
-    public String searchedUser(HttpServletRequest request, Model model){
+    public String searchedUser(HttpServletRequest request, Model model, HttpSession session){
         String username = request.getParameter("searchInput");
         int memberCode = memberService.getMemberCodeByUsername(username);
         List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
@@ -52,6 +62,9 @@ public class SearchUserController {
         Map<Integer, List<PlanDTO>> groupedPlans = planDTOS.stream()
                 .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
         model.addAttribute("groupedPlans", groupedPlans);
+        model.addAttribute("username", (String)session.getAttribute("username"));
+
+        model.addAttribute("API_KEY", API_KEY);
         return "search/searchUsers";
     }
 

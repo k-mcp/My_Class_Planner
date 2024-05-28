@@ -26,9 +26,13 @@ public class SettingController {
     @Value("${API_KEY}")
     private String API_KEY;
 
-    //비밀번호 변경
+    private final MemberService memberService;
+
     @Autowired
-    private MemberService memberService;
+    public SettingController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
 
     @GetMapping("/settings")
     public ModelAndView settings(HttpSession session, ModelAndView mv) {
