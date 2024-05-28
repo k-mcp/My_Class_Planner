@@ -57,7 +57,7 @@ public class SearchUserController {
     @PostMapping(value="search", produces = "application/json; charset=UTF-8")
     @ResponseBody
     public String memberExist(@RequestBody String query) throws JsonProcessingException {
-        query = query.replace("\"","").replace("}","").substring(query.indexOf(":")-1);
+            query = query.replace("\"","").replace("}","").substring(query.indexOf(":")-1);
         List<String> usernames = memberService.searchAllMember(query);
         ObjectMapper mapper = new ObjectMapper();
 

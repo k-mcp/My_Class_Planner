@@ -180,4 +180,8 @@ public class MemberService {
     public int getMemberCodeByUsername(String username) {
         return memberMapper.getMemberCodeByUsername(username);
     }
+
+    public List<String> searchAllMember(String query) {
+        return memberMapper.searchAllMember(query);
+    }
 }

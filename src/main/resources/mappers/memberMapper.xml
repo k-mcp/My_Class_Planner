@@ -12,6 +12,12 @@
         <result property="authStatus" column="auth_status"/>
     </resultMap>
 
+    <select id="searchAllMember" parameterType="string" resultType="string">
+        select username
+        from tbl_member
+        where username LIKE CONCAT(#{query}, '%')
+    </select>
+
     <select id="getEncodedPassword" parameterType="string" resultType="string">
         select password
         from tbl_member
