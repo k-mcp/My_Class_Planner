@@ -58,6 +58,7 @@
             <div class="h2 title">Search Users</div>
         </div>
         <div class="container mt-5">
+            <form id="searchForm" action="/searchUsers" method="post">
             <div class="dropdown">
                 <div style="position: relative;">
                     <input type="text" class="form-control" id="searchInput" placeholder="Enter search Username" oninput="search()">
@@ -68,7 +69,7 @@
             <div class="d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary" style="background-color: #ffc107; color: white; border: none">Search</button>
             </div>
-
+            </form>
 
 
 
