@@ -87,6 +87,8 @@ public class PlanController {
     }
     @GetMapping("generatePro")
     public String generatePro(HttpSession session, Model model, RedirectAttributes flash){
+
+        model.addAttribute("username",session.getAttribute("username"));
         List<ScheduleDTO> scheduleDTOS = planService.viewResult();
         if(scheduleDTOS.size() == 0){
             flash.addFlashAttribute("message", "There is no available Schedule.");
@@ -105,6 +107,7 @@ public class PlanController {
     }
     @PostMapping("saveSchedules")
     public String saveSchedules(HttpSession session, HttpServletRequest request){
+
         Map<String, String[]> parameters = request.getParameterMap();
 
         for (Map.Entry<String, String[]> entry : parameters.entrySet()) {
