@@ -47,4 +47,6 @@ public interface MemberMapper {
 
     // 검색 메서드 추가
     List<MemberDTO> searchUsers(@Param("query") String query);
+
+    int getMemberCodeByUsername(String username);
 }

@@ -1,21 +1,30 @@
 package mcp.myclassplanner.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import mcp.myclassplanner.model.dto.PlanDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import mcp.myclassplanner.model.dto.MemberDTO;
+import mcp.myclassplanner.model.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Controller
 public class SearchUserController {
 
     @Autowired
     private MemberService memberService; // MemberService를 Autowired하여 인스턴스 생성
+
+    @Autowired
+    private PlanService planService;
 
     //@RequestParam("query")
     @GetMapping("/searchUsers")
@@ -26,6 +35,22 @@ public class SearchUserController {
 
         model.addAttribute("searchResults", searchResults); // 검색 결과를 모델에 추가
         model.addAttribute("username", username);
+        return "search/searchUsers";
+    }
+
+    @PostMapping("/searchUsers")
+    public String searchedUser(HttpServletRequest request, Model model){
+        String username = request.getParameter("query");
+        int memberCode = memberService.getMemberCodeByUsername(username);
+        List<PlanDTO> planDTOS = planService.viewMyPlan(memberCode);
+        for(PlanDTO planDTO : planDTOS){
+            if (planDTO.getDays().contains("X")){
+                planDTO.setDays(planDTO.getDays().replace("X","Th"));
+            }
+        }
+        Map<Integer, List<PlanDTO>> groupedPlans = planDTOS.stream()
+                .collect(Collectors.groupingBy(PlanDTO::getCaseNo));
+        model.addAttribute("groupedPlans", groupedPlans);
         return "search/searchUsers";
     }
 

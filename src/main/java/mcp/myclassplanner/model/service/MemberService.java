@@ -176,4 +176,8 @@ public class MemberService {
         // 사용자 이름 또는 이메일이 검색어(query)를 포함하는 경우 검색
         return memberMapper.searchUsers(query);
     }
+
+    public int getMemberCodeByUsername(String username) {
+        return memberMapper.getMemberCodeByUsername(username);
+    }
 }

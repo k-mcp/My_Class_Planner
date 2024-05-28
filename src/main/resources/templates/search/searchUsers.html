@@ -41,7 +41,7 @@
             <div class="h2 title">Search Users</div>
         </div>
         <div class="container mt-5">
-            <form id="searchForm" action="/searchUsers" method="get">
+            <form id="searchForm" action="/searchUsers" method="post">
                 <div class="mb-3">
                     <label for="query" class="form-label" style="font-weight: bold; font-size: 1.2em; color: #636B73;">Search</label>
                     <input type="text" class="form-control" id="query" name="query" placeholder="Enter search Username">
@@ -57,6 +57,31 @@
             <div class="mt-4">
                 <h2>Search Results</h2>
                 <div id="searchResults"></div>
+                <div class="accordion" id="accordionExample">
+                    <div th:each="groupEntry, groupIndex : ${groupedPlans}">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" th:id="'heading' + ${groupEntry.key}">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        th:attr="data-bs-target='#collapse' + ${groupEntry.key}, aria-controls='collapse' + ${groupEntry.key}">
+                                    <input type="checkbox" class="form-check-input" th:value="${groupEntry.key}" th:name="${groupEntry.key}"/>
+                                    <span class="ms-1" th:text="' Case Number: ' + ${groupIndex.index + 1}"></span>
+                                </button>
+                            </h2>
+                            <div th:id="'collapse' + ${groupEntry.key}" class="accordion-collapse collapse"
+                                 th:attr="aria-labelledby='heading' + ${groupEntry.key}" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <div th:each="plan : ${groupEntry.value}" class="form-check">
+                                        <label class="form-check-label" th:for="'plan-' + ${plan.planNo}"
+                                               th:text=" '[' + ${plan.courseName} + '] ' + ${#numbers.formatInteger(plan.start/100,2)} + ':' + ${#numbers.formatInteger(plan.start%100,2)} +
+                                                       ' - ' + ${#numbers.formatInteger(plan.end/100,2)} + ':' + ${#numbers.formatInteger(plan.end%100,2)} +
+                                                       ' (' + ${plan.days} + ')'">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
