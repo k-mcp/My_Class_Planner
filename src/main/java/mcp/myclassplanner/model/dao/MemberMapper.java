@@ -49,4 +49,6 @@ public interface MemberMapper {
     List<MemberDTO> searchUsers(@Param("query") String query);
 
     int getMemberCodeByUsername(String username);
+
+    List<String> searchAllMember(String query);
 }
