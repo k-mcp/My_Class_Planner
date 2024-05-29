@@ -113,8 +113,8 @@ public class MemberController {
 
         }
     }
-    @GetMapping("/forgotpassword")
-    public String forgotpassword(String email, String authKey, HttpSession session){
+    @GetMapping("/resetPassword")
+    public String forgotPassword(String email, String authKey, HttpSession session){
         Map<String, String> map = new HashMap<>();
         map.put("email", email);
         map.put("authKey", authKey);
@@ -165,7 +165,7 @@ public class MemberController {
     
     @GetMapping("/forgotPassword")
     public String showForgotPasswordPage() {
-        return "/auth/forgotPassword";
+        return "auth/forgotPassword";
 
     }
 }

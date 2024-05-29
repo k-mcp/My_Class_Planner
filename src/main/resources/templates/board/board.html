@@ -68,7 +68,7 @@
                             <div class="col-lg-9 col-md-6 col-sm-12 mb-3"> <!-- 두 번째 열 -->
                                 <label for="search-value" hidden>Search</label>
                                 <div class="input-group">
-                                    <input type="text" placeholder="Search" class="form-control" id="search-value" name="searchValue">
+                                    <input type="text" placeholder="Search" class="form-control" id="search-value" name="searchValue" required>
                                     <button type="submit" class="btn btn-outline-secondary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
                                             <circle cx="11" cy="11" r="8"></circle>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="col-4"></div>
                 <div class="col-6">
-                    <ul class="pagination">
+                    <ul th:unless="${notShow}" class="pagination">
                         <!-- Previous Button -->
                         <li class="page-item" th:classappend="${page == 0} ? 'disabled'">
                             <a class="page-link" th:href="${page > 0} ? @{/board(page=${page-1})} : '#'" tabindex="-1" aria-disabled="true">Previous</a>

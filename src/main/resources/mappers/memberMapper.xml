@@ -15,7 +15,7 @@
     <select id="searchAllMember" parameterType="string" resultType="string">
         select username
         from tbl_member
-        where username LIKE CONCAT(#{query}, '%')
+        where LOWER(username) LIKE CONCAT(LOWER(#{query}), '%')
     </select>
 
     <select id="getEncodedPassword" parameterType="string" resultType="string">

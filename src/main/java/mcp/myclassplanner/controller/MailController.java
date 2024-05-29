@@ -46,7 +46,7 @@ public class MailController {
         mv.setViewName("redirect:/loading");
         return mv;
     }
-    @PostMapping("/auth/forgotpassword")
+    @PostMapping("/auth/forgotPassword")
     public ModelAndView forgotPassword(String email, ModelAndView mv) {
 
         String key = memberService.getAuthCode(email);
@@ -56,7 +56,7 @@ public class MailController {
         mailTO.setTitle("My Class Planner confirmation email");
         mailTO.setMessage(new StringBuffer().append("<h1>[비밀번호 재설정]</h1>")
                 .append("<p>아래 링크를 클릭하세요.</p>")
-                .append("<a href='http://115.95.149.11:8081/auth/forgotpassword?email=")
+                .append("<a href='http://115.95.149.11:8081/auth/resetPassword?email=")
                 .append(email)
                 .append("&authKey=")
                 .append(key)

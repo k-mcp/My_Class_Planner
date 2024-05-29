@@ -37,7 +37,7 @@
         FROM tbl_board a
         left join tbl_member b
         on a.username = b.username
-        WHERE board_title LIKE CONCAT('%', #{searchValue}, '%')
+        WHERE LOWER(board_title) LIKE CONCAT('%', LOWER(#{searchValue}), '%')
         ORDER BY board_time DESC
     </select>
 
@@ -52,7 +52,7 @@
         FROM tbl_board a
         left join tbl_member b
         on a.username = b.username
-        WHERE board_content LIKE CONCAT('%', #{searchValue}, '%')
+        WHERE LOWER(board_content) LIKE CONCAT('%', LOWER(#{searchValue}), '%')
         ORDER BY board_time DESC
     </select>
 
@@ -67,7 +67,7 @@
         FROM tbl_board a
         left join tbl_member b
         on a.username = b.username
-        WHERE a.username LIKE CONCAT('%', #{searchValue}, '%')
+        WHERE LOWER(a.username) LIKE CONCAT('%', LOWER(#{searchValue}), '%')
         ORDER BY board_time DESC
     </select>
 
