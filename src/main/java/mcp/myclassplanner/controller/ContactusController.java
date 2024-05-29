@@ -42,8 +42,10 @@ public class ContactusController {
     public String sendEmail(@RequestParam("name") String name,
                                   @RequestParam("email") String email,
                                   @RequestParam("message") String message,
-                                  Model model){
+                                  Model model, HttpSession session){
 
+        String username = (String) session.getAttribute("username");
+        model.addAttribute("username", username);
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setTo("myclassplanner01@gmail.com");
         mailMessage.setSubject("NEw message from Contact Us page");
