@@ -42,8 +42,6 @@ public class MemberController {
     @PostMapping("/signin")
     public ModelAndView signInCheck(String username, String password, ModelAndView mv, HttpSession httpSession) {
         String message = "";
-        System.out.println("username = " + username);
-        System.out.println("password = " + password);
         Map<String, String> map = new HashMap<>();
         map.put("username", username);
         map.put("password", password);

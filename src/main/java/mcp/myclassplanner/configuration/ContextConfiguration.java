@@ -14,10 +14,4 @@ public class ContextConfiguration {
         return new BCryptPasswordEncoder();
     }
 
-    static int guestNo = 1111;
-
-    @Bean
-    public int getGuestNo(){
-        return guestNo++;
-    }
 }

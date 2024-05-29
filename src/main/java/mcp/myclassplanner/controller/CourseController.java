@@ -62,7 +62,6 @@ public class CourseController {
     @PostMapping("/add")
     public String addCourse(String courseName,HttpSession httpSession, HttpServletRequest request){
 //        MemberDTO member = (MemberDTO) httpSession.getAttribute("memberDTO");
-        System.out.println("courseName = " + courseName);
         CourseDTO courseDTO = new CourseDTO();
         courseDTO.setCourseName(courseName);
         List<SectionDTO> sectionDTOList = new ArrayList<>();

@@ -76,7 +76,6 @@ public class MemberService {
         memberDTO.setAuthCode(sb.toString());
         memberDTO.setAuthStatus(0);
         memberDTO.setPassword(passwordEncoder.encode(memberDTO.getPassword()));
-        System.out.println("memberDTO = " + memberDTO);
 
         return memberMapper.signUp(memberDTO);
 
@@ -106,8 +105,6 @@ public class MemberService {
     }
 
     public int authorize(Map<String, String> map) {
-        System.out.println("map.get(\"email\") = " + map.get("email"));
-        System.out.println("map.get(\"authKey\") = " + map.get("authKey"));
         MemberDTO member = memberMapper.authorize(map);
         if(!Objects.isNull(member)){
             memberMapper.authStatus(map);

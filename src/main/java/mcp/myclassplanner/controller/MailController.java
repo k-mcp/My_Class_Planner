@@ -29,7 +29,6 @@ public class MailController {
     public ModelAndView sendTestMail(String email, ModelAndView mv) {
 
         String key = memberService.getAuthCode(email);
-        System.out.println("key = " + key);
         MailTO mailTO = new MailTO();
 
         mailTO.setAddress(email);
@@ -51,7 +50,6 @@ public class MailController {
     public ModelAndView forgotPassword(String email, ModelAndView mv) {
 
         String key = memberService.getAuthCode(email);
-        System.out.println("key = " + key);
         MailTO mailTO = new MailTO();
 
         mailTO.setAddress(email);
