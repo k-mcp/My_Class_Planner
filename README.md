@@ -1,4 +1,14 @@
-[Try Our Application](http://115.95.149.11:8081)
+## 🚀 Try Our Application Now!
+
+We're excited to invite you to experience our web application firsthand! Our app is designed to simplify your tasks and enhance productivity. 🌟
+
+Click below to start exploring:
+
+[![Explore Our Application](https://img.shields.io/badge/Explore-OurApp-blue?style=for-the-badge&logo=appveyor)](http://115.95.149.11:8081)
+
+
+We hope you enjoy using our app as much as we enjoyed building it. If you have any feedback or encounter any issues, please let us know!
+
   <p align='center'>
     <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=My%20Class%20Planner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=&descAlignY=51&descAlign=62" width="100%">
 </p>
@@ -99,7 +109,7 @@
     - 페이지 : 홈, 사이드바, Add Course, Generate Plans, AI 채팅방
     - 공통 컴포넌트 : 게시글 템플릿, 버튼
 - **기능**
-    - 게시글 등록 및 수정, 댓글 등록 및 삭제, 백트래킹 기반의 시간표 생성 알고리즘, OPEN AI Fetch
+    - 게시글 등록 및 수정 및 삭, 댓글 등록, 백트래킹 기반의 시간표 생성 알고리즘, OPEN AI Fetch
 
 <br>
     
@@ -116,20 +126,20 @@
 ### 😎이혜진
 
 - **UI**
-    - 페이지 : splash 페이지, sns 로그인 페이지, 로그인, 회원가입
-    - 공통 컴포넌트 : 상품 카드, 사용자 배너
+    - 페이지 :  FAQ 포함 Contact Us 페이지
+    - 공통 컴포넌트 : 사이드바 카테고리 및 아이콘 추가 삽입, 카테고리별 버튼 및 폰트 작업
 - **기능**
-    - splash 페이지, sns로그인 페이지, 로그인 유효성 및 중복 검사, 회원가입 유효성 및 중복 검사, 이메일 검증, 프로필 설정, 접근제한 설정
+    -  Contact Us 페이지 이메일 발송 기능 구현, 로그인 유효성 및 중복 검사, 회원가입 유효성 및 중복 검사, 이메일 검증
 
 <br>
 
 ### 🐬정고은
 
 - **UI**
-    - 페이지 : 사용자 프로필 페이지
-    - 공통 컴포넌트 : 탑배너, 하단 모달창
+    - 페이지 : 로그인, 로그아웃, my course, community, post, view, 사용자 프로필 페이지, 전반적인 사용자 인터페이스 재구성
+    - 공통 컴포넌트 : 버튼, 검색 폼
 - **기능**
-    - 팔로우 & 언팔로우, 로그아웃, 하단 모달창, 댓글 삭제, 게시글 삭제, 상품 삭제, 사용자 게시글 앨범형 이미지, 탑 배너 뒤로가기 버튼, Alert 모달
+    - 유저 검색, 유저 schedule 보여주기, 시스템 모니터링
     
 <br>
 
@@ -152,7 +162,8 @@
 <br>
 
 ## 6. 신경 쓴 부분
-- [알고리즘](https://github.com/k-mcp/My_Class_Planner/wiki/시간표-생성-알고리즘)
+- :heart_eyes:[알고리즘](https://github.com/k-mcp/My_Class_Planner/wiki/시간표-생성-알고리즘)
+- :smiley:[메일인증](https://github.com/k-mcp/My_Class_Planner/wiki/이메일-인증-시스템)
 
 
 <br>
@@ -239,7 +250,13 @@
 
 <br>
 
-## 8. 개선 목표
+## 8. 물리적 데이터 모델
+<img width="596" alt="model" src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/3190614a-92bb-4003-ae18-b64c77761a10">
+
+
+<br>
+
+## 9. 개선 목표
 
 - 시간표 시각화 : Timetable API 를 이용해서 강의들을 블럭 단위로 시각화 해서 보여줄 예정
 
