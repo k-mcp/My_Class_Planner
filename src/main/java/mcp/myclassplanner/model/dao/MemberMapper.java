@@ -1,11 +1,13 @@
 package mcp.myclassplanner.model.dao;
 
 import mcp.myclassplanner.model.dto.MemberDTO;
+import mcp.myclassplanner.model.dto.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Mapper
 public interface MemberMapper {
@@ -51,4 +53,6 @@ public interface MemberMapper {
     Integer getMemberCodeByUsername(String username);
 
     List<String> searchAllMember(String query);
+
+    Optional<User> findByUsername(String username);
 }

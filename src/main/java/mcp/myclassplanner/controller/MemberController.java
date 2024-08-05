@@ -3,6 +3,7 @@ package mcp.myclassplanner.controller;
 import jakarta.servlet.http.HttpSession;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import mcp.myclassplanner.model.dto.MemberDTO;
 import mcp.myclassplanner.model.service.MemberService;
 import org.springframework.context.annotation.PropertySource;
@@ -18,6 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/auth")
 @PropertySource("classpath:application.properties")
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;

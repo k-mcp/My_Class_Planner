@@ -1,15 +1,14 @@
 package mcp.myclassplanner.model.service;
 
+import io.micrometer.observation.ObservationFilter;
 import mcp.myclassplanner.model.dto.MemberDTO;
+import mcp.myclassplanner.model.dto.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import mcp.myclassplanner.model.dao.MemberMapper;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class MemberService {
@@ -180,5 +179,9 @@ public class MemberService {
 
     public List<String> searchAllMember(String query) {
         return memberMapper.searchAllMember(query);
+    }
+
+    public Optional<User> findByUsername(String username) {
+        return memberMapper.findByUsername(username);
     }
 }

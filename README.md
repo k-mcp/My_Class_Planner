@@ -13,6 +13,8 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
     <img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=300&section=header&text=My%20Class%20Planner&fontSize=90&animation=fadeIn&fontAlignY=38&desc=&descAlignY=51&descAlign=62" width="100%">
 </p>
 
+<br><br>
+
 ## 프로젝트 소개
 
 - My Class Planner 는 대학생들이 수강신청 할 때 시간표 충돌이 발생하지 않는 모든 가능한 시간표를 보여주는 웹 애플리케이션입니다.
@@ -20,29 +22,69 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 - 게시판/댓글 기능을 통해 다른 유저와 의사소통이 가능합니다.
 - AI chat 시스템으로 유저가 사용하는데에 불편함을 느낄 때 도움 받을 수 있습니다.
 
-<br>
-
-
+<br><br>
 
 ## 팀 구성원 및 역할
+<table>
+  <tr>
+    <th>구성원</th>
+    <th>이름</th>
+    <th>역할</th>
+    <th>깃허브 주소</th>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/82716b47-fa9c-4851-99da-085c34017bf3" width="120" />
+    </td>
+    <td>유정우</td>
+    <td>팀장, Server, Algorithm, OPEN AI</td>
+    <td>
+      <a href="https://github.com/Jungwoo-Ryu">유정우의 깃허브</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/e7ae7ab4-a66e-47c8-b8b1-ba1a218717ad" width="120" />
+    </td>
+    <td>이은숙</td>
+    <td>업무관리, DB 관리, 테스트관리</td>
+    <td>
+      <a href="https://github.com/Leeeunsookl">이은숙의 깃허브</a>
+    </td>
+  </tr>
+  <tr>
+   <td>
+    <img src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/41fc877b-eac7-41b2-91aa-86929d1f0991" width="120" />
+    </td>
+    <td>이혜진</td>
+    <td>문서관리, DB 관리</td>
+    <td>
+      <a href="https://github.com/tesla1220">이혜진의 깃허브</a>
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <img src="https://github.com/GonY0624.png" width="120" />
+    </td>
+    <td>정고은</td>
+    <td>Server, UI/UX</td>
+    <td>
+      <a href="https://github.com/GonY0624">정고은의 깃허브</a>
+    </td>
+  </tr>
+</table>
 
-| 이름    | 역할         | 깃허브 주소                   |
-|---------|--------------|-------------------------------|
-| 유정우  | 팀장, Server, Algorithm, OPEN AI | [유정우의 깃허브](https://github.com/Jungwoo-Ryu) |
-| 이은숙  | 업무관리, DB 관리, 테스트관리 | [이은숙의 깃허브](https://github.com/Leeeunsookl) |
-| 이혜진  | 문서관리, DB 관리 | [이혜진의 깃허브](https://github.com/tesla1220) |
-| 정고은  | Server, UI/UX   | [정고은의 깃허브](https://github.com/GonY0624) |
-
-<br>
+<br><br>
 
 ## 1. 개발 환경
 
 - Front : HTML/CSS, Javascript, Bootstrap, Thymeleaf
 - Back-end : Java/Springboot
 - 버전 및 이슈관리 : Github, Github Issues, Github Project
-- 협업 툴 : Discord, Notion
+- 협업 툴 : Discord, Notion, Github
 - 서비스 배포 환경 : jar
-<br>
+  
+<br><br>
 
 
 ## 2. 채택한 개발 기술과 브랜치 전략
@@ -69,7 +111,7 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
     - **develop** 브랜치는 개발 단계에서 git-flow의 master 역할을 하는 브랜치입니다.
     - **Feat** 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 merge 후 각 브랜치를 삭제해주었습니다.
 
-<br>
+<br><br>
 
 
 ## 3. 프로젝트 구조
@@ -99,7 +141,7 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 
 ```
 
-<br>
+<br><br>
 
 ## 4. 역할 분담
 
@@ -141,7 +183,7 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 - **기능**
     - 유저 검색, 유저 schedule 보여주기, 시스템 모니터링
     
-<br>
+<br><br>
 
 ## 5. 개발 기간 및 작업 관리
 
@@ -159,27 +201,35 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 - GitHub Projects와 Issues를 사용하여 진행 상황을 공유했습니다.
 - 주간회의를 진행하며 작업 순서와 방향성에 대한 고민을 나누고 Notion에 회의 내용을 기록했습니다.
 
-<br>
+<br><br>
 
-## 6. 신경 쓴 부분
+
+## 6. 물리 데이터 모델
+<img width="1000" alt="model" src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/3190614a-92bb-4003-ae18-b64c77761a10">
+
+
+<br><br>
+
+
+## 7. 신경 쓴 부분
 - :heart_eyes:[알고리즘](https://github.com/k-mcp/My_Class_Planner/wiki/시간표-생성-알고리즘)
+- 😊[비밀번호 암호화](https://github.com/k-mcp/My_Class_Planner/wiki/비밀번호-암호화)
 - :smiley:[메일인증](https://github.com/k-mcp/My_Class_Planner/wiki/이메일-인증-시스템)
 
 
-<br>
+<br><br>
 
-
-## 7. 페이지별 기능
+## 8. 화면별 기능 요약
 
 ### [초기화면]
 - 서비스 접속 초기화면으로 My Class Planner 의 로고가 회전합니다.
-    - 게스트로 이용할 경우 : Continue as Guest
+    - 게스트로 이용할 경우 : Continue as Guest, Settings 기능 사용 불가능합니다.
     - 회원으로 이용할 경우 : Sign in
 - SNS(카카오톡, 구글, 페이스북) 로그인 기능은 구현되어 있지 않습니다.
 
 | 초기화면 |
 |----------|
-![v1](https://github.com/k-mcp/My_Class_Planner/assets/98254345/c2a319d0-5fe2-4a0f-b6c4-7e7a35371607)
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/c2a319d0-5fe2-4a0f-b6c4-7e7a35371607" width="1000"/>
 
 <br>
 
@@ -191,28 +241,23 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 
 | 회원가입 |
 |----------|
-![signup](https://github.com/k-mcp/My_Class_Planner/assets/98254345/d5a7e864-7791-4d4e-bc13-74bfd803fc61)
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/d5a7e864-7791-4d4e-bc13-74bfd803fc61" width="1000"/>
 
 | 이메일 인증 |
 |----------|
-![email](https://github.com/k-mcp/My_Class_Planner/assets/98254345/2d71ed90-a130-4537-81ae-119a978ecbd8)
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/2d71ed90-a130-4537-81ae-119a978ecbd8" width="1000"/>
 
 
 <br>
-
-
-
 
 ### [로그인/로그아웃]
 - 이메일 인증이 아직 완료 되지 않은 계정에 경우 재인증 이메일이 전송됩니다.
 - 인증된 계정의 경우 Session 에 사용자의 정보를 저장하고 홈페이지로 이동하여 사용자가 저장한 데이터를 조회 할 수 있습니다.
 - 로그아웃시 로컬 저장소의 토큰 값과 사용자 정보를 삭제하고 초기화면으로 이동합니다.
 
-
 | 로그인 / 로그아웃 |
 |----------|
-![login](https://github.com/k-mcp/My_Class_Planner/assets/98254345/efc756f8-7a8f-499c-8766-9a8020b70b5f)
-
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/efc756f8-7a8f-499c-8766-9a8020b70b5f" width="1000"/>
 
 <br>
 
@@ -227,8 +272,7 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 
 | Add Courses / My Course |
 |----------|
-|![tab![add_view_course](https://github.com/k-mcp/My_Class_Planner/assets/98254345/927be4dd-109b-4d47-88f7-3abf0294caad)|
-
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/927be4dd-109b-4d47-88f7-3abf0294caad" width="1000"/>
 
 <br>
 
@@ -239,27 +283,17 @@ We hope you enjoy using our app as much as we enjoyed building it. If you have a
 
 | Generate Plans |
 |----------|
-
-![generate](https://github.com/k-mcp/My_Class_Planner/assets/98254345/721ab34a-8090-44eb-923e-6afafcff2a6d)
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/721ab34a-8090-44eb-923e-6afafcff2a6d" width="1000"/>
 
 | My Plans |
 |----------|
-
-![my_plan](https://github.com/k-mcp/My_Class_Planner/assets/98254345/df3003ba-6cd9-46d1-8773-99b123107cfb)
-
-
-<br>
-
-## 8. 물리적 데이터 모델
-<img width="596" alt="model" src="https://github.com/k-mcp/My_Class_Planner/assets/101847682/3190614a-92bb-4003-ae18-b64c77761a10">
+<img src="https://github.com/k-mcp/My_Class_Planner/assets/98254345/df3003ba-6cd9-46d1-8773-99b123107cfb" width="1000"/>
 
 
-<br>
+<br><br>
 
 ## 9. 개선 목표
 
 - 시간표 시각화 : Timetable API 를 이용해서 강의들을 블럭 단위로 시각화 해서 보여줄 예정
 
 <br>
-
-

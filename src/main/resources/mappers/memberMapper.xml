@@ -3,6 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mcp.myclassplanner.model.dao.MemberMapper">
+    <resultMap id="user" type="mcp.myclassplanner.model.dto.User">
+        <id property="userId" column="userNo"/>
+        <result property="userId" column="userId"/>
+        <result property="userPass" column="userPass"/>
+        <result property="userName" column="userName"/>
+        <result property="userEmail" column="userEmail"/>
+        <result property="roleList" column="roleList"/>
+        <result property="state" column="state"/>
+    </resultMap>
+
+
     <resultMap id="memberDTO" type="mcp.myclassplanner.model.dto.MemberDTO">
         <id property="memberCode" column="member_code"/>
         <result property="email" column="email"/>
@@ -40,6 +51,11 @@
         where username = #{username}
     </select>
 
+    <select id="findByUsername" parameterType="string" resultMap="user">
+        select * from
+        tbl_member
+        where username = #{username}
+    </select>
 
 
 
